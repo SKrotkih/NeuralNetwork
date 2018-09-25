@@ -23,9 +23,6 @@
 	float fAlpha;
 }
 
-// singleton
-+ (NN2DataSource*) instance;
-
 //@property SEL normalizeMethod;
 //@property SEL denormalizeMethod;
 @property (assign) id normalizeObject;
@@ -34,9 +31,9 @@
 
 - (id) initData;
 
-- (void) normalize_input: (NSArray*) array;
+- (void) normalizeInput: (NSArray*) array;
 
-- (void) denormalize_output;
+- (void) denormalizeOutput;
 
 - (NSNumber*) W: (int) index1 index2: (int) index2 index3: (int) index3;
 

@@ -10,33 +10,7 @@
 
 @implementation NN2LineanNormalize
 
-static NN2LineanNormalize* _instance = nil;
-
 @synthesize normalizeMethod;
-
-+ (NN2LineanNormalize*) instance {
-	@synchronized([NN2LineanNormalize class])
-	{
-		if (!_instance)
-			[[self alloc] init];
-		
-		return _instance;
-	}
-	
-	return nil;
-}
-
-+ (id) alloc
-{
-	@synchronized([NN2LineanNormalize class])
-	{
-		NSAssert(_instance == nil, @"Attempted to allocate a second instance of a singleton.");
-		_instance = [super alloc];
-		return _instance;
-	}
-	
-	return nil;
-}
 
 - (id) init {
 	self = [super init];

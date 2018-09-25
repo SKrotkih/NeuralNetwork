@@ -18,9 +18,6 @@
 	SEL normalizeMethod;	
 }
 
-// singleton
-+ (NN2LineanNormalize*) instance;
-
 - (id) normalize: (id) data;
 
 - (id) denormalize: (id) data;

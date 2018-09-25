@@ -45,36 +45,38 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
         return;
     }
     
-    NN2DataSource* dataSource = [NN2DataSource instance];
+    NN2DataSource* dataSource = [[NN2DataSource alloc] init];
+    NN2NeuralNetwork* neuralNetwork = [[NN2NeuralNetwork alloc] init];
+    NN2LineanNormalize* normalizeObject = [[NN2LineanNormalize alloc] init];
     
     // Define data source agregation object for neural network object
     // call method of singleton xlass
-    [NN2NeuralNetwork instance].datasrc = dataSource;
+    neuralNetwork.dataSrc = dataSource;
     
     // Linear algorithm for Normalize data on (object for data source object)
-    dataSource.normalizeObject = [NN2LineanNormalize instance];
+    dataSource.normalizeObject = normalizeObject;
     // for example
-    //dataSource.normalizeMethod = [[NN2LineanNormalize instance] normalizeMethod];
+    //dataSource.normalizeMethod = [normalizeObject normalizeMethod];
     
     [dataSource initData];
     
-    [dataSource normalize_input: input];
+    [dataSource normalizeInput: input];
     
     // Compute Neural network
-    [[NN2NeuralNetwork instance] compute];
+    [neuralNetwork compute];
     
-    [dataSource denormalize_output];
+    [dataSource denormalizeOutput];
     
     float output = [[dataSource output] floatValue];
     
-    [self.view presentResult: output];
+    [self.view outputResult: output];
 }
 
 - (NSArray*) inputData {
     float ds1 = [self.view.operand1 floatValue];
     float ds2 = [self.view.operand2 floatValue];
     if ((ds1 < 1) || (ds1 > 10) || (ds2 < 1) || (ds2 > 10)) {
-        [self.view showError];
+        [self.view outputError];
         return nil;
     }
     NSNumber* op1 = [NSNumber numberWithFloat: ds1];

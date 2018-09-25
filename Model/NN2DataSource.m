@@ -14,33 +14,6 @@
 @synthesize LC = fLC;
 @synthesize Alpha = fAlpha;
 
-static NN2DataSource* _instance = nil;
-
-+ (NN2DataSource*) instance {
-	@synchronized([NN2DataSource class])
-	{
-		if (!_instance)
-			[[self alloc] init];
-		
-		return _instance;
-	}
-	
-	return nil;
-}
-
-+ (id) alloc
-{
-	@synchronized([NN2DataSource class])
-	{
-		NSAssert(_instance == nil, @"Attempted to allocate a second instance of a singleton.");
-		_instance = [super alloc];
-		return _instance;
-	}
-	
-	return nil;
-}
-
-
 - (id) init {
 	self = [super init];
 	if (self != nil) {
@@ -129,7 +102,7 @@ static NN2DataSource* _instance = nil;
 	
 } // setOutputData:atIndex:
 
-- (void) normalize_input: (NSArray*) inputdata {
+- (void) normalizeInput: (NSArray*) inputdata {
 	int i;
 	NSAssert(2 == [inputdata count], @"This neural network works with 2 args only!");
 	for (i = 0; i < [inputdata count]; i++) {
@@ -140,7 +113,7 @@ static NN2DataSource* _instance = nil;
 	}
 }	// normalizeData
 
-- (void) denormalize_output {
+- (void) denormalizeOutput {
 	int r = fLC - 1;
 	int c = 0;
 	NSNumber *d = [self LayerOutput: r c: c];

@@ -10,9 +10,9 @@
 
 @protocol NN2MainViewProtocol
 
-- (void) presentResult: (float) result;
+- (void) outputResult: (float) result;
 
-- (void) showError;
+- (void) outputError;
 
 @property (nonatomic, readonly) NSString* operand1;
 

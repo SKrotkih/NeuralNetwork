@@ -11,10 +11,7 @@
 @interface NN2NeuralNetwork: NSObject {
     id datasrc;
 }
-@property (assign) id datasrc;
-
-// singleton
-+ (NN2NeuralNetwork*) instance;
+@property (assign) id dataSrc;
 
 // Compute Neural network
 - (void) compute;

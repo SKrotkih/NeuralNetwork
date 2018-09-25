@@ -29,7 +29,7 @@
     
     self.viewModel = [[NN2MainViewModel alloc] init];
     self.viewModel.view = self;
-    self.viewModel.viewController = self; // It's necessary just for JVO impl!
+    self.viewModel.viewController = self; // It's necessary for the KVO only!
     [self.viewModel configure];
 }
 
@@ -59,13 +59,15 @@
     return s2.text;
 }
 
-- (void) presentResult: (float) result {
+- (void) outputResult: (float) result {
     resultTextField.text = [NSString stringWithFormat: @"%f", result];
 }
 
-- (void) showError {
+- (void) outputError {
     //---display an alert view---
-    [NN2Helpers alert: @"Warning!" message: @"s1 and s2 must be in (1..10) range!" sender: self];
+    [NN2Helpers alert: @"Warning!"
+              message: @"s1 and s2 must be in (1..10) range!"
+               sender: self];
 }
 
 @end
