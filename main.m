@@ -1,6 +1,6 @@
 //
 //  main.m
-//  NN2
+//  NeuralNetwork
 //
 //  Created by user on 10.10.10.
 //  Copyright SK 2010. All rights reserved.

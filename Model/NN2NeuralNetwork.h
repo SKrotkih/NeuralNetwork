@@ -1,25 +1,25 @@
 //
-//  NeuralNetwork.h
-//  NN2
+//  NN2NeuralNetwork.h
+//  NeuralNetwork
 //
 //  Created by Sergey Krotkih.
 //  Copyright 2010 SK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "datasource.h"
 
-@interface NeuralNetwork : NSObject {
-	id datasrc;
+@interface NN2NeuralNetwork: NSObject {
+    id datasrc;
 }
 @property (assign) id datasrc;
 
 // singleton
-+ (NeuralNetwork*) instance;
++ (NN2NeuralNetwork*) instance;
 
 // Compute Neural network
-- (void) Compute;
+- (void) compute;
 
 - (float) sigmoid: (float) weighted_sum;
 
 @end
+

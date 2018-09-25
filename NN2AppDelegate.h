@@ -1,6 +1,6 @@
 //
 //  NN2AppDelegate.h
-//  NN2
+//  NeuralNetwork
 //
 //  Created by Sergey Krotkih.
 //  Copyright SK 2010. All rights reserved.
@@ -11,12 +11,10 @@
 @class NN2ViewController;
 
 @interface NN2AppDelegate: NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-    NN2ViewController *viewController;
+    UIWindow* window;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet NN2ViewController *viewController;
+@property (nonatomic, retain) IBOutlet UIWindow* window;
 
 @end
 

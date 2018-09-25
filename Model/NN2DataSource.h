@@ -1,16 +1,16 @@
 //
-//  datasource.h
-//  NN2
+//  Datasource.h
+//  NeuralNetwork
 //
 //  Created by Sergey Krotkih.
 //  Copyright 2010 SK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "Normalize.h"
+#import "NN2Normalizible.h"
 
-@interface DataSource : NSObject {
-	id<Normalize> normalizeObject;
+@interface NN2DataSource: NSObject {
+	id<NN2Normalizible> normalizeObject;
 	// selectors 
 	//SEL normalizeMethod;	
     //SEL denormalizeMethod;		
@@ -24,7 +24,7 @@
 }
 
 // singleton
-+ (DataSource*) instance;
++ (NN2DataSource*) instance;
 
 //@property SEL normalizeMethod;
 //@property SEL denormalizeMethod;
@@ -38,15 +38,15 @@
 
 - (void) denormalize_output;
 
-- (NSNumber*) W: (int) index1: (int) index2: (int) index3;
+- (NSNumber*) W: (int) index1 index2: (int) index2 index3: (int) index3;
 
-- (NSNumber*) WT: (int) index1: (int) index2;
+- (NSNumber*) WT: (int) index1 index2: (int) index2;
 
 - (NSNumber*) Config: (int) index;
 
-- (NSNumber*) LayerOutput: (int) index1: (int) index2;
+- (NSNumber*) LayerOutput: (int) r c: (int) c;
 
-- (void) setLayerOutput: (float) itemdata: (int) index1: (int) index2;
+- (void) setLayerOutput: (float) itemdata r: (int) r c: (int) c;
 
 - (id) output;
 

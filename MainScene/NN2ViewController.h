@@ -1,6 +1,6 @@
 //
 //  NN2ViewController.h
-//  NN2
+//  NeuralNetwork
 //
 //  Created by Sergey Krotkih.
 //  Copyright SK 2010. All rights reserved.
@@ -14,7 +14,7 @@
 	IBOutlet UITextField* s2;
 }
 
--(IBAction)btnCalculate:(id)sender;
+- (IBAction) btnCalculate: (id) sender;
 
 @property (nonatomic,retain) IBOutlet UITextField* resultTextField;
 @property (nonatomic,retain) IBOutlet UITextField* s1;

@@ -1,21 +1,21 @@
 //
-//  lineanNormalize.m
-//  NN2
+//  NN2LineanNormalize.m
+//  NeuralNetwork
 //
 //  Created by Sergey Krotkih.
 //  Copyright 2010 SK. All rights reserved.
 //
 
-#import "lineanNormalize.h"
+#import "NN2LineanNormalize.h"
 
-@implementation LineanNormalize
+@implementation NN2LineanNormalize
 
-static LineanNormalize* _instance = nil;
+static NN2LineanNormalize* _instance = nil;
 
 @synthesize normalizeMethod;
 
-+ (LineanNormalize*) instance {
-	@synchronized([LineanNormalize class])
++ (NN2LineanNormalize*) instance {
+	@synchronized([NN2LineanNormalize class])
 	{
 		if (!_instance)
 			[[self alloc] init];
@@ -28,7 +28,7 @@ static LineanNormalize* _instance = nil;
 
 + (id) alloc
 {
-	@synchronized([LineanNormalize class])
+	@synchronized([NN2LineanNormalize class])
 	{
 		NSAssert(_instance == nil, @"Attempted to allocate a second instance of a singleton.");
 		_instance = [super alloc];
@@ -51,7 +51,7 @@ static LineanNormalize* _instance = nil;
 
 - (id) denormalize: (id) data {
 	if (strcmp([data objCType], @encode(float)) == 0) {
-		@synchronized([LineanNormalize class])
+		@synchronized([NN2LineanNormalize class])
 		{
 			float val = [data floatValue];
 			val = val * (max_res - min) + min;
@@ -66,7 +66,7 @@ static LineanNormalize* _instance = nil;
 - (id) normalize: (id) data {
 	// this is an algorithm of linear normalize data 
 	if (strcmp([data objCType], @encode(float)) == 0) {
-		@synchronized([LineanNormalize class])
+		@synchronized([NN2LineanNormalize class])
 		{
 			float val = [data floatValue];
 			val = (val - min)/(max - min);

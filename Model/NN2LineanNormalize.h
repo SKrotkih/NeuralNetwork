@@ -1,15 +1,15 @@
 //
-//  lineanNormalize.h
-//  NN2
+//  NN2LineanNormalize.h
+//  NeuralNetwork
 //
 //  Created by Sergey Krotkih.
 //  Copyright 2010 SK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "Normalize.h"
+#import "NN2Normalizible.h"
 
-@interface LineanNormalize: NSObject <Normalize> {
+@interface NN2LineanNormalize: NSObject <NN2Normalizible> {
 @private
 	float min;
 	float max;
@@ -17,8 +17,9 @@
 @public
 	SEL normalizeMethod;	
 }
+
 // singleton
-+ (LineanNormalize*) instance;
++ (NN2LineanNormalize*) instance;
 
 - (id) normalize: (id) data;
 

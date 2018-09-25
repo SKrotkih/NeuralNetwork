@@ -1,24 +1,25 @@
 //
-//  NeuralNetwork.m
-//  NN2
+//  NN2NeuralNetwork.m
+//  NeuralNetwork
 //
 //  Created by Sergey Krotkih.
 //  Copyright 2010 SK. All rights reserved.
 //
 
-#import "NeuralNetwork.h"
-#import "lineanNormalize.h"
+#import "NN2NeuralNetwork.h"
+#import "NN2DataSource.h"
+#import "NN2LineanNormalize.h"
 
-@implementation NeuralNetwork
+@implementation NN2NeuralNetwork
 
-static NeuralNetwork* _instance = nil;
+static NN2NeuralNetwork* _instance = nil;
 
 @synthesize datasrc;
 
 // implementation of NeuralNetwork singleton 
-+ (NeuralNetwork*) instance
++ (NN2NeuralNetwork*) instance
 {
-	@synchronized([NeuralNetwork class])
+	@synchronized([NN2NeuralNetwork class])
 	{
 		if (!_instance)
 			[[self alloc] init];
@@ -31,7 +32,7 @@ static NeuralNetwork* _instance = nil;
 
 + (id) alloc
 {
-	@synchronized([NeuralNetwork class])
+	@synchronized([NN2NeuralNetwork class])
 	{
 		NSAssert(_instance == nil, @"Attempted to allocate a second instance of a singleton.");
 		_instance = [super alloc];
@@ -47,22 +48,22 @@ static NeuralNetwork* _instance = nil;
 }	// sigmoid
 
 // Main procedure of the Neural network algorithm.
-- (void) Compute {
+- (void) compute {
 	for (int layer = 0; layer <= [datasrc LC] - 2; layer++){
 		int layerEntersNumber = [[datasrc Config:layer] intValue] - 1;
 		int neuronsNumber = [[datasrc Config:layer + 1] intValue] - 1;
 		for (int neuron = 0; neuron <= neuronsNumber; neuron++){
 			float weighted_sum = 0;
 			for (int n = 0; n <= layerEntersNumber; n++){
-				float g = [[datasrc LayerOutput:layer:n] floatValue];
-				float w = [[datasrc W:layer:n:neuron] floatValue];	
+				float g = [[datasrc LayerOutput: layer c: n] floatValue];
+				float w = [[datasrc W: layer index2: n index3: neuron] floatValue];
 				weighted_sum  = weighted_sum + w * g;
 			}
 	
 			// adding offset point
-			weighted_sum = weighted_sum + [[datasrc WT: layer: neuron] floatValue];
+			weighted_sum = weighted_sum + [[datasrc WT: layer index2: neuron] floatValue];
 			float sigma = [self sigmoid: weighted_sum];
-			[datasrc setLayerOutput: sigma: layer + 1: neuron];
+			[datasrc setLayerOutput: sigma r: layer + 1 c: neuron];
 		}
 	}
 

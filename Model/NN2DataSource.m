@@ -1,23 +1,23 @@
 //
-//  datasource.m
-//  NN2
+//  Datasource.m
+//  NeuralNetwork
 //
 //  Created by Sergey Krotkih.
 //  Copyright 2010 SK. All rights reserved.
 //
 
-#import "datasource.h"
+#import "NN2DataSource.h"
 
-@implementation DataSource
+@implementation NN2DataSource
 
 @synthesize normalizeObject;
-@synthesize LC=fLC;
-@synthesize Alpha=fAlpha;
+@synthesize LC = fLC;
+@synthesize Alpha = fAlpha;
 
-static DataSource * _instance = nil;
+static NN2DataSource* _instance = nil;
 
-+ (DataSource*) instance {
-	@synchronized([DataSource class])
++ (NN2DataSource*) instance {
+	@synchronized([NN2DataSource class])
 	{
 		if (!_instance)
 			[[self alloc] init];
@@ -30,7 +30,7 @@ static DataSource * _instance = nil;
 
 + (id) alloc
 {
-	@synchronized([DataSource class])
+	@synchronized([NN2DataSource class])
 	{
 		NSAssert(_instance == nil, @"Attempted to allocate a second instance of a singleton.");
 		_instance = [super alloc];
@@ -85,7 +85,7 @@ static DataSource * _instance = nil;
 	return self;
 } // init
 
-- (NSNumber*) W: (int)index1: (int) index2: (int) index3 {
+- (NSNumber*) W: (int) index1 index2: (int) index2 index3: (int) index3 {
 	int ind = 0;
 	if (1 == index1) {
 		ind = index1 * 6 + index2;
@@ -101,7 +101,7 @@ static DataSource * _instance = nil;
     return (itemdata);
 }	// fWAtIndex
 
-- (NSNumber*) WT: (int) index1: (int) index2 {
+- (NSNumber*) WT: (int) index1 index2: (int) index2 {
 	int index = index1 * 3 + index2;
 	NSNumber *itemdata = [fWT objectAtIndex: index];	
 	return (itemdata);
@@ -112,16 +112,16 @@ static DataSource * _instance = nil;
     return (itemdata);
 }	// fConfigAtIndex
 
-- (NSNumber *) LayerOutput: (int) index1: (int) index2 {
-	int index = index1 * 2 + index2;
+- (NSNumber*) LayerOutput: (int) r c: (int) c {
+	int index = r * 2 + c;
 	NSAssert(index < [fLayerOutput count], @"fLayerOutput: Index is out of range");
 	NSNumber *itemdata = [fLayerOutput objectAtIndex: index];	
     return (itemdata);
 }	// fLayerOutputAtIndex
 
 
-- (void) setLayerOutput: (float) itemdata: (int) index1: (int) index2 {
-	int index = index1 * 2 + index2;
+- (void) setLayerOutput: (float) itemdata r: (int) r c: (int) c {
+	int index = r * 2 + c;
 	NSAssert(index < [fLayerOutput count], @"fLayerOutput: Index is out of range");
 	NSNumber *d= [NSNumber numberWithFloat:itemdata];
     [fLayerOutput replaceObjectAtIndex: index
@@ -136,22 +136,22 @@ static DataSource * _instance = nil;
 		NSNumber *d = [inputdata objectAtIndex: i];
 		//id dn =[normalizeObject performSelector:[normalizeObject normalizeMethod] withObject: d];
 		id dd = [normalizeObject normalize:d];
-		[self setLayerOutput:[dd floatValue]:0:i];
+		[self setLayerOutput: [dd floatValue] r: 0 c: i];
 	}
 }	// normalizeData
 
 - (void) denormalize_output {
 	int r = fLC - 1;
 	int c = 0;
-	NSNumber *d = [self LayerOutput:r:c];
+	NSNumber *d = [self LayerOutput: r c: c];
 	float dd = [[normalizeObject denormalize: d] floatValue];
-	[self setLayerOutput: dd: r: c];
+	[self setLayerOutput: dd r: r c: c];
 }	// denormalizeData
 
 - (id) output {
 	int r = fLC - 1;
 	int c = 0;
-	NSNumber *d = [self LayerOutput: r: c];
+	NSNumber *d = [self LayerOutput: r c: c];
 	return d;
 }	// output
 

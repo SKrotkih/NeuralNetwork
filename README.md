@@ -1,7 +1,7 @@
 # The neural network calculator
 
-The neural network simple example. 
-The iOS app can add two decimal numbers up to 10.
+The simple neural network example. 
+The iOS app can add two decimal numbers.
 
 ## Requirements
 
