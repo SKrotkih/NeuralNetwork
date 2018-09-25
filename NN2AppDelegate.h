@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class NN2ViewController;
+@class NN2MainViewController;
 
 @interface NN2AppDelegate: NSObject <UIApplicationDelegate> {
     UIWindow* window;

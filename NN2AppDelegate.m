@@ -7,7 +7,7 @@
 //
 
 #import "NN2AppDelegate.h"
-#import "NN2ViewController.h"
+#import "NN2MainViewController.h"
 
 @implementation NN2AppDelegate
 
