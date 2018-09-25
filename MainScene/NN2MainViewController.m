@@ -27,16 +27,28 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+    [self configureViewModel];
+    [self configureView];
+}
+
+- (void) configureViewModel {
     self.viewModel = [[NN2MainViewModel alloc] init];
     self.viewModel.view = self;
     self.viewModel.viewController = self; // It's necessary for the KVO only!
     [self.viewModel configure];
 }
 
+- (void) configureView {
+    self.titleLabel.text = @"Simple calculator with Neural network";
+    [self.computeButton setTitle: @"Compute" forState: UIControlStateNormal];
+}
+
 - (void) dealloc {
     [resultTextField release];
     [s1 release];
     [s2 release];
+    [_titleLabel release];
+    [_computeButton release];
     [super dealloc];
 }
 
@@ -65,8 +77,8 @@
 
 - (void) outputError {
     //---display an alert view---
-    [NN2Helpers alert: @"Warning!"
-              message: @"s1 and s2 must be in (1..10) range!"
+    [NN2Helpers alert: NSLocalizedString(@"Warning!", "Warning!")
+              message: NSLocalizedString(@"s1 and s2 must be in (1..10) range!", @"s1 and s2 must be in (1..10) range!")
                sender: self];
 }
 

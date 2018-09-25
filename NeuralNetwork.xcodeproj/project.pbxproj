@@ -14,11 +14,12 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D7ACF80DDB3853001CB0EB /* NN2MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* NN2MainViewController.m */; };
 		7F9B01FB2159ED3700A2BDB0 /* NN2Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B01F92159ED3700A2BDB0 /* NN2Helpers.m */; };
-		7F9B01FD2159F49700A2BDB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9B01FC2159F49700A2BDB0 /* Main.storyboard */; };
 		7F9B01FF2159F87400A2BDB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9B01FE2159F87400A2BDB0 /* Images.xcassets */; };
 		7F9B02012159F96D00A2BDB0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7F9B02002159F96D00A2BDB0 /* README.md */; };
 		7FD1C018215A60DC00023B8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FD1C017215A60DC00023B8B /* LaunchScreen.storyboard */; };
 		7FD1C01B215A64DE00023B8B /* NN2MainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1C01A215A64DE00023B8B /* NN2MainViewModel.m */; };
+		7FD1C01D215AA21D00023B8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FD1C01F215AA21D00023B8B /* Main.storyboard */; };
+		7FD1C023215AA2F500023B8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FD1C025215AA2F500023B8B /* Localizable.strings */; };
 		CE84CC9E1263EAEA006DB9CD /* NN2DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84CC9D1263EAEA006DB9CD /* NN2DataSource.m */; };
 		CE8811C11262B3C3005E2F8F /* NN2NeuralNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8811C01262B3C3005E2F8F /* NN2NeuralNetwork.m */; };
 		CE8811D61262C0E1005E2F8F /* NN2LineanNormalize.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8811D51262C0E1005E2F8F /* NN2LineanNormalize.m */; };
@@ -37,13 +38,15 @@
 		32CA4F630368D1EE00C91783 /* NeuralNetwork_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeuralNetwork_Prefix.pch; sourceTree = "<group>"; };
 		7F9B01F92159ED3700A2BDB0 /* NN2Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NN2Helpers.m; sourceTree = "<group>"; };
 		7F9B01FA2159ED3700A2BDB0 /* NN2Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NN2Helpers.h; sourceTree = "<group>"; };
-		7F9B01FC2159F49700A2BDB0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7F9B01FE2159F87400A2BDB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NeuralNetwork/Images.xcassets; sourceTree = "<group>"; };
 		7F9B02002159F96D00A2BDB0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7FD1C017215A60DC00023B8B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7FD1C019215A64DE00023B8B /* NN2MainViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NN2MainViewModel.h; sourceTree = "<group>"; };
 		7FD1C01A215A64DE00023B8B /* NN2MainViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NN2MainViewModel.m; sourceTree = "<group>"; };
 		7FD1C01C215A782800023B8B /* NN2MainViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NN2MainViewProtocol.h; sourceTree = "<group>"; };
+		7FD1C01E215AA21D00023B8B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7FD1C024215AA2F500023B8B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7FD1C026215AA2FA00023B8B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NeuralNetwork-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NeuralNetwork-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		CE84CC9C1263EAEA006DB9CD /* NN2DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NN2DataSource.h; sourceTree = "<group>"; };
 		CE84CC9D1263EAEA006DB9CD /* NN2DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NN2DataSource.m; sourceTree = "<group>"; };
@@ -117,8 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				7F9B02002159F96D00A2BDB0 /* README.md */,
+				7FD1C025215AA2F500023B8B /* Localizable.strings */,
 				7F9B01FE2159F87400A2BDB0 /* Images.xcassets */,
-				7F9B01FC2159F49700A2BDB0 /* Main.storyboard */,
+				7FD1C01F215AA21D00023B8B /* Main.storyboard */,
 				7FD1C017215A60DC00023B8B /* LaunchScreen.storyboard */,
 				8D1107310486CEB800E47090 /* NeuralNetwork-Info.plist */,
 			);
@@ -197,6 +201,7 @@
 				Japanese,
 				French,
 				German,
+				ru,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -214,8 +219,9 @@
 			files = (
 				7F9B02012159F96D00A2BDB0 /* README.md in Resources */,
 				7FD1C018215A60DC00023B8B /* LaunchScreen.storyboard in Resources */,
-				7F9B01FD2159F49700A2BDB0 /* Main.storyboard in Resources */,
+				7FD1C01D215AA21D00023B8B /* Main.storyboard in Resources */,
 				7F9B01FF2159F87400A2BDB0 /* Images.xcassets in Resources */,
+				7FD1C023215AA2F500023B8B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +244,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7FD1C01F215AA21D00023B8B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FD1C01E215AA21D00023B8B /* en */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7FD1C025215AA2F500023B8B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FD1C024215AA2F500023B8B /* en */,
+				7FD1C026215AA2FA00023B8B /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {

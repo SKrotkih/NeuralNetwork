@@ -1,0 +1,12 @@
+/* 
+  File.strings
+  NeuralNetwork
+
+  Created by Сергей Кротких on 25/09/2018.
+  Copyright © 2018 SK. All rights reserved.
+*/
+
+"Warning!" = "Warning!";
+"s1 and s2 must be in (1..10) range!" = "s1 and s2 must be in (1..10) range!";
+"Simple calculator with Neural network" = "Simple calculator with Neural network";
+"Compute" = "Compute";
