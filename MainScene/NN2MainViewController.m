@@ -39,8 +39,8 @@
 }
 
 - (void) configureView {
-    self.titleLabel.text = @"Simple calculator with Neural network";
-    [self.computeButton setTitle: @"Compute" forState: UIControlStateNormal];
+    self.titleLabel.text = NSLocalizedString(@"Simple calculator with Neural network", @"Simple calculator with Neural network");
+    [self.computeButton setTitle: NSLocalizedString(@"Compute", @"Compute") forState: UIControlStateNormal];
 }
 
 - (void) dealloc {

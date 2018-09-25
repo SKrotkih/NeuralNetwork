@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Neural Network calculator" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="f0c-sp-9HG">
-                                        <rect key="frame" x="15" y="30" width="345" height="21"/>
+                                        <rect key="frame" x="15" y="103" width="345" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="5kv-G9-2UK"/>
                                         </constraints>
@@ -47,35 +47,35 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1..10" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZh-WR-9vP" userLabel="s1">
-                                        <rect key="frame" x="121" y="73" width="56.003900000000002" height="31"/>
+                                        <rect key="frame" x="121" y="146" width="56.003900000000002" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1..10" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sMg-tb-8v9" userLabel="s2">
-                                        <rect key="frame" x="121" y="115" width="56.003900000000002" height="31"/>
+                                        <rect key="frame" x="121" y="188" width="56.003900000000002" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="=" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-kX-aFM">
-                                        <rect key="frame" x="15" y="157" width="98" height="21"/>
+                                        <rect key="frame" x="15" y="230" width="98" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aFx-AE-QoA">
-                                        <rect key="frame" x="120" y="154" width="120.98399999999999" height="31"/>
+                                        <rect key="frame" x="120" y="227" width="120.98399999999999" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS2-XI-Kpk" userLabel="btnCalculate">
-                                        <rect key="frame" x="147" y="193" width="72" height="37"/>
+                                        <rect key="frame" x="147" y="266" width="72" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                         <state key="normal" title="Compute">
@@ -90,7 +90,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="+" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="pQ1-ek-PVa">
-                                        <rect key="frame" x="14" y="103" width="101" height="21"/>
+                                        <rect key="frame" x="14" y="176" width="101" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -99,7 +99,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="f0c-sp-9HG" firstAttribute="top" secondItem="CYF-iq-ypj" secondAttribute="top" constant="30" id="5uf-7K-PSV"/>
+                                    <constraint firstItem="f0c-sp-9HG" firstAttribute="top" secondItem="CYF-iq-ypj" secondAttribute="top" constant="103" id="5uf-7K-PSV"/>
                                     <constraint firstAttribute="trailing" secondItem="f0c-sp-9HG" secondAttribute="trailing" constant="15" id="r4u-iQ-j2K"/>
                                     <constraint firstItem="f0c-sp-9HG" firstAttribute="leading" secondItem="CYF-iq-ypj" secondAttribute="leading" constant="15" id="uXa-cV-lTF"/>
                                 </constraints>

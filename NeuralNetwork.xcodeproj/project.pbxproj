@@ -47,6 +47,7 @@
 		7FD1C01E215AA21D00023B8B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7FD1C024215AA2F500023B8B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7FD1C026215AA2FA00023B8B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7FD1C027215AAAC500023B8B /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* NeuralNetwork-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "NeuralNetwork-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		CE84CC9C1263EAEA006DB9CD /* NN2DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NN2DataSource.h; sourceTree = "<group>"; };
 		CE84CC9D1263EAEA006DB9CD /* NN2DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NN2DataSource.m; sourceTree = "<group>"; };
@@ -250,6 +251,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7FD1C01E215AA21D00023B8B /* en */,
+				7FD1C027215AAAC500023B8B /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
