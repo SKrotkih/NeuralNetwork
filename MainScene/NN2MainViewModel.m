@@ -13,10 +13,31 @@
 
 NSString* kObservableKeyPath = @"onButtonPressedObservable";
 
-@implementation NN2MainViewModel
+@implementation NN2MainViewModel {
+    NN2DataSource* mDataSource;
+    NN2NeuralNetwork* mNeuralNetwork;
+    NN2LineanNormalize* mNormalizeObject;
+}
 
 @synthesize view;
 @synthesize viewController;
+
+- (id) init {
+    self = [super init];
+    if (self != nil) {
+        mDataSource = [[NN2DataSource alloc] init];
+        mNeuralNetwork = [[NN2NeuralNetwork alloc] init];
+        mNormalizeObject = [[NN2LineanNormalize alloc] init];
+    }
+    
+    return self;
+} // init
+
+- (void) dealloc {
+    [self.viewController removeObserver: self
+                             forKeyPath: kObservableKeyPath];
+    [super dealloc];
+}
 
 - (void) configure {
     [self bindButton];
@@ -33,8 +54,7 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
                        ofObject: (id) object
                          change: (NSDictionary*) change
                         context: (void *)context {
-    
-    if ([keyPath isEqualToString: kObservableKeyPath]) {
+    if ([keyPath isEqualToString: kObservableKeyPath] && [change[@"kind"] isEqualToNumber: [NSNumber numberWithInt: 1]] && [change[@"new"] isEqualToNumber: [NSNumber numberWithInt: 1]]) {
         [self doComputeNeuralNetwork];
     }
 }
@@ -45,29 +65,25 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
         return;
     }
     
-    NN2DataSource* dataSource = [[NN2DataSource alloc] init];
-    NN2NeuralNetwork* neuralNetwork = [[NN2NeuralNetwork alloc] init];
-    NN2LineanNormalize* normalizeObject = [[NN2LineanNormalize alloc] init];
-    
     // Define data source agregation object for neural network object
     // call method of singleton xlass
-    neuralNetwork.dataSrc = dataSource;
+    mNeuralNetwork.dataSrc = mDataSource;
     
     // Linear algorithm for Normalize data on (object for data source object)
-    dataSource.normalizeObject = normalizeObject;
+    mDataSource.normalizeObject = mNormalizeObject;
     // for example
     //dataSource.normalizeMethod = [normalizeObject normalizeMethod];
     
-    [dataSource initData];
+    [mDataSource initData];
     
-    [dataSource normalizeInput: input];
+    [mDataSource normalizeInput: input];
     
     // Compute Neural network
-    [neuralNetwork compute];
+    [mNeuralNetwork compute];
     
-    [dataSource denormalizeOutput];
+    [mDataSource denormalizeOutput];
     
-    float output = [[dataSource output] floatValue];
+    float output = [[mDataSource output] floatValue];
     
     [self.view outputResult: output];
 }

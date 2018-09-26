@@ -8,5 +8,5 @@
 
 "Warning!" = "Внимание!";
 "s1 and s2 must be in (1..10) range!" = "s1 и s2 должны быть в диапазоне (1..10)!";
-"Simple calculator with Neural network" = "Простой калькулятор на Нейронной сети";
+"Simple calculator with Neural network" = "Простой калькулятор на Нейронной сети\nОбучен складывать два числа от 1 до 10";
 "Compute" = "Вычислить";
