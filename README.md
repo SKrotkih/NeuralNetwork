@@ -11,14 +11,16 @@ It can summarize two decimal numbers from 1 to 10
 
 - clone or unzip the repository. 
 - go to the root folder. 
-- Open NeuralNetwork.xcodeproj with Xcode 
-- Select NeuralNetwork scheme.
-- Select iOS 11 iPhone simulator.
-- Start the app by pressing Command+R
+- open NeuralNetwork.xcodeproj with Xcode 
+- select NeuralNetwork scheme.
+- select iOS 11 iPhone simulator.
+- start the app by pressing Command+R
+- start all tests by pressing Command+U
 
 ## Features
 
 - localization
 - MVVM
+- Xcode unit tests
 
 Last update on 09-25-2018
