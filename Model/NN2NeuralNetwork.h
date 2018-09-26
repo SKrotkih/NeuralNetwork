@@ -16,7 +16,7 @@
 // Compute Neural network
 - (void) compute;
 
-- (float) sigmoid: (float) weighted_sum;
+- (float) sigmoid: (float) weightedSum;
 
 @end
 

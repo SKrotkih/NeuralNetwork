@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fAlpha</key>
+	<string>1.0</string>
+	<key>fLC</key>
+	<string>3</string>
+	<key>fW</key>
+	<array>
+		<string>1.88436421955477</string>
+		<string>1.09436537111843</string>
+		<string>2.2901761847617</string>
+		<string>1.70436421955478</string>
+		<string>0.574365371118406</string>
+		<string>2.23017618476171</string>
+		<string>4.25597733015697</string>
+		<string>3.11238189250291</string>
+		<string>3.91917004197399</string>
+	</array>
+	<key>fWT</key>
+	<array>
+		<string>-3.59276885024955</string>
+		<string>-1.04124724491013</string>
+		<string>3.82886355094158</string>
+		<string>-4.77655231133209</string>
+	</array>
+	<key>fConfig</key>
+	<array>
+		<string>2</string>
+		<string>3</string>
+		<string>1</string>
+	</array>
+	<key>fLayerOutput</key>
+	<array>
+		<string>-0.8</string>
+		<string>-0.6</string>
+		<string>0.00218734129189037</string>
+		<string>0.0943741744669016</string>
+		<string>0.658949624082696</string>
+	</array>
+</dict>
+</plist>

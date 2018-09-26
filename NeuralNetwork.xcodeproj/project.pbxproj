@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D7ACF80DDB3853001CB0EB /* NN2MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* NN2MainViewController.m */; };
+		7F44A6B0215BBA4C00729A0D /* model.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F44A6AF215BBA4C00729A0D /* model.plist */; };
 		7F97BB08215B409700264D6E /* NeuralNetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F97BB07215B409700264D6E /* NeuralNetworkTests.m */; };
 		7F9B01FB2159ED3700A2BDB0 /* NN2Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B01F92159ED3700A2BDB0 /* NN2Helpers.m */; };
 		7F9B01FF2159F87400A2BDB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9B01FE2159F87400A2BDB0 /* Images.xcassets */; };
@@ -47,6 +48,7 @@
 		28D7ACF70DDB3853001CB0EB /* NN2MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NN2MainViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* NeuralNetwork_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeuralNetwork_Prefix.pch; sourceTree = "<group>"; };
+		7F44A6AF215BBA4C00729A0D /* model.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = model.plist; sourceTree = "<group>"; };
 		7F97BB05215B409700264D6E /* NeuralNetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuralNetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F97BB07215B409700264D6E /* NeuralNetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NeuralNetworkTests.m; sourceTree = "<group>"; };
 		7F97BB09215B409700264D6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				7FD1C01F215AA21D00023B8B /* Main.storyboard */,
 				7FD1C017215A60DC00023B8B /* LaunchScreen.storyboard */,
 				8D1107310486CEB800E47090 /* NeuralNetwork-Info.plist */,
+				7F44A6AF215BBA4C00729A0D /* model.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				7FD1C018215A60DC00023B8B /* LaunchScreen.storyboard in Resources */,
 				7FD1C01D215AA21D00023B8B /* Main.storyboard in Resources */,
 				7F9B01FF2159F87400A2BDB0 /* Images.xcassets in Resources */,
+				7F44A6B0215BBA4C00729A0D /* model.plist in Resources */,
 				7FD1C023215AA2F500023B8B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

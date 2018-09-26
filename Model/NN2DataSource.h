@@ -15,9 +15,9 @@
 	//SEL normalizeMethod;	
     //SEL denormalizeMethod;		
 	
-	NSArray* fW;					//array of coefficients [][][]
-	NSArray* fWT;					//array of offsets starting point [][]
-	NSArray* fConfig;				//array of layers configuration []
+	NSMutableArray* fW;					//array of coefficients [][][]
+	NSMutableArray* fWT;					//array of offsets starting point [][]
+	NSMutableArray* fConfig;				//array of layers configuration []
 	NSMutableArray* fLayerOutput;	//array of exits layers fLayerOutput[0]-enter []
 	int fLC;
 	float fAlpha;
@@ -41,9 +41,9 @@
 
 - (NSNumber*) Config: (int) index;
 
-- (NSNumber*) LayerOutput: (int) r c: (int) c;
+- (NSNumber*) LayerOutput: (int) r column: (int) c;
 
-- (void) setLayerOutput: (float) itemdata r: (int) r c: (int) c;
+- (void) setLayerOutput: (float) itemdata row: (int) row column: (int) column;
 
 - (id) output;
 
