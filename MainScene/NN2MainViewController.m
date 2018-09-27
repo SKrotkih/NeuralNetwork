@@ -34,7 +34,6 @@
 - (void) configureViewModel {
     self.viewModel = [[NN2MainViewModel alloc] init];
     self.viewModel.view = self;
-    self.viewModel.viewController = self; // It's necessary for the KVO only!
     [self.viewModel configure];
 }
 

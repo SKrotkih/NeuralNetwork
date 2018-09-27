@@ -13,8 +13,7 @@
 
 @interface NN2MainViewModel: NSObject
 
-@property(nonatomic, readwrite, weak) id<NN2MainViewProtocol> view;
-@property(nonatomic, readwrite, weak) NN2MainViewController* viewController;
+@property(nonatomic, readwrite, weak) NSObject<NN2MainViewProtocol>* view;
 
 - (void) configure;
 

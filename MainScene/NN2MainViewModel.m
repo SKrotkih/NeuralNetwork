@@ -20,7 +20,6 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
 }
 
 @synthesize view;
-@synthesize viewController;
 
 - (id) init {
     self = [super init];
@@ -34,8 +33,8 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
 } // init
 
 - (void) dealloc {
-    [self.viewController removeObserver: self
-                             forKeyPath: kObservableKeyPath];
+    [self.view removeObserver: self
+                   forKeyPath: kObservableKeyPath];
     [super dealloc];
 }
 
@@ -44,10 +43,10 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
 }
 
 - (void) bindButton {
-    [self.viewController addObserver: self
-                          forKeyPath: kObservableKeyPath
-                             options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                             context: nil];
+    [self.view addObserver: self
+                forKeyPath: kObservableKeyPath
+                   options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                   context: nil];
 }
 
 - (void) observeValueForKeyPath: (NSString*) keyPath
