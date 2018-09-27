@@ -38,15 +38,19 @@
     }];
 }
 
+// Test of the summarize two numbers by the neural network algorithm.
 - (void)testResultSummarize {
     for (float op1 = 1.0; op1 < 9.0; op1 += 1.0) {
         for (float op2 = 1.0; op2 < 10.0; op2 += 1.0) {
-            [self compute: op1 with: op2];
+            float result = [self compute: op1 with: op2];
+            NSLog(@"[%.3f:%.3f]: Computed result is '%.3f'. Expected result is '%.3f'", op1, op2, roundf(result), op1 + op2);
+            
+            XCTAssertEqual(roundf(result), op1 + op2, @"Total result is not expected!");
         }
     }
 }
 
-- (void) compute: (float) s1 with: (float) s2 {
+- (float) compute: (float) s1 with: (float) s2 {
     NN2DataSource* mDataSource = [[NN2DataSource alloc] init];
     NN2NeuralNetwork* mNeuralNetwork = [[NN2NeuralNetwork alloc] init];
     NN2LineanNormalize* mNormalizeObject = [[NN2LineanNormalize alloc] init];
@@ -61,13 +65,10 @@
         [mNeuralNetwork compute];
         [mDataSource denormalizeOutput];
         float output = [[mDataSource output] floatValue];
-        
-        NSLog(@"[%.3f:%.3f]: Computed result is '%.3f'. Expected result is '%.3f'", s1, s2, roundf(output), s1 + s2);
-        
-        XCTAssertEqual(roundf(output), s1 + s2, @"Total result is not expected!");
-        
+        return output;
     } else {
         XCTAssert(false, @"Failed data source initialized");
+        return 0;
     }
 }
 

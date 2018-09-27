@@ -30,7 +30,7 @@
     NSArray* fConfigData = [data objectForKey: @"fConfig"];
     NSArray* fLayerOutputData = [data objectForKey: @"fLayerOutput"];
     
-    NSLog(@"Data source\nfw=%@;\nfWT=%@\nfConfig=%@\nfLayerOutput=%@", fWData.description, fWTData.description, fConfigData.description, fLayerOutputData.description);
+//    NSLog(@"Data source\nfw=%@;\nfWT=%@\nfConfig=%@\nfLayerOutput=%@", fWData.description, fWTData.description, fConfigData.description, fLayerOutputData.description);
     
     fW = [NSMutableArray arrayWithCapacity: [fWData count]];
     for (int index = 0; index < [fWData count]; index++) {
