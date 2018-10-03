@@ -2,9 +2,6 @@
 //  NN2NeuralNetwork.m
 //  NeuralNetwork
 //
-//  Created by Sergey Krotkih.
-//  Copyright 2010 SK. All rights reserved.
-//
 
 #import "NN2NeuralNetwork.h"
 #import "NN2DataSource.h"
@@ -29,7 +26,9 @@
 			// adding offset point
 			weightedSum = weightedSum + [[dataSrc WT: layer index2: neuron] floatValue];
 			float sigma = [self sigmoid: weightedSum];
-			[dataSrc setLayerOutput: sigma row: layer + 1 column: neuron];
+			[dataSrc setLayerOutput: sigma
+                                row: layer + 1
+                             column: neuron];
 		}
 	}
 

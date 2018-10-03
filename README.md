@@ -1,6 +1,6 @@
 # Simple calculator with Neural network.
 
-It can summarize two decimal numbers from 1 to 10
+It has been trained to make summarize two decimal numbers from 1 to 10.
 
 ## Requirements
 
@@ -23,7 +23,4 @@ It can summarize two decimal numbers from 1 to 10
 - MVVM
 - Xcode unit tests
 
-Note. Here you can see just code example.
-Algorithm and data were used from published sources in 2010.
- 
 Last update on 09-25-2018

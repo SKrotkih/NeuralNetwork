@@ -2,9 +2,6 @@
 //  NN2Normalizible.h
 //  NeuralNetwork
 //
-//  Created by Sergey Krotkih.
-//  Copyright 2010 SK. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 

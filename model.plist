@@ -3,41 +3,41 @@
 <plist version="1.0">
 <dict>
 	<key>fAlpha</key>
-	<string>1.0</string>
+	<real>1.0</real>
 	<key>fLC</key>
-	<string>3</string>
+	<real>3</real>
 	<key>fW</key>
 	<array>
-		<string>1.88436421955477</string>
-		<string>1.09436537111843</string>
-		<string>2.2901761847617</string>
-		<string>1.70436421955478</string>
-		<string>0.574365371118406</string>
-		<string>2.23017618476171</string>
-		<string>4.25597733015697</string>
-		<string>3.11238189250291</string>
-		<string>3.91917004197399</string>
+		<real>1.88436421955477</real>
+		<real>1.09436537111843</real>
+		<real>2.2901761847617</real>
+		<real>1.70436421955478</real>
+		<real>0.574365371118406</real>
+		<real>2.23017618476171</real>
+		<real>4.25597733015697</real>
+		<real>3.11238189250291</real>
+		<real>3.91917004197399</real>
 	</array>
 	<key>fWT</key>
 	<array>
-		<string>-3.59276885024955</string>
-		<string>-1.04124724491013</string>
-		<string>3.82886355094158</string>
-		<string>-4.77655231133209</string>
+		<real>-3.59276885024955</real>
+		<real>-1.04124724491013</real>
+		<real>3.82886355094158</real>
+		<real>-4.77655231133209</real>
 	</array>
 	<key>fConfig</key>
 	<array>
-		<string>2</string>
-		<string>3</string>
-		<string>1</string>
+		<real>2</real>
+		<real>3</real>
+		<real>1</real>
 	</array>
 	<key>fLayerOutput</key>
 	<array>
-		<string>-0.8</string>
-		<string>-0.6</string>
-		<string>0.00218734129189037</string>
-		<string>0.0943741744669016</string>
-		<string>0.658949624082696</string>
+		<real>-0.8</real>
+		<real>-0.6</real>
+		<real>0.00218734129189037</real>
+		<real>0.0943741744669016</real>
+		<real>0.658949624082696</real>
 	</array>
 </dict>
 </plist>

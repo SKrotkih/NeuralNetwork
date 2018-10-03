@@ -2,9 +2,6 @@
 //  NN2Helpers.m
 //  QuickNotes
 //
-//  Created by Сергей Кротких on 28/07/2018.
-//  Copyright © 2018 Sergey Krotkih. All rights reserved.
-//
 
 #import "NN2Helpers.h"
 

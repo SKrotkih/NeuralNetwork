@@ -2,9 +2,6 @@
 //  NN2LineanNormalize.m
 //  NeuralNetwork
 //
-//  Created by Sergey Krotkih.
-//  Copyright 2010 SK. All rights reserved.
-//
 
 #import "NN2LineanNormalize.h"
 

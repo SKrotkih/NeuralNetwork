@@ -2,9 +2,6 @@
 //  NN2AppDelegate.m
 //  NeuralNetwork
 //
-//  Created by Sergey Krotkih.
-//  Copyright SK 2010. All rights reserved.
-//
 
 #import "NN2AppDelegate.h"
 #import "NN2MainViewController.h"

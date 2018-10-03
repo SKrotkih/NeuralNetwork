@@ -2,9 +2,6 @@
 //  NN2AppDelegate.h
 //  NeuralNetwork
 //
-//  Created by Sergey Krotkih.
-//  Copyright SK 2010. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 
