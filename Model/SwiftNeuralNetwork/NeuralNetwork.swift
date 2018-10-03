@@ -24,17 +24,19 @@ public class NeuralNetwork: NSObject {
     fileprivate lazy var iterations: Int = {
         return settings.iterations
     }()
-    
-    public required init(inputSize: Int, hiddenSize: Int, outputSize: Int) {
-        self.inputSize = inputSize
-        self.hiddenSize = hiddenSize
-        self.outputSize = outputSize
-    }
 }
 
 // MARK: -
 
+@objc
 extension NeuralNetwork {
+
+    public func configure(inputSize: Int, hiddenSize: Int, outputSize: Int) {
+        self.inputSize = inputSize
+        self.hiddenSize = hiddenSize
+        self.outputSize = outputSize
+    }
+
     
     public func train(input: [Float], targetOutput: [Float]) {
         let calculatedOutput = run(input: input)

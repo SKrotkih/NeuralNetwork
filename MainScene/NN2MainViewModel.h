@@ -10,6 +10,7 @@
 #import "NN2MainViewProtocol.h"
 
 @class NN2MainViewController;
+@class NeuralNetwork;
 
 @interface NN2MainViewModel: NSObject
 

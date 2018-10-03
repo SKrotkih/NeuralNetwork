@@ -10,6 +10,7 @@
 #import "NN2LineanNormalize.h"
 #import "NN2NeuralNetwork.h"
 #import "NN2DataSource.h"
+#import "NeuralNetwork-Swift.h"
 
 NSString* kObservableKeyPath = @"onButtonPressedObservable";
 
@@ -54,11 +55,11 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
                          change: (NSDictionary*) change
                         context: (void *)context {
     if ([keyPath isEqualToString: kObservableKeyPath] && [change[@"kind"] isEqualToNumber: [NSNumber numberWithInt: 1]] && [change[@"new"] isEqualToNumber: [NSNumber numberWithInt: 1]]) {
-        [self doComputeNeuralNetwork];
+        [self doCompute];
     }
 }
 
-- (void) doComputeNeuralNetwork {
+- (void) doCompute2 {
     NSArray* input = [self inputData];
     if (input == nil) {
         return;
@@ -85,6 +86,43 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
     float output = [[mDataSource output] floatValue];
     
     [self.view outputResult: output];
+}
+
+- (void) doCompute {
+    NSArray* terms = [self inputData];
+    if (terms == nil) {
+        return;
+    }
+
+    NeuralNetwork* neuralNetwork = [[NeuralNetwork alloc] init];
+    [neuralNetwork configureWithInputSize: 2 hiddenSize: 18 outputSize: 18];
+    
+    for (int i = 1; i < 10; i++) {
+        for (int j = i; j < 10; j++) {
+            NSNumber* op1 = [NSNumber numberWithFloat: (float)i];
+            NSNumber* op2 = [NSNumber numberWithFloat: (float)j];
+            NSNumber* nop1 = [mNormalizeObject normalize: op1];
+            NSNumber* nop2 = [mNormalizeObject normalize: op2];
+            NSArray* input = @[nop1, nop2];
+            NSMutableArray* targets = [@[@0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0,@0.0, @0.0, @0.0] mutableCopy];
+            NSNumber* target = [NSNumber numberWithFloat: (float)i + j];
+            targets[i + j] = [mNormalizeObject normalize: target];
+            [neuralNetwork trainWithInput: input targetOutput: targets];
+        }
+    }
+    
+    NSArray* summa = [neuralNetwork runWithInput: terms];
+    NSLog(@"Summa=%@", summa);
+    
+    float result = 0.0;
+    int index = 0;
+    for (int i = 0; i < [summa count]; i++) {
+        if ([summa[i] floatValue] > result) {
+            result = [summa[i] floatValue];
+            index = i;
+        }
+    }
+    [self.view outputResult: (float)index];
 }
 
 - (NSArray*) inputData {

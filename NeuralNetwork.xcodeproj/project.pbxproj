@@ -148,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				32CA4F630368D1EE00C91783 /* NeuralNetwork_Prefix.pch */,
+				7F5FC2BD2164441E00403DFB /* NeuralNetwork-Bridging-Header.h */,
 				1D3623240D0F684500981E51 /* NN2AppDelegate.h */,
 				1D3623250D0F684500981E51 /* NN2AppDelegate.m */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -196,7 +197,6 @@
 			children = (
 				7F5FC2C12164448200403DFB /* Layer.swift */,
 				7F5FC2C02164448200403DFB /* NeuralNetwork.swift */,
-				7F5FC2BD2164441E00403DFB /* NeuralNetwork-Bridging-Header.h */,
 			);
 			path = SwiftNeuralNetwork;
 			sourceTree = "<group>";
@@ -435,7 +435,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.skappledev.NeuralNetwork;
 				PRODUCT_NAME = NeuralNetwork;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Model/NeuralNetwork/NeuralNetwork-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "NeuralNetwork-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -462,7 +462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.skappledev.NeuralNetwork;
 				PRODUCT_NAME = NeuralNetwork;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Model/NeuralNetwork/NeuralNetwork-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "NeuralNetwork-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
