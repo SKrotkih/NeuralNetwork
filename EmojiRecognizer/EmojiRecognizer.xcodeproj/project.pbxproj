@@ -105,10 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				7F4FBAD521658FEB00F509DE /* Helper */,
-				7F4FBAE121658FEB00F509DE /* Math */,
 				7F4FBADF21658FEB00F509DE /* Model */,
 				7F4FBAE521658FEB00F509DE /* Neural Network */,
-				7F4FBAD321658FEB00F509DE /* View */,
+				7F4FBAD321658FEB00F509DE /* DrawView */,
 				7F4FBAE321658FEB00F509DE /* ViewController */,
 				7F4FBAD921658FEB00F509DE /* Resources */,
 				7F4FBAC121658F2A00F509DE /* AppDelegate.swift */,
@@ -120,12 +119,12 @@
 			path = EmojiRecognizer;
 			sourceTree = "<group>";
 		};
-		7F4FBAD321658FEB00F509DE /* View */ = {
+		7F4FBAD321658FEB00F509DE /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
 				7F4FBAD421658FEB00F509DE /* DrawView.swift */,
 			);
-			path = View;
+			path = DrawView;
 			sourceTree = "<group>";
 		};
 		7F4FBAD521658FEB00F509DE /* Helper */ = {
@@ -156,14 +155,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		7F4FBAE121658FEB00F509DE /* Math */ = {
-			isa = PBXGroup;
-			children = (
-				7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */,
-			);
-			path = Math;
-			sourceTree = "<group>";
-		};
 		7F4FBAE321658FEB00F509DE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,8 +168,9 @@
 		7F4FBAE521658FEB00F509DE /* Neural Network */ = {
 			isa = PBXGroup;
 			children = (
-				7F4FBAE621658FEB00F509DE /* Layer.swift */,
 				7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */,
+				7F4FBAE621658FEB00F509DE /* Layer.swift */,
+				7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */,
 			);
 			path = "Neural Network";
 			sourceTree = "<group>";

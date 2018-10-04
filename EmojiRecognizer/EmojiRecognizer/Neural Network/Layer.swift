@@ -1,6 +1,5 @@
 import Foundation
 
-
 public extension ClosedRange where Bound: FloatingPoint {
     public func random() -> Bound {
         let range = self.upperBound - self.lowerBound
@@ -33,36 +32,28 @@ public class Layer {
         var offSet = 0
         for i in 0..<output.count {
             for j in 0..<input.count {
-                output[i] += weights[offSet+j] * input[j]
+                output[i] += weights[offSet + j] * input[j]
             }
             output[i] = ActivationFunction.sigmoid(x: output[i])
             offSet += input.count
         }
-        
         return output
     }
     
-    public func train(error: [Float], learningRate: Float, momentum: Float) -> [Float] {
-        
+    public func train(error: [Float]) -> [Float] {
         var offset = 0
         var nextError = [Float](repeating: 0, count: input.count)
-        
         for i in 0..<output.count {
-            
             let delta = error[i] * ActivationFunction.sigmoidDerivative(x: output[i])
-            
             for j in 0..<input.count {
                 let weightIndex = offset + j
                 nextError[j] = nextError[j] + weights[weightIndex] * delta
-                let dw = input[j] * delta * learningRate
-                weights[weightIndex] += previousWeights[weightIndex] * momentum + dw
+                let dw = input[j] * delta * Settings.learningRate
+                weights[weightIndex] += previousWeights[weightIndex] * Settings.momentum + dw
                 previousWeights[weightIndex] = dw
             }
-            
             offset += input.count
         }
-        
         return nextError
     }
-    
 }
