@@ -1,0 +1,514 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F4AC4202166338A003FAEDE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7F4AC41F2166338A003FAEDE /* README.md */; };
+		7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC121658F2A00F509DE /* AppDelegate.swift */; };
+		7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC521658F2A00F509DE /* Main.storyboard */; };
+		7F4FBAC921658F2C00F509DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC821658F2C00F509DE /* Assets.xcassets */; };
+		7F4FBACC21658F2C00F509DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBACA21658F2C00F509DE /* LaunchScreen.storyboard */; };
+		7F4FBAE821658FEB00F509DE /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAD421658FEB00F509DE /* DrawView.swift */; };
+		7F4FBAE921658FEB00F509DE /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAD621658FEB00F509DE /* enum.swift */; };
+		7F4FBAEA21658FEB00F509DE /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAD721658FEB00F509DE /* Extension.swift */; };
+		7F4FBAEB21658FEB00F509DE /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAD821658FEB00F509DE /* ImageProcessor.swift */; };
+		7F4FBAEC21658FEB00F509DE /* correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBADA21658FEB00F509DE /* correct.wav */; };
+		7F4FBAF021658FEB00F509DE /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBADE21658FEB00F509DE /* wrong.wav */; };
+		7F4FBAF121658FEB00F509DE /* NNEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE021658FEB00F509DE /* NNEmoji.swift */; };
+		7F4FBAF221658FEB00F509DE /* ActivationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */; };
+		7F4FBAF321658FEB00F509DE /* NeuralNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE421658FEB00F509DE /* NeuralNetworkViewController.swift */; };
+		7F4FBAF421658FEB00F509DE /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE621658FEB00F509DE /* Layer.swift */; };
+		7F4FBAF521658FEB00F509DE /* NeuralNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */; };
+		7F4FBAF72165996700F509DE /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAF62165996700F509DE /* ViewModel.swift */; };
+		E9DD74EBD64E5438186BD02E /* Pods_EmojiIntelligence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D96D506FA0A029733679C3 /* Pods_EmojiIntelligence.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		122C046E1F76CE167C3E33C8 /* Pods-EmojiIntelligence.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojiIntelligence.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmojiIntelligence/Pods-EmojiIntelligence.release.xcconfig"; sourceTree = "<group>"; };
+		2B416624A650B83C1C75D4C4 /* Pods-EmojiIntelligence.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojiIntelligence.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EmojiIntelligence/Pods-EmojiIntelligence.debug.xcconfig"; sourceTree = "<group>"; };
+		65D96D506FA0A029733679C3 /* Pods_EmojiIntelligence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmojiIntelligence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F4AC41F2166338A003FAEDE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		7F4FBABE21658F2900F509DE /* EmojiRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F4FBAC121658F2A00F509DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7F4FBAC621658F2A00F509DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7F4FBAC821658F2C00F509DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7F4FBACB21658F2C00F509DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7F4FBACD21658F2C00F509DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F4FBAD421658FEB00F509DE /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		7F4FBAD621658FEB00F509DE /* enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
+		7F4FBAD721658FEB00F509DE /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		7F4FBAD821658FEB00F509DE /* ImageProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		7F4FBADA21658FEB00F509DE /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correct.wav; sourceTree = "<group>"; };
+		7F4FBADE21658FEB00F509DE /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
+		7F4FBAE021658FEB00F509DE /* NNEmoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NNEmoji.swift; sourceTree = "<group>"; };
+		7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivationFunction.swift; sourceTree = "<group>"; };
+		7F4FBAE421658FEB00F509DE /* NeuralNetworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeuralNetworkViewController.swift; sourceTree = "<group>"; };
+		7F4FBAE621658FEB00F509DE /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeuralNetwork.swift; sourceTree = "<group>"; };
+		7F4FBAF62165996700F509DE /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F4FBABB21658F2900F509DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9DD74EBD64E5438186BD02E /* Pods_EmojiIntelligence.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62B7FFCE3DC2477DD07C86BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65D96D506FA0A029733679C3 /* Pods_EmojiIntelligence.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7292E83B4ABCCC6F69BB8AB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B416624A650B83C1C75D4C4 /* Pods-EmojiIntelligence.debug.xcconfig */,
+				122C046E1F76CE167C3E33C8 /* Pods-EmojiIntelligence.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7F4FBAB521658F2900F509DE = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAC021658F2900F509DE /* EmojiIntelligence */,
+				7F4FBABF21658F2900F509DE /* Products */,
+				7292E83B4ABCCC6F69BB8AB2 /* Pods */,
+				62B7FFCE3DC2477DD07C86BB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7F4FBABF21658F2900F509DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBABE21658F2900F509DE /* EmojiRecognizer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F4FBAC021658F2900F509DE /* EmojiIntelligence */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAD521658FEB00F509DE /* Helper */,
+				7F4FBAE121658FEB00F509DE /* Math */,
+				7F4FBADF21658FEB00F509DE /* Model */,
+				7F4FBAE521658FEB00F509DE /* Neural Network */,
+				7F4FBAD321658FEB00F509DE /* View */,
+				7F4FBAE321658FEB00F509DE /* ViewController */,
+				7F4FBAD921658FEB00F509DE /* Resources */,
+				7F4FBAC121658F2A00F509DE /* AppDelegate.swift */,
+				7F4FBACA21658F2C00F509DE /* LaunchScreen.storyboard */,
+				7F4FBACD21658F2C00F509DE /* Info.plist */,
+				7F4AC41F2166338A003FAEDE /* README.md */,
+			);
+			path = EmojiIntelligence;
+			sourceTree = "<group>";
+		};
+		7F4FBAD321658FEB00F509DE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAD421658FEB00F509DE /* DrawView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F4FBAD521658FEB00F509DE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAD621658FEB00F509DE /* enum.swift */,
+				7F4FBAD721658FEB00F509DE /* Extension.swift */,
+				7F4FBAD821658FEB00F509DE /* ImageProcessor.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		7F4FBAD921658FEB00F509DE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAC821658F2C00F509DE /* Assets.xcassets */,
+				7F4FBADA21658FEB00F509DE /* correct.wav */,
+				7F4FBADE21658FEB00F509DE /* wrong.wav */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7F4FBADF21658FEB00F509DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAE021658FEB00F509DE /* NNEmoji.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7F4FBAE121658FEB00F509DE /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		7F4FBAE321658FEB00F509DE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAC521658F2A00F509DE /* Main.storyboard */,
+				7F4FBAE421658FEB00F509DE /* NeuralNetworkViewController.swift */,
+				7F4FBAF62165996700F509DE /* ViewModel.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7F4FBAE521658FEB00F509DE /* Neural Network */ = {
+			isa = PBXGroup;
+			children = (
+				7F4FBAE621658FEB00F509DE /* Layer.swift */,
+				7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */,
+			);
+			path = "Neural Network";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F4FBABD21658F2900F509DE /* EmojiRecognizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F4FBAD021658F2C00F509DE /* Build configuration list for PBXNativeTarget "EmojiRecognizer" */;
+			buildPhases = (
+				136CD10A82168BA13425E642 /* [CP] Check Pods Manifest.lock */,
+				7F4FBABA21658F2900F509DE /* Sources */,
+				7F4FBABB21658F2900F509DE /* Frameworks */,
+				7F4FBABC21658F2900F509DE /* Resources */,
+				5B88A57DE8E1B3B2C507201D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EmojiRecognizer;
+			productName = EmojiIntelligence;
+			productReference = 7F4FBABE21658F2900F509DE /* EmojiRecognizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F4FBAB621658F2900F509DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Сергей Кротких";
+				TargetAttributes = {
+					7F4FBABD21658F2900F509DE = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = 7F4FBAB921658F2900F509DE /* Build configuration list for PBXProject "EmojiRecognizer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7F4FBAB521658F2900F509DE;
+			productRefGroup = 7F4FBABF21658F2900F509DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F4FBABD21658F2900F509DE /* EmojiRecognizer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F4FBABC21658F2900F509DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F4AC4202166338A003FAEDE /* README.md in Resources */,
+				7F4FBACC21658F2C00F509DE /* LaunchScreen.storyboard in Resources */,
+				7F4FBAF021658FEB00F509DE /* wrong.wav in Resources */,
+				7F4FBAEC21658FEB00F509DE /* correct.wav in Resources */,
+				7F4FBAC921658F2C00F509DE /* Assets.xcassets in Resources */,
+				7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		136CD10A82168BA13425E642 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EmojiIntelligence-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B88A57DE8E1B3B2C507201D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EmojiIntelligence/Pods-EmojiIntelligence-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EmojiIntelligence/Pods-EmojiIntelligence-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F4FBABA21658F2900F509DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F4FBAF121658FEB00F509DE /* NNEmoji.swift in Sources */,
+				7F4FBAEA21658FEB00F509DE /* Extension.swift in Sources */,
+				7F4FBAF321658FEB00F509DE /* NeuralNetworkViewController.swift in Sources */,
+				7F4FBAF72165996700F509DE /* ViewModel.swift in Sources */,
+				7F4FBAF221658FEB00F509DE /* ActivationFunction.swift in Sources */,
+				7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */,
+				7F4FBAE921658FEB00F509DE /* enum.swift in Sources */,
+				7F4FBAF421658FEB00F509DE /* Layer.swift in Sources */,
+				7F4FBAF521658FEB00F509DE /* NeuralNetwork.swift in Sources */,
+				7F4FBAEB21658FEB00F509DE /* ImageProcessor.swift in Sources */,
+				7F4FBAE821658FEB00F509DE /* DrawView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7F4FBAC521658F2A00F509DE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F4FBAC621658F2A00F509DE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7F4FBACA21658F2C00F509DE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F4FBACB21658F2C00F509DE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7F4FBACE21658F2C00F509DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7F4FBACF21658F2C00F509DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7F4FBAD121658F2C00F509DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B416624A650B83C1C75D4C4 /* Pods-EmojiIntelligence.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N5B5T39W8Y;
+				INFOPLIST_FILE = EmojiIntelligence/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.skdevappleid.EmojiRecognizer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7F4FBAD221658F2C00F509DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 122C046E1F76CE167C3E33C8 /* Pods-EmojiIntelligence.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N5B5T39W8Y;
+				INFOPLIST_FILE = EmojiIntelligence/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.skdevappleid.EmojiRecognizer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F4FBAB921658F2900F509DE /* Build configuration list for PBXProject "EmojiRecognizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F4FBACE21658F2C00F509DE /* Debug */,
+				7F4FBACF21658F2C00F509DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F4FBAD021658F2C00F509DE /* Build configuration list for PBXNativeTarget "EmojiRecognizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F4FBAD121658F2C00F509DE /* Debug */,
+				7F4FBAD221658F2C00F509DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7F4FBAB621658F2900F509DE /* Project object */;
+}

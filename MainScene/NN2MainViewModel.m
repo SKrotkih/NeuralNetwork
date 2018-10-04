@@ -95,7 +95,7 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
     }
 
     NeuralNetwork* neuralNetwork = [[NeuralNetwork alloc] init];
-    [neuralNetwork configureWithInputSize: 2 hiddenSize: 18 outputSize: 18];
+    [neuralNetwork configureWithInputSize: 2 hiddenSize: 3 outputSize: 1];
     
     for (int i = 1; i < 10; i++) {
         for (int j = i; j < 10; j++) {
@@ -104,9 +104,18 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
             NSNumber* nop1 = [mNormalizeObject normalize: op1];
             NSNumber* nop2 = [mNormalizeObject normalize: op2];
             NSArray* input = @[nop1, nop2];
-            NSMutableArray* targets = [@[@0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0,@0.0, @0.0, @0.0] mutableCopy];
+//            NSMutableArray* targets = [@[@0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0, @0.0,@0.0, @0.0, @0.0] mutableCopy];
             NSNumber* target = [NSNumber numberWithFloat: (float)i + j];
-            targets[i + j] = [mNormalizeObject normalize: target];
+//            targets[i + j] = [mNormalizeObject normalize: target];
+//
+//            NSLog(@"\n=======================");
+//            NSLog(@"\n(%d;%d):\ntargets=%@", i, j, targets);
+            
+            NSArray* targets = @[[mNormalizeObject normalize: target]];
+
+            NSLog(@"\n=======================");
+            NSLog(@"\n(%d;%d):\ntargets=%@", i, j, targets);
+
             [neuralNetwork trainWithInput: input targetOutput: targets];
         }
     }
@@ -114,15 +123,19 @@ NSString* kObservableKeyPath = @"onButtonPressedObservable";
     NSArray* summa = [neuralNetwork runWithInput: terms];
     NSLog(@"Summa=%@", summa);
     
-    float result = 0.0;
-    int index = 0;
-    for (int i = 0; i < [summa count]; i++) {
-        if ([summa[i] floatValue] > result) {
-            result = [summa[i] floatValue];
-            index = i;
-        }
-    }
-    [self.view outputResult: (float)index];
+    float dd = [[mNormalizeObject denormalize: summa[0]] floatValue];
+    NSLog(@"Denormalize summa=%f", dd);
+
+    
+//    float result = 0.0;
+//    int index = 0;
+//    for (int i = 0; i < [summa count]; i++) {
+//        if ([summa[i] floatValue] > result) {
+//            result = [summa[i] floatValue];
+//            index = i;
+//        }
+//    }
+    [self.view outputResult: (float)dd];
 }
 
 - (NSArray*) inputData {
