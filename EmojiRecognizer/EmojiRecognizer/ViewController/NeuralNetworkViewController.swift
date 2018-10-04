@@ -5,8 +5,6 @@ import AudioToolbox
 
 public class NeuralNetworkViewController: UIViewController {
     
-    private let kMaxTrainingImages = 18
-    
     @IBOutlet weak var contentView: UIView!
     
     var viewModel = ViewModel()
@@ -46,15 +44,13 @@ public class NeuralNetworkViewController: UIViewController {
 
     /// The Image Processor
     fileprivate lazy var imgProcessor: ImageProcessor = {
-        let imgProcessor = ImageProcessor()
-        
-        return imgProcessor
+        return ImageProcessor()
     }()
     
     /// The ProgressView for the Learning
     fileprivate lazy var progressView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 30))
-        view.backgroundColor = UIColor(red: 235.0 / 255.0, green: 28.0 / 255.0, blue: 102.0 / 255.0, alpha: 1.0)
+        view.backgroundColor = Color.progressBgrColor
         view.translatesAutoresizingMaskIntoConstraints = true
         return view
     }()
@@ -68,9 +64,7 @@ public class NeuralNetworkViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = true
         label.text = "🙂"
         label.font = UIFont.systemFont(ofSize: 70.0)
-        
         return label
-        
     }()
     
     fileprivate var drawedImage: UIImage? {
@@ -96,9 +90,7 @@ public class NeuralNetworkViewController: UIViewController {
         label.textColor = UIColor.lightGray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-
         return label
-        
     }()
     
     /// The Emoji Label
@@ -107,9 +99,7 @@ public class NeuralNetworkViewController: UIViewController {
         label.text = "🙂"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 70.0)
-        
         return label
-        
     }()
     
     // MARK: - Configure Buttons
@@ -118,7 +108,7 @@ public class NeuralNetworkViewController: UIViewController {
     fileprivate lazy var playSectionButton: UIButton = {
         let button = UIButton()
         button.setTitle("PLAY", for: .normal)
-        button.setTitleColor(UIColor(red: 170.0 / 255.0, green: 170.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0), for: .normal)
+        button.setTitleColor(Color.graySectionColor, for: .normal)
         button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.textAlignment = .center
@@ -129,7 +119,7 @@ public class NeuralNetworkViewController: UIViewController {
     fileprivate lazy var teachSectionButton: UIButton = {
         let button = UIButton()
         button.setTitle("TEACH", for: .normal)
-        button.setTitleColor(UIColor(red: 235.0 / 255.0, green: 28.0 / 255.0, blue: 102.0 / 255.0, alpha: 1.0), for: .normal)
+        button.setTitleColor(Color.sectionColor, for: .normal)
         button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.textAlignment = .center
@@ -141,7 +131,7 @@ public class NeuralNetworkViewController: UIViewController {
         let button = UIButton()
         button.setTitle("TEACH HAPPY", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.setBackgroundColor(color: UIColor(red: 235.0 / 255.0, green: 28.0 / 255.0, blue: 102.0 / 255.0, alpha: 1.0), forState: .normal)
+        button.setBackgroundColor(color: Color.sectionColor, forState: .normal)
         button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 20.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.textAlignment = .center
@@ -230,13 +220,13 @@ extension NeuralNetworkViewController {
         case self.contentView:
             if currentSection == .play {
                 self.emojiLabel.fadeOut(withDuration: 0.3)
-                self.playSectionButton.setTitleColor(UIColor(red: 235.0 / 255.0, green: 28.0 / 255.0, blue: 102.0 / 255.0, alpha: 1.0), for: .normal)
-                self.teachSectionButton.setTitleColor(UIColor(red: 170.0 / 255.0, green: 170.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0), for: .normal)
+                self.playSectionButton.setTitleColor(Color.sectionColor, for: .normal)
+                self.teachSectionButton.setTitleColor(Color.graySectionColor, for: .normal)
                 self.explainLabel.text = "DRAW YOUR SHAPE"
                 self.drawView.clear()
             } else {
-                self.playSectionButton.setTitleColor(UIColor(red: 170.0 / 255.0, green: 170.0 / 255.0, blue: 170.0 / 255.0, alpha: 1.0), for: .normal)
-                self.teachSectionButton.setTitleColor(UIColor(red: 235.0 / 255.0, green: 28.0 / 255.0, blue: 102.0 / 255.0, alpha: 1.0), for: .normal)
+                self.playSectionButton.setTitleColor(Color.graySectionColor, for: .normal)
+                self.teachSectionButton.setTitleColor(Color.sectionColor, for: .normal)
                 self.emojiLabel.fadeIn(withDuration: 0.3)
                 self.teachButton.fadeIn(withDuration: 0.3)
                 self.explainLabel.text = emojis[index].drawText
@@ -269,9 +259,9 @@ extension NeuralNetworkViewController {
     }
 
     private func configureStatusView(for trainingItemsCount: Int) {
-        if trainingItemsCount == 12 {
+        if trainingItemsCount == Settings.middleTrainingImages {
             statusLabel.textColor = UIColor.white
-        } else if trainingItemsCount == kMaxTrainingImages {
+        } else if trainingItemsCount == Settings.maxTrainingImages {
             learnNetwork()
         } else if trainingItemsCount >= 0 {
             updateProgress(for: trainingItemsCount)
@@ -296,10 +286,10 @@ extension NeuralNetworkViewController {
     private func updateProgress(for index: Int) {
         var w: Double = 0.0
         if index > 0  {
-            w = Double(self.contentView.frame.width) /  (Double(kMaxTrainingImages) / Double(index))
+            w = Double(self.contentView.frame.width) /  (Double(Settings.maxTrainingImages) / Double(index))
         }
         progressView.frame = CGRect(x: 0, y: 0, width: w, height: 30)
-        statusLabel.text = "left \(kMaxTrainingImages - index)"
+        statusLabel.text = "left \(Settings.maxTrainingImages - index)"
     }
     
     private func setupConstraints() {
@@ -330,7 +320,6 @@ extension NeuralNetworkViewController {
         self.statusLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         self.statusLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
-
 }
 
 // MARK: - Run to recognize smile symbol for the current image
@@ -373,7 +362,7 @@ extension NeuralNetworkViewController {
     }
     
     private func showNotReady() {
-        let alertController = UIAlertController(title: "Warning!", message: "Please train the neural network. There are left just \(kMaxTrainingImages - index) images", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Warning!", message: "Please train the neural network. There are left just \(Settings.maxTrainingImages - index) images", preferredStyle: .alert)
         let action = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
         alertController.addAction(action)

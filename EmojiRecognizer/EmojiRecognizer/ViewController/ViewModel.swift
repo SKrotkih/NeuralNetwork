@@ -9,7 +9,7 @@ enum PredictionResult {
 }
 
 class ViewModel {
-
+    
     /// The Result Data labels for the output
     fileprivate var traningResults: [[Float]] = []
 
@@ -20,7 +20,7 @@ class ViewModel {
 
     /// The Neural Network 🚀
     fileprivate lazy var neuralNetwork: NeuralNetwork = {
-        let neuralNetWork = NeuralNetwork(inputSize: 64, hiddenSize: 15, outputSize: 6)
+        let neuralNetWork = NeuralNetwork(inputSize: Settings.inputSize, hiddenSize: Settings.hiddenSize, outputSize: Settings.outputSize)
         return neuralNetWork
     }()
     
@@ -31,14 +31,7 @@ class ViewModel {
     }()
     
     func addTraningImage(_ image: UIImage, index: Int) {
-        var traningResults: [[Float]] = [
-            [1,0,0,0,0,0], // 🙂
-            [0,1,0,0,0,0], // 😮
-            [0,0,1,0,0,0], // 😍
-            [0,0,0,1,0,0], // 😴
-            [0,0,0,0,1,0], // 😐
-            [0,0,0,0,0,1]  // ☹️
-        ]
+        var traningResults: [[Float]] = Settings.traningResults
         self.traningResults.append(traningResults[index])
         let input: [Float] = self.returnImageBlock(image)
         do {
@@ -50,11 +43,10 @@ class ViewModel {
     
     func learnNetwork(_ completed: @escaping () -> Void) {
         DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass).async {
-            for iterations in 0..<NeuralNetwork.iterations {
-                
+            for iterations in 0..<Settings.iterations {
                 for i in 0..<self.traningResults.count {
                     do {
-                        self.neuralNetwork.train(input: try self.traningData.value()[i], targetOutput: self.traningResults[i], learningRate: NeuralNetwork.learningRate, momentum: NeuralNetwork.momentum)
+                        self.neuralNetwork.train(input: try self.traningData.value()[i], targetOutput: self.traningResults[i], learningRate: Settings.learningRate, momentum: Settings.momentum)
                     } catch  {
                         fatal()
                     }
@@ -68,7 +60,6 @@ class ViewModel {
                         fatal()
                     }
                 }
-                
                 print("Iterations: \(iterations)")
             }
             
@@ -88,12 +79,12 @@ class ViewModel {
         }
         
         let inputData: [Float] = self.returnImageBlock(image)
-        let prediction = self.neuralNetwork.run(input: inputData).filter { $0 >= 0.8 }
+        let prediction = self.neuralNetwork.run(input: inputData).filter { $0 >= Settings.predictionThreshold }
         if prediction.count == 0 {
            completion(.wrong)
         } else {
             self.neuralNetwork.run(input: inputData).enumerated().forEach { index, element in
-                if element >= 0.8 {
+                if element >= Settings.predictionThreshold {
                     completion(.success)
                 }
             }

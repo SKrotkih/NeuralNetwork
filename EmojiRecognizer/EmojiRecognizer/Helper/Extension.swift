@@ -53,6 +53,7 @@ public extension UILabel {
         layer.removeAllAnimations()
     }
 }
+
 public extension UIButton {
     func setBackgroundColor(color: UIColor, forState: UIControl.State) {
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))

@@ -20,28 +20,23 @@ public class Layer {
         self.output = [Float](repeating: 0, count: outputSize)
         self.input = [Float](repeating: 0, count: inputSize + 1)
         self.weights = (0..<(1 + inputSize) * outputSize).map { _ in
-            return (-2.0...2.0).random()
+            return (Settings.minWeight...Settings.maxWeight).random()
         }
         previousWeights = [Float](repeating: 0, count: weights.count)
     }
     
     public func run(inputArray: [Float]) -> [Float] {
-        
         for i in 0..<inputArray.count {
             input[i] = inputArray[i]
         }
-        
-        input[input.count-1] = 1
+        input[input.count - 1] = 1
         var offSet = 0
-        
         for i in 0..<output.count {
             for j in 0..<input.count {
                 output[i] += weights[offSet+j] * input[j]
             }
-            
             output[i] = ActivationFunction.sigmoid(x: output[i])
             offSet += input.count
-            
         }
         
         return output

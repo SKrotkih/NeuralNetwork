@@ -1,16 +1,13 @@
 import Foundation
 
 public class NeuralNetwork {
-    
-    public static var learningRate: Float = 0.3
-    public static var momentum: Float = 0.6
-    public static var iterations: Int = 1000 // 70000
-    
     private var layers: [Layer] = []
     
     public init(inputSize: Int, hiddenSize: Int, outputSize: Int) {
-        self.layers.append(Layer(inputSize: inputSize, outputSize: hiddenSize))
-        self.layers.append(Layer(inputSize: hiddenSize, outputSize: outputSize))
+        let ioLayer = Layer(inputSize: inputSize, outputSize: hiddenSize)
+        let hoLayer = Layer(inputSize: hiddenSize, outputSize: outputSize)
+        self.layers.append(ioLayer)
+        self.layers.append(hoLayer)
     }
     
     public func run(input: [Float]) -> [Float] {
@@ -30,10 +27,8 @@ public class NeuralNetwork {
         
         var error = zip(targetOutput, calculatedOutput).map { $0 - $1 }
         
-        for i in (0...layers.count-1).reversed() {
-            error = layers[i].train(error: error, learningRate: learningRate, momentum: momentum)
+        for i in (0...layers.count - 1).reversed() {
+            error = layers[i].train(error: error, learningRate: Settings.learningRate, momentum: Settings.momentum)
         }
-        
     }
-    
 }
