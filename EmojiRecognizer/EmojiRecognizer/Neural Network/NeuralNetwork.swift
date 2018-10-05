@@ -7,23 +7,18 @@ enum PredictionResult {
     case success(Int)
 }
 
+/// There is the original code here: https://github.com/BilalReffas/EmojiIntelligence
+/// Here is it just refactored
+/// I have prepared for generic implementation
 public class NeuralNetwork {
-
+    
     private var layers: [Layer] = []
     
     public init() {
         configureLayers()
     }
     
-    private func configureLayers() {
-        // Input -> Hidden layer
-        let ihLayer = Layer(inputSize: Settings.inputSize, outputSize: Settings.hiddenSize)
-        // Hidden -> Output layer
-        let hoLayer = Layer(inputSize: Settings.hiddenSize, outputSize: Settings.outputSize)
-        layers.append(ihLayer)
-        layers.append(hoLayer)
-    }
-    
+    /// Learn Neural Network
     func learn(input: [[Float]], target: [[Float]], completed: @escaping () -> Void) {
         DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass).async {
             for iterations in 0..<Settings.iterations {
@@ -39,6 +34,7 @@ public class NeuralNetwork {
         }
     }
     
+    /// Predict value according of the input value
     func predict(input: [Float], completion: (PredictionResult) -> Void ) {
         let prediction = self.run(input: input).filter {
             $0 >= Settings.predictionThreshold
@@ -52,6 +48,20 @@ public class NeuralNetwork {
                 completion(.success(index))
             }
         }
+    }
+}
+
+// MARK: - Calculate Network. Private methods
+
+extension NeuralNetwork {
+    
+    private func configureLayers() {
+        // Input -> Hidden layer
+        let ihLayer = Layer(inputSize: Settings.inputSize, outputSize: Settings.hiddenSize)
+        // Hidden -> Output layer
+        let hoLayer = Layer(inputSize: Settings.hiddenSize, outputSize: Settings.outputSize)
+        layers.append(ihLayer)
+        layers.append(hoLayer)
     }
     
     private func train(input: [Float], target: [Float]) {
