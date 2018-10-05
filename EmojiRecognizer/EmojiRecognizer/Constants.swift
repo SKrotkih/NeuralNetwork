@@ -24,6 +24,15 @@ struct Settings {
         [0,0,0,0,1,0], // 😐
         [0,0,0,0,0,1]  // ☹️
     ]
+    
+    static var emojis: [NNEmoji] {
+        return [NNEmoji(emoji: "🙂", drawText: "DRAW A SMILE", buttonText: "TEACH HAPPY"),
+                NNEmoji(emoji: "😮", drawText: "DRAW A CIRCLE", buttonText: "TEACH DAMN"),
+                NNEmoji(emoji: "😍", drawText: "DRAW A HEART", buttonText: "TEACH LOVE"),
+                NNEmoji(emoji: "😴", drawText: "DRAW A ZED", buttonText: "TEACH SLEEPY"),
+                NNEmoji(emoji: "😐", drawText: "DRAW A LINE", buttonText: "TEACH POKER FACE"),
+                NNEmoji(emoji: "☹️", drawText: "DRAW A FROWN", buttonText: "TEACH SAD")]
+    }
 }
 
 struct Color {

@@ -3,6 +3,7 @@ import UIKit
 public protocol DrawViewDelegate: class {
     func drawViewDidFinishDrawing(view: DrawView)
     func drawViewMoved(view: DrawView)
+    func drawViewWillStart()
 }
 
 public class DrawView: UIView {
@@ -29,7 +30,11 @@ public class DrawView: UIView {
         layer.render(in: context)
         return UIGraphicsGetImageFromCurrentImageContext()
     }
-    
+
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        delegate?.drawViewWillStart()
+    }
+
     override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
         

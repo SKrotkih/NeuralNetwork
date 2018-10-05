@@ -1,14 +1,6 @@
 import Foundation
 
-public extension ClosedRange where Bound: FloatingPoint {
-    public func random() -> Bound {
-        let range = self.upperBound - self.lowerBound
-        let randomValue = (Bound(arc4random_uniform(UINT32_MAX)) / Bound(UINT32_MAX)) * range + self.lowerBound
-        return randomValue
-    }
-}
-
-public class Layer {
+class Layer {
     
     private var output: [Float]
     private var input: [Float]
@@ -25,14 +17,12 @@ public class Layer {
     }
     
     public func run(inputArray: [Float]) -> [Float] {
-        for i in 0..<inputArray.count {
-            input[i] = inputArray[i]
-        }
+        input = inputArray
         input[input.count - 1] = 1
         var offSet = 0
         for i in 0..<output.count {
-            for j in 0..<input.count {
-                output[i] += weights[offSet + j] * input[j]
+            for (j, inputItem) in input.enumerated() {
+                output[i] += weights[offSet + j] * inputItem
             }
             output[i] = ActivationFunction.sigmoid(x: output[i])
             offSet += input.count
@@ -55,5 +45,13 @@ public class Layer {
             offset += input.count
         }
         return nextError
+    }
+}
+
+extension ClosedRange where Bound: FloatingPoint {
+    public func random() -> Bound {
+        let range = self.upperBound - self.lowerBound
+        let randomValue = (Bound(arc4random_uniform(UINT32_MAX)) / Bound(UINT32_MAX)) * range + self.lowerBound
+        return randomValue
     }
 }

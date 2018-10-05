@@ -25,9 +25,9 @@ public class NeuralNetwork {
                 for i in 0..<input.count {
                     self.train(input: input[i], target: target[i])
                 }
-                for i in 0..<input.count {
-                    let _ = self.run(input: input[i])
-                }
+                input.forEach({ inputItem in
+                    let _ = self.run(input: inputItem)
+                })
                 print("Iterations: \(iterations)")
             }
             completed()
@@ -80,3 +80,4 @@ extension NeuralNetwork {
         return activations
     }
 }
+

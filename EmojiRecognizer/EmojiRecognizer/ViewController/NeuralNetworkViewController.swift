@@ -140,7 +140,7 @@ public class NeuralNetworkViewController: UIViewController {
 
     // MARK: Bind button
     
-    /// Bind to select section "teach" button
+    /// Bind "teach" button to the select section
     private func bindTeachSectionButton() {
         teachSectionButton.rx.tap.bind(onNext: { [weak self] in
             guard let `self` = self else { return }
@@ -149,7 +149,7 @@ public class NeuralNetworkViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
 
-    /// Bind to select section "play" button
+    /// Bind "play" button to the select section
     private func bindPlaySectionButton() {
         playSectionButton.rx.tap.bind(onNext: { [weak self] in
             guard let `self` = self else { return }
@@ -166,6 +166,7 @@ public class NeuralNetworkViewController: UIViewController {
             switch self.currentSection {
             case .teach:
                 self.addTraningImage()
+                self.drawView.clear()
             case .play:
                 self.run()
             }
@@ -179,8 +180,7 @@ public class NeuralNetworkViewController: UIViewController {
         self.teachButton.isHidden = true
         self.explainLabel.isHidden = false
         self.viewModel.addTraningImage(image, index: self.index)
-        self.index = self.index == 5 ? 0 : self.index + 1
-        self.drawView.clear()
+        self.index = self.index == Settings.outputSize - 1 ? 0 : self.index + 1
     }
     
     // MARK: -
@@ -197,12 +197,7 @@ public class NeuralNetworkViewController: UIViewController {
     
     /// The Emoji Data Set which will be trained
     fileprivate var emojis: [NNEmoji] = {
-        return [NNEmoji(emoji: "🙂", drawText: "DRAW A SMILE", buttonText: "TEACH HAPPY"),
-                NNEmoji(emoji: "😮", drawText: "DRAW A CIRCLE", buttonText: "TEACH DAMN"),
-                NNEmoji(emoji: "😍", drawText: "DRAW A HEART", buttonText: "TEACH LOVE"),
-                NNEmoji(emoji: "😴", drawText: "DRAW A ZED", buttonText: "TEACH SLEEPY"),
-                NNEmoji(emoji: "😐", drawText: "DRAW A LINE", buttonText: "TEACH POKER FACE"),
-                NNEmoji(emoji: "☹️", drawText: "DRAW A FROWN", buttonText: "TEACH SAD")]
+        return Settings.emojis
     }()
     
     private func listeningTrainingData() {
@@ -339,10 +334,8 @@ extension NeuralNetworkViewController {
                 self.drawView.clear()
             case .wrong:
                 self.showWrong()
-                self.drawView.clear()
             case .success(let index):
                 self.showSuccess(index)
-                self.drawView.clear()
             }
         }
     }
@@ -362,7 +355,7 @@ extension NeuralNetworkViewController {
     }
     
     private func showNotReady() {
-        let alertController = UIAlertController(title: "Warning!", message: "Please train the neural network. There are left just \(Settings.maxTrainingImages - index) images", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Too hurry!", message: "You should train the network before. Left just \(Settings.maxTrainingImages - index) shapes", preferredStyle: .alert)
         let action = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
         alertController.addAction(action)
@@ -373,6 +366,10 @@ extension NeuralNetworkViewController {
 // MARK: - DrawViewDelegate
 
 extension NeuralNetworkViewController: DrawViewDelegate {
+    
+    public func drawViewWillStart() {
+        drawView.clear()
+    }
     
     public func drawViewMoved(view: DrawView) {
         if self.currentSection == .teach {
