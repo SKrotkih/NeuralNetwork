@@ -1,4 +1,4 @@
-target 'EmojiIntelligence' do
+target 'EmojiRecognizer' do
     use_frameworks!
     
     pod 'RxSwift'

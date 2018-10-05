@@ -340,8 +340,8 @@ extension NeuralNetworkViewController {
             case .wrong:
                 self.showWrong()
                 self.drawView.clear()
-            case .success:
-                self.showSuccess()
+            case .success(let index):
+                self.showSuccess(index)
                 self.drawView.clear()
             }
         }
@@ -354,7 +354,7 @@ extension NeuralNetworkViewController {
         SystemSoundID.playFileNamed(fileName: "wrong", withExtenstion: "wav")
     }
     
-    private func showSuccess() {
+    private func showSuccess(_ index: Int) {
         self.configure(view: self.emojiAnimationLabel)
         self.emojiAnimationLabel.transformAnimation()
         self.emojiAnimationLabel.text = self.emojis[index].emoji
