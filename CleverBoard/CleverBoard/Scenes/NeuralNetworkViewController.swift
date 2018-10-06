@@ -7,8 +7,41 @@ public class NeuralNetworkViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     
+    
     var viewModel = ViewModel()
     let disposeBag = DisposeBag()
+
+    
+    private func setupConstraints() {
+        self.contentView.addSubview(drawView)
+        self.drawView.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
+        self.drawView.heightAnchor.constraint(equalToConstant: contentView.frame.height).isActive = true
+        self.contentView.addSubview(explainLabel)
+        self.explainLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        self.explainLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        self.contentView.addSubview(teachButton)
+        self.teachButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 1.0).isActive = true
+        self.teachButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        self.teachButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        self.teachButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5.0).isActive = true
+        self.contentView.addSubview(emojiLabel)
+        self.emojiLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        self.emojiLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 65.0).isActive = true
+        self.contentView.addSubview(teachSectionButton)
+        self.teachSectionButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45.0).isActive = true
+        self.teachSectionButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 60).isActive = true
+        self.contentView.addSubview(playSectionButton)
+        self.playSectionButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45.0).isActive = true
+        self.playSectionButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -60).isActive = true
+        self.contentView.addSubview(emojiAnimationLabel)
+        self.contentView.addSubview(progressView)
+        self.contentView.addSubview(statusLabel)
+        self.statusLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        self.statusLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        self.statusLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+    }
+
+    
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -285,35 +318,6 @@ extension NeuralNetworkViewController {
         }
         progressView.frame = CGRect(x: 0, y: 0, width: w, height: 30)
         statusLabel.text = "left \(Settings.maxTrainingImages - index)"
-    }
-    
-    private func setupConstraints() {
-        self.contentView.addSubview(drawView)
-        self.drawView.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
-        self.drawView.heightAnchor.constraint(equalToConstant: contentView.frame.height).isActive = true
-        self.contentView.addSubview(explainLabel)
-        self.explainLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        self.explainLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        self.contentView.addSubview(teachButton)
-        self.teachButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 1.0).isActive = true
-        self.teachButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        self.teachButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        self.teachButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5.0).isActive = true
-        self.contentView.addSubview(emojiLabel)
-        self.emojiLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        self.emojiLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 65.0).isActive = true
-        self.contentView.addSubview(teachSectionButton)
-        self.teachSectionButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45.0).isActive = true
-        self.teachSectionButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 60).isActive = true
-        self.contentView.addSubview(playSectionButton)
-        self.playSectionButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45.0).isActive = true
-        self.playSectionButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -60).isActive = true
-        self.contentView.addSubview(emojiAnimationLabel)
-        self.contentView.addSubview(progressView)
-        self.contentView.addSubview(statusLabel)
-        self.statusLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        self.statusLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
-        self.statusLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
     }
 }
 

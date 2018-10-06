@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7F3C8E2721684A0C001BE061 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7F3C8E2621684A0C001BE061 /* README.md */; };
+		7F3C8E2E21684E4C001BE061 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E2D21684E4C001BE061 /* RootViewController.swift */; };
+		7F3C8E3021684E71001BE061 /* LearningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E2F21684E71001BE061 /* LearningViewController.swift */; };
+		7F3C8E3221684E84001BE061 /* PredictingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E3121684E84001BE061 /* PredictingViewController.swift */; };
+		7F3C8E3421687533001BE061 /* LearningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E3321687533001BE061 /* LearningViewModel.swift */; };
+		7F3C8E3621687545001BE061 /* PredictingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E3521687545001BE061 /* PredictingViewModel.swift */; };
 		7F4CEEF02166633800A3DDD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CEEEF2166633800A3DDD8 /* Constants.swift */; };
 		7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC121658F2A00F509DE /* AppDelegate.swift */; };
 		7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC521658F2A00F509DE /* Main.storyboard */; };
@@ -37,6 +42,11 @@
 		65D96D506FA0A029733679C3 /* Pods_EmojiIntelligence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmojiIntelligence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7968945BF3D28D0FC02653E8 /* Pods-EmojiRecognizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojiRecognizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmojiRecognizer/Pods-EmojiRecognizer.release.xcconfig"; sourceTree = "<group>"; };
 		7F3C8E2621684A0C001BE061 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		7F3C8E2D21684E4C001BE061 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		7F3C8E2F21684E71001BE061 /* LearningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningViewController.swift; sourceTree = "<group>"; };
+		7F3C8E3121684E84001BE061 /* PredictingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictingViewController.swift; sourceTree = "<group>"; };
+		7F3C8E3321687533001BE061 /* LearningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningViewModel.swift; sourceTree = "<group>"; };
+		7F3C8E3521687545001BE061 /* PredictingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictingViewModel.swift; sourceTree = "<group>"; };
 		7F4CEEEF2166633800A3DDD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F4FBABE21658F2900F509DE /* CleverBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4FBAC121658F2A00F509DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +105,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7F3C8E2A21684DB4001BE061 /* Root Scene */ = {
+			isa = PBXGroup;
+			children = (
+				7F3C8E2D21684E4C001BE061 /* RootViewController.swift */,
+			);
+			path = "Root Scene";
+			sourceTree = "<group>";
+		};
+		7F3C8E2B21684DC0001BE061 /* Learning Scene */ = {
+			isa = PBXGroup;
+			children = (
+				7F3C8E2F21684E71001BE061 /* LearningViewController.swift */,
+				7F3C8E3321687533001BE061 /* LearningViewModel.swift */,
+			);
+			path = "Learning Scene";
+			sourceTree = "<group>";
+		};
+		7F3C8E2C21684DD7001BE061 /* Predicting Scene */ = {
+			isa = PBXGroup;
+			children = (
+				7F3C8E3121684E84001BE061 /* PredictingViewController.swift */,
+				7F3C8E3521687545001BE061 /* PredictingViewModel.swift */,
+			);
+			path = "Predicting Scene";
+			sourceTree = "<group>";
+		};
 		7F4FBAB521658F2900F509DE = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +156,7 @@
 				7F4FBADF21658FEB00F509DE /* Model */,
 				7F4FBAE521658FEB00F509DE /* Neural Network */,
 				7F4FBAD321658FEB00F509DE /* DrawView */,
-				7F4FBAE321658FEB00F509DE /* ViewController */,
+				7F4FBAE321658FEB00F509DE /* Scenes */,
 				7F4FBAD921658FEB00F509DE /* Resources */,
 				7F4FBAC121658F2A00F509DE /* AppDelegate.swift */,
 				7F4CEEEF2166633800A3DDD8 /* Constants.swift */,
@@ -167,14 +203,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		7F4FBAE321658FEB00F509DE /* ViewController */ = {
+		7F4FBAE321658FEB00F509DE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				7F3C8E2A21684DB4001BE061 /* Root Scene */,
+				7F3C8E2B21684DC0001BE061 /* Learning Scene */,
+				7F3C8E2C21684DD7001BE061 /* Predicting Scene */,
 				7F4FBAC521658F2A00F509DE /* Main.storyboard */,
 				7F4FBAE421658FEB00F509DE /* NeuralNetworkViewController.swift */,
 				7F4FBAF62165996700F509DE /* ViewModel.swift */,
 			);
-			path = ViewController;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		7F4FBAE521658FEB00F509DE /* Neural Network */ = {
@@ -306,8 +345,11 @@
 			files = (
 				7F4FBAF121658FEB00F509DE /* NNEmoji.swift in Sources */,
 				7F4FBAEA21658FEB00F509DE /* Extension.swift in Sources */,
+				7F3C8E3021684E71001BE061 /* LearningViewController.swift in Sources */,
+				7F3C8E3221684E84001BE061 /* PredictingViewController.swift in Sources */,
 				7F4FBAF321658FEB00F509DE /* NeuralNetworkViewController.swift in Sources */,
 				7F4FBAF72165996700F509DE /* ViewModel.swift in Sources */,
+				7F3C8E2E21684E4C001BE061 /* RootViewController.swift in Sources */,
 				7F4FBAF221658FEB00F509DE /* ActivationFunction.swift in Sources */,
 				7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */,
 				7F4FBAE921658FEB00F509DE /* enum.swift in Sources */,
@@ -315,6 +357,8 @@
 				7F4FBAF521658FEB00F509DE /* NeuralNetwork.swift in Sources */,
 				7F4FBAEB21658FEB00F509DE /* ImageProcessor.swift in Sources */,
 				7F4FBAE821658FEB00F509DE /* DrawView.swift in Sources */,
+				7F3C8E3621687545001BE061 /* PredictingViewModel.swift in Sources */,
+				7F3C8E3421687533001BE061 /* LearningViewModel.swift in Sources */,
 				7F4CEEF02166633800A3DDD8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
