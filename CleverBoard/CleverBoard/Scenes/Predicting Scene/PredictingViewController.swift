@@ -13,6 +13,13 @@ import AudioToolbox
 
 class PredictingViewController: UIViewController {
 
+    enum StateView {
+        case prepareToDraw
+        case readyToRun
+        case showResult
+        case failedPredict
+    }
+    
     private let viewModel = PredictingViewModel()
     private let disposeBag = DisposeBag()
     
@@ -21,20 +28,43 @@ class PredictingViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var explainLabel: UILabel!
     @IBOutlet weak var runButton: UIButton!
+    @IBOutlet weak var runButtonBackgroundView: UIView!
     @IBOutlet weak var backButton: UIBarButtonItem!
-    
     fileprivate var drawedImage: UIImage? {
         return self.drawView.getImage()
+    }
+    
+    private var stateView: StateView = .prepareToDraw {
+        didSet {
+            switch stateView {
+            case .prepareToDraw:
+                drawView.clear()
+                resultBackgroundView.isHidden = true
+                runButtonBackgroundView.isHidden = true
+                explainLabel.isHidden = false
+                explainLabel.text = "DRAW A DECIMAL NUMBER"
+            case .readyToRun:
+                runButtonBackgroundView.isHidden = false
+            case .showResult:
+                explainLabel.isHidden = false
+                resultBackgroundView.isHidden = false
+                runButtonBackgroundView.isHidden = true
+            case .failedPredict:
+                break
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureViews()
+        stateView = .prepareToDraw
     }
     
     private func configureViews() {
         configure(view: self.view)
+        configure(view: drawView)
         configure(view: resultBackgroundView)
         bindRunButton()
         bindBackButton()
@@ -48,6 +78,9 @@ class PredictingViewController: UIViewController {
             resultBackgroundView.layer.borderColor = UIColor.red.cgColor
             resultBackgroundView.layer.borderWidth = 1.0
             resultBackgroundView.layer.cornerRadius = resultBackgroundView.bounds.height / 2.0
+        case drawView:
+            drawView.delegate = self
+            drawView.isUserInteractionEnabled = true
         default:
             break
         }
@@ -82,11 +115,12 @@ extension PredictingViewController {
                 break
             case .isnottrained:
                 self.showNotReady()
-                self.drawView.clear()
+                self.stateView = .prepareToDraw
             case .wrong:
                 self.showWrong()
             case .success(let index):
                 self.showSuccess(index)
+                self.stateView = .showResult
             }
         }
     }
@@ -97,6 +131,7 @@ extension PredictingViewController {
     }
     
     private func showSuccess(_ index: Int) {
+        self.stateView = .showResult
         self.resultLabel.text = "\(index + 1)"
         SystemSoundID.playFileNamed(fileName: "correct", withExtenstion: "wav")
     }
@@ -107,5 +142,24 @@ extension PredictingViewController {
         }
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+
+// MARK: - DrawViewDelegate
+
+extension PredictingViewController: DrawViewDelegate {
+    
+    public func drawViewWillStart() {
+        drawView.clear()
+        explainLabel.isHidden = true
+    }
+    
+    public func drawViewMoved(view: DrawView) {
+
+    }
+    
+    public func drawViewDidFinishDrawing(view: DrawView) {
+        stateView = .readyToRun
     }
 }

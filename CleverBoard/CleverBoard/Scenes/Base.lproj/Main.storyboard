@@ -191,11 +191,11 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sv-9Y-4bN">
-                                        <rect key="frame" x="15" y="285" width="345" height="33"/>
+                                        <rect key="frame" x="15" y="281.5" width="345" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="tMB-3Z-5oF"/>
+                                            <constraint firstAttribute="height" constant="40" id="tMB-3Z-5oF"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -259,6 +259,7 @@
                         <outlet property="resultBackgroundView" destination="qPM-9g-eUl" id="SYE-Lb-XNB"/>
                         <outlet property="resultLabel" destination="QYp-Xs-LYb" id="h6G-wZ-40x"/>
                         <outlet property="runButton" destination="ZRv-HU-J56" id="qxP-HC-E1M"/>
+                        <outlet property="runButtonBackgroundView" destination="1LM-wD-LYJ" id="EhG-22-0cV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIe-P7-CjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -273,12 +274,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ydA-mZ-oXG">
-                                <rect key="frame" x="87.5" y="335.5" width="200" height="60"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ydA-mZ-oXG">
+                                <rect key="frame" x="87.5" y="315.5" width="200" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2u9-aW-91C">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="67"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="67" id="a9v-B0-RrC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
                                         <state key="normal" title="LEARN">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -287,7 +292,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxq-GY-Mxv">
-                                        <rect key="frame" x="0.0" y="30" width="200" height="30"/>
+                                        <rect key="frame" x="0.0" y="70" width="200" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="21"/>
                                         <state key="normal" title="PLAY">
                                             <color key="titleColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -298,6 +304,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="HBY-6r-8sk"/>
                                     <constraint firstAttribute="width" constant="200" id="osy-I0-cca"/>
                                 </constraints>
                             </stackView>
@@ -320,6 +327,6 @@
         <image name="icon-Backbutton" width="39" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tvZ-a6-eDg"/>
+        <segue reference="e6b-52-Y2y"/>
     </inferredMetricsTieBreakers>
 </document>
