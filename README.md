@@ -1,6 +1,16 @@
-# Simple calculator with Neural network.
+# CleverBoard
 
-It has been trained to make summarize two decimal numbers from 1 to 10.
+The iOS App developed with Neural Network algorithm for recognizing images. 
+
+## Requirements
+
+- Xcode 10.0
+- Swift 4.2
+- RxSwift 4.3.1
+
+# CleverArithmetic
+
+Simple iOS based calculator which has been trained to summarize two decimal numbers from 1 to 10 with using Neural Network.
 
 ## Requirements
 
@@ -11,8 +21,8 @@ It has been trained to make summarize two decimal numbers from 1 to 10.
 
 - clone or unzip the repository. 
 - go to the root folder. 
-- open NeuralNetwork.xcodeproj with Xcode 
-- select NeuralNetwork scheme.
+- open CleverArithmetic.xcodeproj with Xcode 
+- select CleverArithmeticscheme.
 - select iOS 11 iPhone simulator.
 - start the app by pressing Command+R
 - start all tests by pressing Command+U
@@ -22,5 +32,3 @@ It has been trained to make summarize two decimal numbers from 1 to 10.
 - localization
 - MVVM
 - Xcode unit tests
-
-Last update on 09-25-2018
