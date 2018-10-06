@@ -72,9 +72,9 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXf-fx-4gy">
-                                        <rect key="frame" x="8" y="285" width="359" height="33"/>
+                                        <rect key="frame" x="8" y="281.5" width="359" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="Wyo-0v-XWS"/>
+                                            <constraint firstAttribute="height" constant="40" id="Wyo-0v-XWS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -132,13 +132,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oZD-fn-mCZ"/>
                     </view>
+                    <navigationItem key="navigationItem" title="LEARNING" id="vvn-O4-h5E">
+                        <barButtonItem key="leftBarButtonItem" image="icon-Backbutton" style="plain" id="vrj-AA-exc">
+                            <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="backButton" destination="vrj-AA-exc" id="NW9-sh-AO8"/>
                         <outlet property="drawView" destination="yqL-Qd-G6V" id="cc4-zY-YWr"/>
                         <outlet property="explainLabel" destination="CXf-fx-4gy" id="XkX-R6-36g"/>
                         <outlet property="leftItemsLabel" destination="muD-fV-qMf" id="ejO-ux-sFB"/>
                         <outlet property="targetBackgroundView" destination="Bxt-K6-Dmt" id="Lyf-I8-Jm6"/>
                         <outlet property="targetLabel" destination="1DZ-9P-PnV" id="33e-Cf-Q7o"/>
                         <outlet property="teachButton" destination="JIz-bR-Ocr" id="Wb8-gh-u6D"/>
+                        <outlet property="teachButtonBackgroundView" destination="q7p-CG-VBJ" id="GVn-qT-jub"/>
                         <segue destination="a5J-av-vdN" kind="show" identifier="predict" id="tvZ-a6-eDg"/>
                     </connections>
                 </viewController>
@@ -238,7 +246,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="74d-hv-eFv"/>
                     </view>
+                    <navigationItem key="navigationItem" title="PREDICTION" id="QL1-HH-ekt">
+                        <barButtonItem key="leftBarButtonItem" image="icon-Backbutton" style="plain" id="5DJ-nY-VMz">
+                            <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="backButton" destination="5DJ-nY-VMz" id="gUE-18-aTY"/>
                         <outlet property="drawView" destination="MLk-Xc-68U" id="2XQ-iC-jh7"/>
                         <outlet property="explainLabel" destination="6sv-9Y-4bN" id="JdF-iu-Bcd"/>
                         <outlet property="resultBackgroundView" destination="qPM-9g-eUl" id="SYE-Lb-XNB"/>
@@ -264,7 +279,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2u9-aW-91C">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Learn">
+                                        <state key="normal" title="LEARN">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -273,7 +288,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxq-GY-Mxv">
                                         <rect key="frame" x="0.0" y="30" width="200" height="30"/>
-                                        <state key="normal" title="Play">
+                                        <state key="normal" title="PLAY">
                                             <color key="titleColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -294,13 +309,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4vx-A1-Qua"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Clever board" id="Owk-gp-IiC"/>
+                    <navigationItem key="navigationItem" title="CLEVER BOARD" id="Owk-gp-IiC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLr-y0-cJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-586.39999999999998" y="141.67916041979012"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-Backbutton" width="39" height="21"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tvZ-a6-eDg"/>
     </inferredMetricsTieBreakers>

@@ -21,7 +21,8 @@ class PredictingViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var explainLabel: UILabel!
     @IBOutlet weak var runButton: UIButton!
-
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
     fileprivate var drawedImage: UIImage? {
         return self.drawView.getImage()
     }
@@ -29,12 +30,20 @@ class PredictingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureView(resultBackgroundView)
-        bindButton()
+        configureViews()
     }
     
-    private func configureView(_ view: UIView) {
+    private func configureViews() {
+        configure(view: self.view)
+        configure(view: resultBackgroundView)
+        bindRunButton()
+        bindBackButton()
+    }
+    
+    private func configure(view: UIView) {
         switch view {
+        case self.view:
+            title = "PREDICTION"
         case resultBackgroundView:
             resultBackgroundView.layer.borderColor = UIColor.red.cgColor
             resultBackgroundView.layer.borderWidth = 1.0
@@ -44,13 +53,19 @@ class PredictingViewController: UIViewController {
         }
     }
 
-    private func bindButton() {
+    private func bindRunButton() {
         runButton.rx.tap.bind(onNext: { [weak self] in
             guard let `self` = self else { return }
             self.run()
         }).disposed(by: disposeBag)
     }
-    
+
+    private func bindBackButton() {
+        backButton.rx.tap.bind(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            self.navigationController?.popToRootViewController(animated: true)
+        }).disposed(by: disposeBag)
+    }
 }
 
 // MARK: - Run to recognize smile symbol for the current image

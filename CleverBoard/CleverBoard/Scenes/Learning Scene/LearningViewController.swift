@@ -16,50 +16,76 @@ class LearningViewController: UIViewController {
     @IBOutlet weak var targetBackgroundView: UIView!
     @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var explainLabel: UILabel!
+    @IBOutlet weak var teachButtonBackgroundView: UIView!
     @IBOutlet weak var teachButton: UIButton!
     @IBOutlet weak var leftItemsLabel: UILabel!
-
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
     /// The index to update the UI
-    fileprivate var index: Int = 0  {
+    private var index: Int = 0  {
         didSet {
             configure(view: self.targetLabel)
         }
     }
 
     /// The Image Processor
-    fileprivate lazy var imgProcessor: ImageProcessor = {
+    private lazy var imgProcessor: ImageProcessor = {
         return ImageProcessor()
     }()
     
-    fileprivate var drawedImage: UIImage? {
+    private var drawedImage: UIImage? {
         return self.drawView.getImage()
+    }
+
+    private var isLearningInProcess = false {
+        didSet {
+            if isLearningInProcess {
+                drawView.clear()
+                drawView.isUserInteractionEnabled = false
+                leftItemsLabel.isHidden = true
+                targetBackgroundView.isHidden = true
+                teachButtonBackgroundView.isHidden = true
+                explainLabel.text = "🤖 LEARNING AND THINKING 💭"
+                explainLabel.startBlink()
+            } else {
+                leftItemsLabel.isHidden = false
+                targetBackgroundView.isHidden = false
+                teachButtonBackgroundView.isHidden = false
+                self.explainLabel.stopBlink()
+            }
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        listeningTrainingData()
         configureViews()
     }
     
     private func configureViews() {
-        listeningTrainingData()
+        configure(view: self.view)
         configure(view: drawView)
         configure(view: targetBackgroundView)
         configure(view: targetLabel)
         configure(view: explainLabel)
         bindTeachButton()
+        bindBackButton()
     }
     
     private func configure(view: UIView) {
         switch view {
+        case self.view:
+            title = "LEARNING"
         case targetBackgroundView:
             targetBackgroundView.layer.borderColor = UIColor.red.cgColor
             targetBackgroundView.layer.borderWidth = 1.0
             targetBackgroundView.layer.cornerRadius = targetBackgroundView.bounds.height / 2.0
         case targetLabel:
-            targetLabel.text = "\(index + 1)"
-            explainLabel.text = "DRAW NUMBER \(index + 1)"
-            leftItemsLabel.text = "You have been left just \(Settings.maxTrainingImages - index) items"
+            if isLearningInProcess == false {
+                targetLabel.text = "\(index + 1)"
+                explainLabel.text = "DRAW NUMBER \(index + 1)"
+            }
         case explainLabel:
             explainLabel.font = UIFont(name: "AvenirNext-Medium", size: 17.0)
             explainLabel.textColor = UIColor.lightGray
@@ -70,6 +96,13 @@ class LearningViewController: UIViewController {
         default:
             break
         }
+    }
+
+    private func bindBackButton() {
+        backButton.rx.tap.bind(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            self.navigationController?.popViewController(animated: true)
+        }).disposed(by: disposeBag)
     }
     
     private func bindTeachButton() {
@@ -91,26 +124,25 @@ class LearningViewController: UIViewController {
     
     private func listeningTrainingData() {
         viewModel.traningData.subscribe(onNext: { trainingData in
-            self.configureStatusView(for: trainingData.count)
+            let leftItems = Settings.maxTrainingImages - trainingData.count
+            if leftItems == 0 {
+                self.learnNetwork()
+            } else {
+                self.leftItemsLabel.text = "You have been left just \(leftItems) items"
+            }
         }).disposed(by: disposeBag)
-    }
-
-    private func configureStatusView(for trainingItemsCount: Int) {
-        if trainingItemsCount == Settings.maxTrainingImages {
-            drawView.clear()
-            drawView.isUserInteractionEnabled = false
-            learnNetwork()
-        }
     }
     
     /// Sart the learning process
     private func learnNetwork() {
-        explainLabel.text = "🤖 LEARNING AND THINKING 💭"
-        explainLabel.startBlink()
+        isLearningInProcess = true
         viewModel.learnNetwork() {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else {
+                    return
+                }
                 // Learning is finished
-                self.explainLabel.stopBlink()
+                self.isLearningInProcess = false
                 self.performSegue(withIdentifier: "predict", sender: self)
             }
         }
