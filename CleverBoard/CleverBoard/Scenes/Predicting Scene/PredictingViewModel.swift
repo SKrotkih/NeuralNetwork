@@ -8,13 +8,8 @@ import RxSwift
 
 class PredictingViewModel {
     
-    /// The Result Data labels for the output
-    fileprivate var traningResults: [[Float]] = []
-    
-    var traningData = BehaviorSubject<[[Float]]>(value: [])
-    
     // The Network is Ready to predict
-    fileprivate var isReady: Bool = false
+    private var isReady: Bool = false
     
     /// The Neural Network 🚀
     fileprivate lazy var neuralNetwork: NeuralNetwork = {
@@ -26,16 +21,6 @@ class PredictingViewModel {
         let imgProcessor = ImageProcessor()
         return imgProcessor
     }()
-    
-    func addTraningImage(_ image: UIImage, index: Int) {
-        self.traningResults.append(Settings.traningResults[index])
-        let input: [Float] = self.returnImageBlock(image)
-        do {
-            try self.traningData.onNext(self.traningData.value() + [input])
-        } catch  {
-            fatal()
-        }
-    }
     
     func predict(image: UIImage?, completion: (PredictionResult) -> Void ) {
         guard let image = image else {

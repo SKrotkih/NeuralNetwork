@@ -2,6 +2,7 @@ import UIKit
 import AudioToolbox
 
 public extension UIView {
+    
     func fadeIn(withDuration duration: TimeInterval = 1.0) {
         UIView.animate(withDuration: duration, animations: {
             self.alpha = 1.0
@@ -28,6 +29,7 @@ public extension UIView {
 }
 
 public extension SystemSoundID {
+    
     static func playFileNamed(fileName: String, withExtenstion fileExtension: String) {
         var sound: SystemSoundID = 0
         if let soundURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) {
@@ -64,4 +66,8 @@ public extension UIButton {
         
         self.setBackgroundImage(colorImage, for: forState)
     }
+}
+
+func fatal() {
+    fatalError("Something very, very bad happened! Crash the app!")
 }

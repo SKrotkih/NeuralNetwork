@@ -11,28 +11,19 @@ struct Settings {
     
     static let learningRate: Float = 0.3
     static let momentum: Float = 0.6
-    static let iterations: Int = 1000  //70000
+    static let iterations: Int = 1000
     
     static let maxTrainingImages = Settings.outputSize * 3
     static let middleTrainingImages = Settings.outputSize * 2
     
     static let traningResults: [[Float]] = [
-        [1,0,0,0,0,0], // 🙂
-        [0,1,0,0,0,0], // 😮
-        [0,0,1,0,0,0], // 😍
-        [0,0,0,1,0,0], // 😴
-        [0,0,0,0,1,0], // 😐
-        [0,0,0,0,0,1]  // ☹️
+        [1,0,0,0,0,0], // 1
+        [0,1,0,0,0,0], // 2
+        [0,0,1,0,0,0], // 3
+        [0,0,0,1,0,0], // 4
+        [0,0,0,0,1,0], // 5
+        [0,0,0,0,0,1]  // 6
     ]
-    
-    static var emojis: [NNEmoji] {
-        return [NNEmoji(emoji: "🙂", drawText: "DRAW A SMILE", buttonText: "TEACH HAPPY"),
-                NNEmoji(emoji: "😮", drawText: "DRAW A CIRCLE", buttonText: "TEACH DAMN"),
-                NNEmoji(emoji: "😍", drawText: "DRAW A HEART", buttonText: "TEACH LOVE"),
-                NNEmoji(emoji: "😴", drawText: "DRAW A ZED", buttonText: "TEACH SLEEPY"),
-                NNEmoji(emoji: "😐", drawText: "DRAW A LINE", buttonText: "TEACH POKER FACE"),
-                NNEmoji(emoji: "☹️", drawText: "DRAW A FROWN", buttonText: "TEACH SAD")]
-    }
 }
 
 struct Color {
