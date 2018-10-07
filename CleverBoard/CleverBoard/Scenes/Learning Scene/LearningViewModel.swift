@@ -4,60 +4,55 @@
 //
 
 import UIKit
-import RxSwift
+
+protocol ViewModeOutput: class {
+    func setupNextNumber(_ nextItemNumber: Int)
+    func setupLeftNumbers(_ leftItemsCount: Int)
+    func willStartLearning()
+    func didFinishLearning()
+}
 
 class LearningViewModel {
   
+    weak var output: ViewModeOutput!
+    
+    required init(_ output: ViewModeOutput) {
+        self.output = output
+    }
+    
     /// The Result Data labels for the output
     fileprivate var traningResults: [[Float]] = []
-    
-    var traningData = BehaviorSubject<[[Float]]>(value: [])
-    
-    // The Network is Ready to predict
-    fileprivate var isReady: Bool = false
+    fileprivate var traningData: [[Float]] = []
+
+    private var index: Int = 0
     
     /// The Neural Network 🚀
     fileprivate lazy var neuralNetwork: NeuralNetwork = {
         return NeuralNetwork()
     }()
     
-    /// The Image Processor
-    fileprivate lazy var imgProcessor: ImageProcessor = {
-        let imgProcessor = ImageProcessor()
-        return imgProcessor
+    fileprivate lazy var modelWorker: ModelWorker = {
+        return ModelWorker()
     }()
     
-    func addTraningImage(_ image: UIImage, index: Int) {
-        self.traningResults.append(Settings.traningResults[index])
-        let input: [Float] = self.returnImageBlock(image)
-        do {
-            try self.traningData.onNext(self.traningData.value() + [input])
-        } catch  {
-            fatal()
+    func addTraningImage(_ image: UIImage) {
+        traningResults.append(Settings.traningResults[index])
+        let input: [Float] = modelWorker.returnImageBlock(image)
+        traningData = traningData + [input]
+        let leftItems = Settings.maxTrainingImages - traningData.count
+        if leftItems == 0 {
+            learnNetwork()
+        } else {
+            index = index == Settings.outputSize - 1 ? 0 : index + 1
+            output.setupNextNumber(index)
+            output.setupLeftNumbers(leftItems)
         }
     }
     
-    func learnNetwork(_ completed: @escaping () -> Void) {
-        do {
-            neuralNetwork.learn(input: try self.traningData.value(), target: self.traningResults) {
-                self.isReady = true
-                completed()
-            }
-        } catch  {
-            fatal()
+    private func learnNetwork() {
+        output.willStartLearning()
+        neuralNetwork.learn(input: traningData, target: traningResults) {
+            self.output.didFinishLearning()
         }
-    }
-}
-
-// MARK: - Provate methods
-
-extension LearningViewModel {
-    
-    private func returnImageBlock(_ image: UIImage?) -> [Float] {
-        guard let image = image, let mnistImage = self.imgProcessor.resize(image: image) else {
-            return []
-        }
-        print(self.imgProcessor.imageBlock(image: mnistImage))
-        return self.imgProcessor.imageBlock(image: mnistImage)
     }
 }

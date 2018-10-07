@@ -1,15 +1,10 @@
+//
+//  NeuralNetwork.swift
+//  CleverBoard
+//
+
 import Foundation
 
-enum PredictionResult {
-    case noimage
-    case isnottrained
-    case wrong
-    case success(Int)
-}
-
-/// There is the original code here: https://github.com/BilalReffas/EmojiIntelligence
-/// Here is it just refactored
-/// I have prepared for generic implementation
 public class NeuralNetwork {
     
     private var layers: [Layer] = []

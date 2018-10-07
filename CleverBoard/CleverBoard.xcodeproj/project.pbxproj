@@ -26,6 +26,7 @@
 		7F4FBAF221658FEB00F509DE /* ActivationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */; };
 		7F4FBAF421658FEB00F509DE /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE621658FEB00F509DE /* Layer.swift */; };
 		7F4FBAF521658FEB00F509DE /* NeuralNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */; };
+		7F83F00F2169C09000C03329 /* ModelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F83F00E2169C09000C03329 /* ModelWorker.swift */; };
 		E0D4E47E56C38218EE8878DB /* Pods_CleverBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0032BDE4C3C87D923067B83F /* Pods_CleverBoard.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivationFunction.swift; sourceTree = "<group>"; };
 		7F4FBAE621658FEB00F509DE /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeuralNetwork.swift; sourceTree = "<group>"; };
+		7F83F00E2169C09000C03329 /* ModelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWorker.swift; sourceTree = "<group>"; };
 		976399412020967229651B29 /* Pods-CleverBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverBoard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleverBoard/Pods-CleverBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		F0FE1BD72FFB5E3CBF22A59C /* Pods_EmojiRecognizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmojiRecognizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 				7F4FBAD521658FEB00F509DE /* Helper */,
 				7F4FBAE521658FEB00F509DE /* Neural Network */,
 				7F4FBAD321658FEB00F509DE /* DrawView */,
+				7F83F00D2169C07300C03329 /* Model */,
 				7F4FBAE321658FEB00F509DE /* Scenes */,
 				7F4FBAD921658FEB00F509DE /* Resources */,
 				7F4FBAC121658F2A00F509DE /* AppDelegate.swift */,
@@ -204,6 +207,14 @@
 				7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */,
 			);
 			path = "Neural Network";
+			sourceTree = "<group>";
+		};
+		7F83F00D2169C07300C03329 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7F83F00E2169C09000C03329 /* ModelWorker.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +343,7 @@
 				7F4FBAF421658FEB00F509DE /* Layer.swift in Sources */,
 				7F4FBAF521658FEB00F509DE /* NeuralNetwork.swift in Sources */,
 				7F4FBAEB21658FEB00F509DE /* ImageProcessor.swift in Sources */,
+				7F83F00F2169C09000C03329 /* ModelWorker.swift in Sources */,
 				7F4FBAE821658FEB00F509DE /* DrawView.swift in Sources */,
 				7F3C8E3621687545001BE061 /* PredictingViewModel.swift in Sources */,
 				7F3C8E3421687533001BE061 /* LearningViewModel.swift in Sources */,

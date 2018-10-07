@@ -9,7 +9,6 @@ import RxCocoa
 
 class LearningViewController: UIViewController {
 
-    private let viewModel = LearningViewModel()
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var drawView: DrawView!
@@ -28,11 +27,10 @@ class LearningViewController: UIViewController {
         }
     }
 
-    /// The Image Processor
-    private lazy var imgProcessor: ImageProcessor = {
-        return ImageProcessor()
+    private lazy var viewModel = {
+        return LearningViewModel(self)
     }()
-    
+
     private var drawedImage: UIImage? {
         return self.drawView.getImage()
     }
@@ -45,13 +43,14 @@ class LearningViewController: UIViewController {
                 leftItemsLabel.isHidden = true
                 targetBackgroundView.isHidden = true
                 teachButtonBackgroundView.isHidden = true
+                explainLabel.isHidden = false
                 explainLabel.text = "🤖 LEARNING AND THINKING 💭"
                 explainLabel.startBlink()
             } else {
                 leftItemsLabel.isHidden = false
                 targetBackgroundView.isHidden = false
                 teachButtonBackgroundView.isHidden = false
-                self.explainLabel.stopBlink()
+                explainLabel.stopBlink()
             }
         }
     }
@@ -59,7 +58,6 @@ class LearningViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listeningTrainingData()
         configureViews()
     }
     
@@ -100,51 +98,52 @@ class LearningViewController: UIViewController {
 
     private func bindBackButton() {
         backButton.rx.tap.bind(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let `self` = self else {
+                return
+            }
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
     }
     
     private func bindTeachButton() {
         teachButton.rx.tap.bind(onNext: { [weak self] in
-            guard let `self` = self else { return }
-            self.drawView.clear()
-            self.explainLabel.isHidden = false
-            self.addTraningImage()
+            guard let `self` = self else {
+                return
+            }
+            guard let image = self.drawedImage else {
+                return
+            }
+            self.viewModel.addTraningImage(image)
         }).disposed(by: disposeBag)
     }
+}
 
-    private func addTraningImage() {
-        guard let image = self.drawedImage else {
-            return
-        }
-        self.viewModel.addTraningImage(image, index: self.index)
-        self.index = self.index == Settings.outputSize - 1 ? 0 : self.index + 1
+// MARK: - ViewModeOutput
+
+extension LearningViewController: ViewModeOutput {
+    
+    func setupNextNumber(_ nextItemNumber: Int) {
+        self.drawView.clear()
+        self.explainLabel.isHidden = false
+        self.index = nextItemNumber
     }
     
-    private func listeningTrainingData() {
-        viewModel.traningData.subscribe(onNext: { trainingData in
-            let leftItems = Settings.maxTrainingImages - trainingData.count
-            if leftItems == 0 {
-                self.learnNetwork()
-            } else {
-                self.leftItemsLabel.text = "You have been left just \(leftItems) items"
-            }
-        }).disposed(by: disposeBag)
+    func setupLeftNumbers(_ leftItemsCount: Int) {
+        self.leftItemsLabel.text = "You have been left just \(leftItemsCount) items"
     }
     
-    /// Sart the learning process
-    private func learnNetwork() {
+    func willStartLearning() {
         isLearningInProcess = true
-        viewModel.learnNetwork() {
-            DispatchQueue.main.async { [weak self] in
-                guard let `self` = self else {
-                    return
-                }
-                // Learning is finished
-                self.isLearningInProcess = false
-                self.performSegue(withIdentifier: "predict", sender: self)
+    }
+    
+    func didFinishLearning() {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else {
+                return
             }
+            // Learning is finished
+            self.isLearningInProcess = false
+            self.performSegue(withIdentifier: "predict", sender: self)
         }
     }
 }
