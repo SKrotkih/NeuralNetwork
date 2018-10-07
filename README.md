@@ -2,7 +2,9 @@
 
 CleverBoard is an iOS App developed with Neural Network algorithm for recognizing images. You can teach to recognize 6 symbols. Draw three times every symbol. Then
 the app will be learning some time. After that you can draw symbol which will be rcognized. It is very easy.
-The app saves the learned model and you don't have to learn every time. 
+The app consists learned model which can recognize decimal number from 1 to 6.
+You can create your own model on the LERN screen. 
+
 
 I consider the CleverBoard as a code example. Here used RxSwift, MVVM.
 
@@ -11,6 +13,8 @@ I consider the CleverBoard as a code example. Here used RxSwift, MVVM.
 - Xcode 10.0
 - Swift 4.2
 - RxSwift 4.3.1
+
+Useful background [Make Your Own Neural Network](https://www.amazon.com/Make-Your-Own-Neural-Network/dp/1530826608).
 
 # CleverArithmetic
 

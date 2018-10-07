@@ -158,9 +158,7 @@
 				7F4FBAD921658FEB00F509DE /* Resources */,
 				7F4FBAC121658F2A00F509DE /* AppDelegate.swift */,
 				7F4CEEEF2166633800A3DDD8 /* Constants.swift */,
-				7F4FBACA21658F2C00F509DE /* LaunchScreen.storyboard */,
 				7F4FBACD21658F2C00F509DE /* Info.plist */,
-				7F3F32B0216A6B0900983B59 /* layers.xml */,
 				7F3C8E2621684A0C001BE061 /* README.md */,
 			);
 			path = CleverBoard;
@@ -186,6 +184,8 @@
 		7F4FBAD921658FEB00F509DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7F4FBAC521658F2A00F509DE /* Main.storyboard */,
+				7F4FBACA21658F2C00F509DE /* LaunchScreen.storyboard */,
 				7F4FBAC821658F2C00F509DE /* Assets.xcassets */,
 				7F4FBADA21658FEB00F509DE /* correct.wav */,
 				7F4FBADE21658FEB00F509DE /* wrong.wav */,
@@ -199,7 +199,6 @@
 				7F3C8E2A21684DB4001BE061 /* Root Scene */,
 				7F3C8E2B21684DC0001BE061 /* Learning Scene */,
 				7F3C8E2C21684DD7001BE061 /* Predicting Scene */,
-				7F4FBAC521658F2A00F509DE /* Main.storyboard */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -210,6 +209,7 @@
 				7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */,
 				7F4FBAE621658FEB00F509DE /* Layer.swift */,
 				7F3F32AE216A323B00983B59 /* Storage.swift */,
+				7F3F32B0216A6B0900983B59 /* layers.xml */,
 				7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */,
 			);
 			path = "Neural Network";
