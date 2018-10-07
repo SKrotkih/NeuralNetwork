@@ -14,6 +14,7 @@
 		7F3C8E3421687533001BE061 /* LearningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E3321687533001BE061 /* LearningViewModel.swift */; };
 		7F3C8E3621687545001BE061 /* PredictingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E3521687545001BE061 /* PredictingViewModel.swift */; };
 		7F3F32AF216A323B00983B59 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F32AE216A323B00983B59 /* Storage.swift */; };
+		7F3F32B1216A6B0900983B59 /* layers.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7F3F32B0216A6B0900983B59 /* layers.xml */; };
 		7F4CEEF02166633800A3DDD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CEEEF2166633800A3DDD8 /* Constants.swift */; };
 		7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC121658F2A00F509DE /* AppDelegate.swift */; };
 		7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC521658F2A00F509DE /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		7F3C8E3321687533001BE061 /* LearningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningViewModel.swift; sourceTree = "<group>"; };
 		7F3C8E3521687545001BE061 /* PredictingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictingViewModel.swift; sourceTree = "<group>"; };
 		7F3F32AE216A323B00983B59 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		7F3F32B0216A6B0900983B59 /* layers.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = layers.xml; sourceTree = "<group>"; };
 		7F4CEEEF2166633800A3DDD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F4FBABE21658F2900F509DE /* CleverBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4FBAC121658F2A00F509DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				7F4CEEEF2166633800A3DDD8 /* Constants.swift */,
 				7F4FBACA21658F2C00F509DE /* LaunchScreen.storyboard */,
 				7F4FBACD21658F2C00F509DE /* Info.plist */,
+				7F3F32B0216A6B0900983B59 /* layers.xml */,
 				7F3C8E2621684A0C001BE061 /* README.md */,
 			);
 			path = CleverBoard;
@@ -283,6 +286,7 @@
 				7F3C8E2721684A0C001BE061 /* README.md in Resources */,
 				7F4FBACC21658F2C00F509DE /* LaunchScreen.storyboard in Resources */,
 				7F4FBAF021658FEB00F509DE /* wrong.wav in Resources */,
+				7F3F32B1216A6B0900983B59 /* layers.xml in Resources */,
 				7F4FBAEC21658FEB00F509DE /* correct.wav in Resources */,
 				7F4FBAC921658F2C00F509DE /* Assets.xcassets in Resources */,
 				7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */,

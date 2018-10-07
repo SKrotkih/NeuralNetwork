@@ -44,7 +44,7 @@ class LearningViewController: UIViewController {
                 targetBackgroundView.isHidden = true
                 teachButtonBackgroundView.isHidden = true
                 explainLabel.isHidden = false
-                explainLabel.text = "🤖 LEARNING AND THINKING 💭"
+                explainLabel.text = "LEARNING..."
                 explainLabel.startBlink()
             } else {
                 leftItemsLabel.isHidden = false

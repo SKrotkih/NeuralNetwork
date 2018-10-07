@@ -30,35 +30,9 @@ class PredictingViewController: UIViewController {
     @IBOutlet weak var runButton: UIButton!
     @IBOutlet weak var runButtonBackgroundView: UIView!
     @IBOutlet weak var backButton: UIBarButtonItem!
+    
     fileprivate var drawedImage: UIImage? {
         return self.drawView.getImage()
-    }
-    
-    private var stateView: StateView = .prepareToDraw {
-        didSet {
-            switch stateView {
-            case .prepareToDraw:
-                drawView.clear()
-                explainLabel.isHidden = true
-                resultBackgroundView.isHidden = true
-                runButtonBackgroundView.isHidden = true
-                explainLabel.text = "DRAW A DECIMAL NUMBER"
-            case .readyToRun:
-                runButtonBackgroundView.isHidden = false
-            case .showResult(let number):
-                resultLabel.text = "\(number + 1)"
-                explainLabel.isHidden = true
-                runButtonBackgroundView.isHidden = true
-                resultBackgroundView.isHidden = false
-                SystemSoundID.playFileNamed(fileName: "correct", withExtenstion: "wav")
-            case .failedPredict:
-                resultLabel.text = "?"
-                explainLabel.isHidden = true
-                runButtonBackgroundView.isHidden = true
-                resultBackgroundView.isHidden = false
-                SystemSoundID.playFileNamed(fileName: "wrong", withExtenstion: "wav")
-            }
-        }
     }
     
     override func viewDidLoad() {
@@ -89,6 +63,33 @@ class PredictingViewController: UIViewController {
             drawView.isUserInteractionEnabled = true
         default:
             break
+        }
+    }
+    
+    private var stateView: StateView = .prepareToDraw {
+        didSet {
+            switch stateView {
+            case .prepareToDraw:
+                drawView.clear()
+                explainLabel.isHidden = true
+                resultBackgroundView.isHidden = true
+                runButtonBackgroundView.isHidden = true
+                explainLabel.text = "DRAW A DECIMAL NUMBER"
+            case .readyToRun:
+                runButtonBackgroundView.isHidden = false
+            case .showResult(let number):
+                resultLabel.text = "\(number + 1)"
+                explainLabel.isHidden = true
+                runButtonBackgroundView.isHidden = true
+                resultBackgroundView.isHidden = false
+                SystemSoundID.playFileNamed(fileName: "correct", withExtenstion: "wav")
+            case .failedPredict:
+                resultLabel.text = "?"
+                explainLabel.isHidden = true
+                runButtonBackgroundView.isHidden = true
+                resultBackgroundView.isHidden = false
+                SystemSoundID.playFileNamed(fileName: "wrong", withExtenstion: "wav")
+            }
         }
     }
 
@@ -130,9 +131,8 @@ extension PredictingViewController {
         }
     }
     
-    
     private func showNotReady() {
-        let alertController = UIAlertController(title: "Too hurry!", message: "You should train the network before. shapes", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Too hurry!", message: "You should teach to recoognize symbols before. Please go to LEARN screen", preferredStyle: .alert)
         let action = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
         alertController.addAction(action)

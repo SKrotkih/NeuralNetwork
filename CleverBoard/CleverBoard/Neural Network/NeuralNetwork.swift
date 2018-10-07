@@ -35,6 +35,10 @@ public class NeuralNetwork {
     
     /// Predict value according of the input value
     func predict(input: [Float], completion: (PredictionResult) -> Void ) {
+        guard storage.exist else {
+            completion(.isnottrained)
+            return
+        }
         let prediction = self.run(input: input).filter {
             $0 >= Settings.predictionThreshold
         }

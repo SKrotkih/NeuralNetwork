@@ -51,8 +51,8 @@ class LearningViewModel {
     
     private func learnNetwork() {
         output.willStartLearning()
-        neuralNetwork.learn(input: traningData, target: traningResults) {
-            self.output.didFinishLearning()
+        neuralNetwork.learn(input: traningData, target: traningResults) { [weak self] in
+            self?.output.didFinishLearning()
         }
     }
 }

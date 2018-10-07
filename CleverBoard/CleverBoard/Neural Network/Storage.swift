@@ -7,6 +7,25 @@ import Foundation
 
 struct Storage {
     
+    enum StorageError: Error {
+        case fileIsNotExist
+    }
+    
+    var exist: Bool {
+        let fullPath = xmlURL.path
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: fullPath) == false {
+            if let localPath = Bundle.main.path(forResource: "layers", ofType: ".xml") {
+                do {
+                    try fileManager.copyItem(atPath: localPath, toPath: fullPath)
+                } catch {
+                    print("\nFailed to copy layers.xml to Documents folder with error:", error)
+                }
+            }
+        }
+        return fileManager.fileExists(atPath: fullPath)
+    }
+    
     lazy var layers: [Layer] = {
         var _layers = restore()
         if _layers.count == 0 {
@@ -20,17 +39,17 @@ struct Storage {
         return _layers
     }()
 
-    private var plistURL: URL {
+    private var xmlURL: URL {
         let documentDirectoryURL =  try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         print(documentDirectoryURL)
-        return documentDirectoryURL.appendingPathComponent("layers.plist")
+        return documentDirectoryURL.appendingPathComponent("layers.xml")
     }
 
     func save(_ layers: [Layer]) {
         let ls: [String: Any] = ["l1": layers[0].pack(), "l2": layers[1].pack()]
         do {
             let plistData = try PropertyListSerialization.data(fromPropertyList: ls, format: .xml, options: 0)
-            try plistData.write(to: plistURL)
+            try plistData.write(to: xmlURL)
         } catch  {
             fatal()
         }
@@ -60,18 +79,18 @@ struct Storage {
                 let hoLayer = Layer(inputSize: Settings.hiddenSize, output: output, weights: weight)
                 _layers.append(hoLayer)
             }
-        } catch {
-            fatal()
+        } catch(let error) {
+            print("\(error)")
         }
         return _layers
     }
 
     private func loadPropertyList() throws -> [String: Any]
     {
-        let data = try Data(contentsOf: plistURL)
-        guard let plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any] else {
-            return [String: Any]()
+        let data = try Data(contentsOf: xmlURL)
+        guard let xml = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any] else {
+            throw StorageError.fileIsNotExist
         }
-        return plist
+        return xml
     }
 }
