@@ -15,6 +15,9 @@ public class NeuralNetwork {
     
     /// Learn Neural Network
     func learn(input: [[Float]], target: [[Float]], completed: @escaping () -> Void) {
+        guard input.count == target.count else {
+            fatal()
+        }
         DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass).async {
             for iterations in 0..<Settings.iterations {
                 for i in 0..<input.count {
@@ -70,7 +73,7 @@ extension NeuralNetwork {
     private func run(input: [Float]) -> [Float] {
         var activations = input
         layers.forEach { layer in
-            activations = layer.run(inputArray: activations)
+            activations = layer.run(input: activations)
         }
         return activations
     }

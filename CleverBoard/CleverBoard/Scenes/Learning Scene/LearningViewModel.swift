@@ -27,7 +27,7 @@ class LearningViewModel {
     private var index: Int = 0
     
     /// The Neural Network 🚀
-    fileprivate lazy var neuralNetwork: NeuralNetwork = {
+    lazy var neuralNetwork: NeuralNetwork = {
         return NeuralNetwork()
     }()
     

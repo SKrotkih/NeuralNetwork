@@ -14,8 +14,10 @@ enum PredictionResult {
 
 class PredictingViewModel {
     
+    var neuralNetwork: NeuralNetwork!
+    
     /// The Neural Network 🚀
-    fileprivate lazy var neuralNetwork: NeuralNetwork = {
+    fileprivate lazy var neuralNetwork2: NeuralNetwork = {
         return NeuralNetwork()
     }()
 

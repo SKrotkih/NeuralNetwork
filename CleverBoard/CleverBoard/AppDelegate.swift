@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  EmojiIntelligence
 //
-//  Created by Сергей Кротких on 04/10/2018.
-//  Copyright © 2018 Сергей Кротких. All rights reserved.
-//
 
 import UIKit
 

@@ -16,16 +16,16 @@ class Layer {
         previousWeights = [Float](repeating: 0, count: weights.count)
     }
     
-    public func run(inputArray: [Float]) -> [Float] {
-        input = inputArray
-        input[input.count - 1] = 1
+    public func run(input: [Float]) -> [Float] {
+        self.input = input
+        self.input[self.input.count - 1] = 1
         var offSet = 0
         for i in 0..<output.count {
-            for (j, inputItem) in input.enumerated() {
+            for (j, inputItem) in self.input.enumerated() {
                 output[i] += weights[offSet + j] * inputItem
             }
             output[i] = ActivationFunction.sigmoid(x: output[i])
-            offSet += input.count
+            offSet += self.input.count
         }
         return output
     }
@@ -45,13 +45,5 @@ class Layer {
             offset += input.count
         }
         return nextError
-    }
-}
-
-extension ClosedRange where Bound: FloatingPoint {
-    public func random() -> Bound {
-        let range = self.upperBound - self.lowerBound
-        let randomValue = (Bound(arc4random_uniform(UINT32_MAX)) / Bound(UINT32_MAX)) * range + self.lowerBound
-        return randomValue
     }
 }

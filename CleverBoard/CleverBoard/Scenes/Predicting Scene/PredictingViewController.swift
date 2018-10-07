@@ -16,11 +16,11 @@ class PredictingViewController: UIViewController {
     enum StateView {
         case prepareToDraw
         case readyToRun
-        case showResult
+        case showResult(Int)
         case failedPredict
     }
     
-    private let viewModel = PredictingViewModel()
+    let viewModel = PredictingViewModel()
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var drawView: DrawView!
@@ -39,18 +39,24 @@ class PredictingViewController: UIViewController {
             switch stateView {
             case .prepareToDraw:
                 drawView.clear()
+                explainLabel.isHidden = true
                 resultBackgroundView.isHidden = true
                 runButtonBackgroundView.isHidden = true
-                explainLabel.isHidden = false
                 explainLabel.text = "DRAW A DECIMAL NUMBER"
             case .readyToRun:
                 runButtonBackgroundView.isHidden = false
-            case .showResult:
-                explainLabel.isHidden = false
-                resultBackgroundView.isHidden = false
+            case .showResult(let number):
+                resultLabel.text = "\(number + 1)"
+                explainLabel.isHidden = true
                 runButtonBackgroundView.isHidden = true
+                resultBackgroundView.isHidden = false
+                SystemSoundID.playFileNamed(fileName: "correct", withExtenstion: "wav")
             case .failedPredict:
-                break
+                resultLabel.text = "?"
+                explainLabel.isHidden = true
+                runButtonBackgroundView.isHidden = true
+                resultBackgroundView.isHidden = false
+                SystemSoundID.playFileNamed(fileName: "wrong", withExtenstion: "wav")
             }
         }
     }
@@ -117,24 +123,13 @@ extension PredictingViewController {
                 self.showNotReady()
                 self.stateView = .prepareToDraw
             case .wrong:
-                self.showWrong()
+                stateView = .failedPredict
             case .success(let index):
-                self.showSuccess(index)
-                self.stateView = .showResult
+                self.stateView = .showResult(index)
             }
         }
     }
     
-    private func showWrong() {
-        self.resultLabel.text = "?"
-        SystemSoundID.playFileNamed(fileName: "wrong", withExtenstion: "wav")
-    }
-    
-    private func showSuccess(_ index: Int) {
-        self.stateView = .showResult
-        self.resultLabel.text = "\(index + 1)"
-        SystemSoundID.playFileNamed(fileName: "correct", withExtenstion: "wav")
-    }
     
     private func showNotReady() {
         let alertController = UIAlertController(title: "Too hurry!", message: "You should train the network before. shapes", preferredStyle: .alert)
@@ -145,18 +140,15 @@ extension PredictingViewController {
     }
 }
 
-
 // MARK: - DrawViewDelegate
 
 extension PredictingViewController: DrawViewDelegate {
     
     public func drawViewWillStart() {
-        drawView.clear()
-        explainLabel.isHidden = true
+        stateView = .prepareToDraw
     }
     
     public func drawViewMoved(view: DrawView) {
-
     }
     
     public func drawViewDidFinishDrawing(view: DrawView) {
