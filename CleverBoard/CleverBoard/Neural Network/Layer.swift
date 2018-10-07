@@ -3,8 +3,9 @@ import Foundation
 class Layer {
     
     private var output: [Float]
-    private var input: [Float]
     private var weights: [Float]
+
+    private var input: [Float]
     private var previousWeights: [Float]
     
     init(inputSize: Int, outputSize: Int) {
@@ -13,6 +14,13 @@ class Layer {
         self.weights = (0..<(1 + inputSize) * outputSize).map { _ in
             return (Settings.minWeight...Settings.maxWeight).random()
         }
+        previousWeights = [Float](repeating: 0, count: weights.count)
+    }
+
+    init(inputSize: Int, output: [Float], weights: [Float]) {
+        self.output = output
+        self.weights = weights
+        self.input = [Float](repeating: 0, count: inputSize + 1)
         previousWeights = [Float](repeating: 0, count: weights.count)
     }
     
@@ -45,5 +53,21 @@ class Layer {
             offset += input.count
         }
         return nextError
+    }
+}
+
+// Storage methods
+
+extension Layer {
+    func pack() -> [String: String] {
+        let out = output.map { item in
+            return "\(item)"
+        }.joined(separator: ",")
+        print(out)
+        let wei = weights.map { item in
+            return "\(item)"
+            }.joined(separator: ",")
+        print(wei)
+        return ["output": out, "weight": wei]
     }
 }

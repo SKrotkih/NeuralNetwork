@@ -13,7 +13,7 @@ struct Settings {
     static let momentum: Float = 0.6
     static let iterations: Int = 1000 // 70000
     
-    static let maxTrainingImages = Settings.outputSize * 3
+    static let maxTrainingImages = Settings.outputSize * 1 // 3
     static let middleTrainingImages = Settings.outputSize * 2
     
     static let traningResults: [[Float]] = [

@@ -7,11 +7,11 @@ import Foundation
 
 public class NeuralNetwork {
     
-    private var layers: [Layer] = []
+    private var storage = Storage()
     
-    public init() {
-        configureLayers()
-    }
+    private lazy var layers: [Layer] = {
+        return storage.layers
+    }()
     
     /// Learn Neural Network
     func learn(input: [[Float]], target: [[Float]], completed: @escaping () -> Void) {
@@ -28,6 +28,7 @@ public class NeuralNetwork {
                 })
                 print("Iterations: \(iterations)")
             }
+            self.storage.save(self.layers)
             completed()
         }
     }
@@ -52,15 +53,6 @@ public class NeuralNetwork {
 // MARK: - Calculate Network. Private methods
 
 extension NeuralNetwork {
-    
-    private func configureLayers() {
-        // Input -> Hidden layer
-        let ihLayer = Layer(inputSize: Settings.inputSize, outputSize: Settings.hiddenSize)
-        // Hidden -> Output layer
-        let hoLayer = Layer(inputSize: Settings.hiddenSize, outputSize: Settings.outputSize)
-        layers.append(ihLayer)
-        layers.append(hoLayer)
-    }
     
     private func train(input: [Float], target: [Float]) {
         let calculatedOutput = run(input: input)

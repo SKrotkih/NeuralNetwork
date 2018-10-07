@@ -13,6 +13,7 @@
 		7F3C8E3221684E84001BE061 /* PredictingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E3121684E84001BE061 /* PredictingViewController.swift */; };
 		7F3C8E3421687533001BE061 /* LearningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E3321687533001BE061 /* LearningViewModel.swift */; };
 		7F3C8E3621687545001BE061 /* PredictingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E3521687545001BE061 /* PredictingViewModel.swift */; };
+		7F3F32AF216A323B00983B59 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F32AE216A323B00983B59 /* Storage.swift */; };
 		7F4CEEF02166633800A3DDD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CEEEF2166633800A3DDD8 /* Constants.swift */; };
 		7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC121658F2A00F509DE /* AppDelegate.swift */; };
 		7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC521658F2A00F509DE /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		7F3C8E3121684E84001BE061 /* PredictingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictingViewController.swift; sourceTree = "<group>"; };
 		7F3C8E3321687533001BE061 /* LearningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningViewModel.swift; sourceTree = "<group>"; };
 		7F3C8E3521687545001BE061 /* PredictingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictingViewModel.swift; sourceTree = "<group>"; };
+		7F3F32AE216A323B00983B59 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		7F4CEEEF2166633800A3DDD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F4FBABE21658F2900F509DE /* CleverBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4FBAC121658F2A00F509DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			children = (
 				7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */,
 				7F4FBAE621658FEB00F509DE /* Layer.swift */,
+				7F3F32AE216A323B00983B59 /* Storage.swift */,
 				7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */,
 			);
 			path = "Neural Network";
@@ -348,6 +351,7 @@
 				7F3C8E3621687545001BE061 /* PredictingViewModel.swift in Sources */,
 				7F3C8E3421687533001BE061 /* LearningViewModel.swift in Sources */,
 				7F4CEEF02166633800A3DDD8 /* Constants.swift in Sources */,
+				7F3F32AF216A323B00983B59 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

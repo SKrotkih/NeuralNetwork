@@ -116,13 +116,6 @@ class LearningViewController: UIViewController {
             self.viewModel.addTraningImage(image)
         }).disposed(by: disposeBag)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let predictVC = segue.destination as? PredictingViewController {
-            predictVC.viewModel.neuralNetwork = viewModel.neuralNetwork
-        }
-    }
-    
 }
 
 // MARK: - ViewModeOutput

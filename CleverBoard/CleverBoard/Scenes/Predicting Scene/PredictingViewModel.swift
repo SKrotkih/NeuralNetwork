@@ -14,10 +14,8 @@ enum PredictionResult {
 
 class PredictingViewModel {
     
-    var neuralNetwork: NeuralNetwork!
-    
     /// The Neural Network 🚀
-    fileprivate lazy var neuralNetwork2: NeuralNetwork = {
+    fileprivate lazy var neuralNetwork: NeuralNetwork = {
         return NeuralNetwork()
     }()
 
@@ -30,12 +28,6 @@ class PredictingViewModel {
             completion(.noimage)
             return
         }
-        // TODO: Need to load neural network
-        
-//        guard self.isReady else {
-//            completion(.isnottrained)
-//            return
-//        }
         let input = modelWorker.returnImageBlock(image)
         self.neuralNetwork.predict(input: input, completion: completion)
     }

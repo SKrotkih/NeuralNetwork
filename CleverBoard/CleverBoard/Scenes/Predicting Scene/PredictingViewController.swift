@@ -20,7 +20,7 @@ class PredictingViewController: UIViewController {
         case failedPredict
     }
     
-    let viewModel = PredictingViewModel()
+    private let viewModel = PredictingViewModel()
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var drawView: DrawView!
