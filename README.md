@@ -1,5 +1,7 @@
 # CleverBoard
 
+![cleverboard](https://user-images.githubusercontent.com/2775621/46585107-178e8280-ca75-11e8-850a-fa442ad8af21.gif)
+
 CleverBoard is an iOS App developed with Neural Network algorithm for recognizing images. You can teach to recognize 6 symbols. Draw three times every symbol. Then
 the app will be learning some time. After that you can draw symbol which will be rcognized. It is very easy.
 The app consists learned model which can recognize decimal number from 1 to 6.

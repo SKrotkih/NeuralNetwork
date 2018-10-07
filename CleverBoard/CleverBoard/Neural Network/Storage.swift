@@ -41,7 +41,6 @@ struct Storage {
 
     private var xmlURL: URL {
         let documentDirectoryURL =  try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        print(documentDirectoryURL)
         return documentDirectoryURL.appendingPathComponent("layers.xml")
     }
 

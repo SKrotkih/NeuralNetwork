@@ -53,7 +53,7 @@ class PredictingViewController: UIViewController {
     private func configure(view: UIView) {
         switch view {
         case self.view:
-            title = "PREDICTION"
+            title = "RECOGNITION"
         case resultBackgroundView:
             resultBackgroundView.layer.borderColor = UIColor.red.cgColor
             resultBackgroundView.layer.borderWidth = 1.0
