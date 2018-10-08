@@ -2,9 +2,6 @@
 //  PredictingViewController.swift
 //  CleverBoard
 //
-//  Created by Сергей Кротких on 06/10/2018.
-//  Copyright © 2018 Сергей Кротких. All rights reserved.
-//
 
 import UIKit
 import RxSwift

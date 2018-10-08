@@ -20,12 +20,6 @@ class LearningViewController: UIViewController {
     
     private var learningToolBar: LearningToolBar!
     
-    /// The index to update the UI
-    private var index: Int = 0  {
-        didSet {
-        }
-    }
-
     private lazy var viewModel = {
         return LearningViewModel(self)
     }()
@@ -140,6 +134,5 @@ extension LearningViewController: DrawViewDelegate {
     }
     
     public func drawViewDidFinishDrawing(view: DrawView) {
-        configure(view: teachButton)
     }
 }

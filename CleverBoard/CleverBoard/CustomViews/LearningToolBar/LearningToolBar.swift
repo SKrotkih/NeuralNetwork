@@ -68,7 +68,7 @@ class LearningToolBar: UIView {
         [nil, nil, nil, nil, nil]]
         
         bindButtons()
-        bindImgs()
+        bindImages()
     }
     
     private var index: Int = -1 {
@@ -111,6 +111,7 @@ class LearningToolBar: UIView {
     
     private func bindButtons() {
         bgs.forEach { (view) in
+            /// Select button with a number for starting to paint next training image
             let tapGesture = UITapGestureRecognizer()
             tapGesture.rx.event.bind(onNext: { [weak self] recognizer in
                 self?.index = view.tag
@@ -120,14 +121,16 @@ class LearningToolBar: UIView {
         }
     }
     
-    private func bindImgs() {
+    private func bindImages() {
         imgs.forEach { (imageView) in
+            /// Add image to the current number pane
             let tapGesture = UITapGestureRecognizer()
             tapGesture.rx.event.bind(onNext: { [weak self] recognizer in
                 self?.selectImg(imageView.tag)
             }).disposed(by: disposeBag)
             imageView.addGestureRecognizer(tapGesture)
             
+            /// Swipe down gesture for cleaning current image view
             let swipeGesture = UISwipeGestureRecognizer()
             swipeGesture.direction = .down
             swipeGesture.rx.event.bind(onNext: { [weak self] recognizer in
@@ -136,6 +139,4 @@ class LearningToolBar: UIView {
             imageView.addGestureRecognizer(swipeGesture)
         }
     }
-    
-    
 }

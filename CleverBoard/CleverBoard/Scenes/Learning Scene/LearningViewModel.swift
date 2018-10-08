@@ -13,17 +13,10 @@ protocol ViewModeOutput: class {
 class LearningViewModel {
   
     weak var output: ViewModeOutput!
-    weak var learningToolBar: LearningToolBar!
     
     required init(_ output: ViewModeOutput) {
         self.output = output
     }
-    
-    /// The Result Data labels for the output
-    fileprivate var traningResults: [[Float]] = []
-    fileprivate var traningData: [[Float]] = []
-
-    private var index: Int = 0
     
     /// The Neural Network 🚀
     fileprivate lazy var neuralNetwork: NeuralNetwork = {
@@ -34,13 +27,9 @@ class LearningViewModel {
         return ModelWorker()
     }()
     
-    func addTraningImage(_ image: UIImage) {
-        traningResults.append(Settings.traningResults[index])
-        let input: [Float] = modelWorker.returnImageBlock(image)
-        traningData = traningData + [input]
-    }
-    
     func learnNetwork(trainingImages: [[UIImage?]]) {
+        var traningResults: [[Float]] = []
+        var traningData: [[Float]] = []
         for index in 0..<Settings.outputSize {
             for dataIndex in 0..<trainingImages[index].count {
                 if let image = trainingImages[index][dataIndex] {
