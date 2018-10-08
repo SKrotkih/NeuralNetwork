@@ -63,11 +63,9 @@ extension Layer {
         let out = output.map { item in
             return "\(item)"
         }.joined(separator: ",")
-        print(out)
         let wei = weights.map { item in
             return "\(item)"
             }.joined(separator: ",")
-        print(wei)
         return ["output": out, "weight": wei]
     }
 }

@@ -15,6 +15,7 @@ public extension UIView {
             self.alpha = 0.0
         })
     }
+
     func transformAnimation() {
         UIView.animate(withDuration: 0.6, animations: {
             self.transform = CGAffineTransform.identity.scaledBy(x: 0.6, y: 0.6)
@@ -26,6 +27,9 @@ public extension UIView {
         })
     }
 
+    class func loadFrom(nibNamed: String, bundle: Bundle? = nil) -> UIView? {
+        return UINib(nibName: nibNamed, bundle: bundle).instantiate(withOwner: nil, options: nil)[0] as? UIView
+    }
 }
 
 public extension SystemSoundID {

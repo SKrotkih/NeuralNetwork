@@ -47,6 +47,7 @@ public class DrawView: UIView {
         super.touchesEnded(touches, with: event)
         
         paint(touches: touches)
+        
         lastPoint = nil
         
         delegate?.drawViewDidFinishDrawing(view: self)

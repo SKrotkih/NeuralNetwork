@@ -11,19 +11,18 @@ class LearningViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     
+    @IBOutlet weak var toolBar: UIView!
     @IBOutlet weak var drawView: DrawView!
-    @IBOutlet weak var targetBackgroundView: UIView!
-    @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var explainLabel: UILabel!
     @IBOutlet weak var teachButtonBackgroundView: UIView!
     @IBOutlet weak var teachButton: UIButton!
-    @IBOutlet weak var leftItemsLabel: UILabel!
     @IBOutlet weak var backButton: UIBarButtonItem!
+    
+    private var learningToolBar: LearningToolBar!
     
     /// The index to update the UI
     private var index: Int = 0  {
         didSet {
-            configure(view: self.targetLabel)
         }
     }
 
@@ -40,15 +39,12 @@ class LearningViewController: UIViewController {
             if isLearningInProcess {
                 drawView.clear()
                 drawView.isUserInteractionEnabled = false
-                leftItemsLabel.isHidden = true
-                targetBackgroundView.isHidden = true
                 teachButtonBackgroundView.isHidden = true
+                learningToolBar.isHidden = true
                 explainLabel.isHidden = false
                 explainLabel.text = "LEARNING..."
                 explainLabel.startBlink()
             } else {
-                leftItemsLabel.isHidden = false
-                targetBackgroundView.isHidden = false
                 teachButtonBackgroundView.isHidden = false
                 explainLabel.stopBlink()
             }
@@ -64,9 +60,8 @@ class LearningViewController: UIViewController {
     private func configureViews() {
         configure(view: self.view)
         configure(view: drawView)
-        configure(view: targetBackgroundView)
-        configure(view: targetLabel)
         configure(view: explainLabel)
+        configure(view: toolBar)
         bindTeachButton()
         bindBackButton()
     }
@@ -75,15 +70,6 @@ class LearningViewController: UIViewController {
         switch view {
         case self.view:
             title = "LEARNING"
-        case targetBackgroundView:
-            targetBackgroundView.layer.borderColor = UIColor.red.cgColor
-            targetBackgroundView.layer.borderWidth = 1.0
-            targetBackgroundView.layer.cornerRadius = targetBackgroundView.bounds.height / 2.0
-        case targetLabel:
-            if isLearningInProcess == false {
-                targetLabel.text = "\(index + 1)"
-                explainLabel.text = "DRAW NUMBER \(index + 1)"
-            }
         case explainLabel:
             explainLabel.font = UIFont(name: "AvenirNext-Medium", size: 17.0)
             explainLabel.textColor = UIColor.lightGray
@@ -91,6 +77,12 @@ class LearningViewController: UIViewController {
         case drawView:
             drawView.delegate = self
             drawView.isUserInteractionEnabled = true
+        case toolBar:
+            learningToolBar = LearningToolBar.getInstance(for: toolBar)
+            DispatchQueue.main.async {
+                self.learningToolBar.drawView = self.drawView
+                self.learningToolBar.explainLabel = self.explainLabel
+            }
         default:
             break
         }
@@ -110,10 +102,7 @@ class LearningViewController: UIViewController {
             guard let `self` = self else {
                 return
             }
-            guard let image = self.drawedImage else {
-                return
-            }
-            self.viewModel.addTraningImage(image)
+            self.viewModel.learnNetwork(trainingImages: self.learningToolBar.paints)
         }).disposed(by: disposeBag)
     }
 }
@@ -121,16 +110,6 @@ class LearningViewController: UIViewController {
 // MARK: - ViewModeOutput
 
 extension LearningViewController: ViewModeOutput {
-    
-    func setupNextNumber(_ nextItemNumber: Int) {
-        self.drawView.clear()
-        self.explainLabel.isHidden = false
-        self.index = nextItemNumber
-    }
-    
-    func setupLeftNumbers(_ leftItemsCount: Int) {
-        self.leftItemsLabel.text = "You have been left just \(leftItemsCount) items"
-    }
     
     func willStartLearning() {
         isLearningInProcess = true

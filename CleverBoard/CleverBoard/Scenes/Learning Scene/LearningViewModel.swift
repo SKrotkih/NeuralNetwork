@@ -6,8 +6,6 @@
 import UIKit
 
 protocol ViewModeOutput: class {
-    func setupNextNumber(_ nextItemNumber: Int)
-    func setupLeftNumbers(_ leftItemsCount: Int)
     func willStartLearning()
     func didFinishLearning()
 }
@@ -15,6 +13,7 @@ protocol ViewModeOutput: class {
 class LearningViewModel {
   
     weak var output: ViewModeOutput!
+    weak var learningToolBar: LearningToolBar!
     
     required init(_ output: ViewModeOutput) {
         self.output = output
@@ -39,17 +38,18 @@ class LearningViewModel {
         traningResults.append(Settings.traningResults[index])
         let input: [Float] = modelWorker.returnImageBlock(image)
         traningData = traningData + [input]
-        let leftItems = Settings.maxTrainingImages - traningData.count
-        if leftItems == 0 {
-            learnNetwork()
-        } else {
-            index = index == Settings.outputSize - 1 ? 0 : index + 1
-            output.setupNextNumber(index)
-            output.setupLeftNumbers(leftItems)
-        }
     }
     
-    private func learnNetwork() {
+    func learnNetwork(trainingImages: [[UIImage?]]) {
+        for index in 0..<Settings.outputSize {
+            for dataIndex in 0..<trainingImages[index].count {
+                if let image = trainingImages[index][dataIndex] {
+                    let input: [Float] = modelWorker.returnImageBlock(image)
+                    traningResults.append(Settings.traningResults[index])
+                    traningData = traningData + [input]
+                }
+            }
+        }
         output.willStartLearning()
         neuralNetwork.learn(input: traningData, target: traningResults) { [weak self] in
             self?.output.didFinishLearning()

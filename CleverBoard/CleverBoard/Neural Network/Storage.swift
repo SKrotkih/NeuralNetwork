@@ -26,6 +26,18 @@ struct Storage {
         return fileManager.fileExists(atPath: fullPath)
     }
     
+    func clean() {
+        let fullPath = xmlURL.path
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: fullPath) {
+            do {
+                try fileManager.removeItem(atPath: fullPath)
+            } catch(let error) {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     lazy var layers: [Layer] = {
         var _layers = restore()
         if _layers.count == 0 {

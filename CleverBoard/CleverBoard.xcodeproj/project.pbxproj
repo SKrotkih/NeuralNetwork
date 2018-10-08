@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F361B19216B20F80052186F /* LearningToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F361B18216B20F80052186F /* LearningToolBar.swift */; };
+		7F361B1B216B21620052186F /* LearningToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F361B1A216B21620052186F /* LearningToolBar.xib */; };
 		7F3C8E2721684A0C001BE061 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7F3C8E2621684A0C001BE061 /* README.md */; };
 		7F3C8E2E21684E4C001BE061 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E2D21684E4C001BE061 /* RootViewController.swift */; };
 		7F3C8E3021684E71001BE061 /* LearningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3C8E2F21684E71001BE061 /* LearningViewController.swift */; };
@@ -40,6 +42,8 @@
 		3C8875E631475D83D5D20EC1 /* Pods-EmojiRecognizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojiRecognizer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EmojiRecognizer/Pods-EmojiRecognizer.debug.xcconfig"; sourceTree = "<group>"; };
 		65D96D506FA0A029733679C3 /* Pods_EmojiIntelligence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmojiIntelligence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7968945BF3D28D0FC02653E8 /* Pods-EmojiRecognizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmojiRecognizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmojiRecognizer/Pods-EmojiRecognizer.release.xcconfig"; sourceTree = "<group>"; };
+		7F361B18216B20F80052186F /* LearningToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningToolBar.swift; sourceTree = "<group>"; };
+		7F361B1A216B21620052186F /* LearningToolBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LearningToolBar.xib; sourceTree = "<group>"; };
 		7F3C8E2621684A0C001BE061 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		7F3C8E2D21684E4C001BE061 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		7F3C8E2F21684E71001BE061 /* LearningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningViewController.swift; sourceTree = "<group>"; };
@@ -152,7 +156,7 @@
 			children = (
 				7F4FBAD521658FEB00F509DE /* Helper */,
 				7F4FBAE521658FEB00F509DE /* Neural Network */,
-				7F4FBAD321658FEB00F509DE /* DrawView */,
+				7F4FBAD321658FEB00F509DE /* CustomViews */,
 				7F83F00D2169C07300C03329 /* Model */,
 				7F4FBAE321658FEB00F509DE /* Scenes */,
 				7F4FBAD921658FEB00F509DE /* Resources */,
@@ -164,12 +168,14 @@
 			path = CleverBoard;
 			sourceTree = "<group>";
 		};
-		7F4FBAD321658FEB00F509DE /* DrawView */ = {
+		7F4FBAD321658FEB00F509DE /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				7F4FBAD421658FEB00F509DE /* DrawView.swift */,
+				7F361B18216B20F80052186F /* LearningToolBar.swift */,
+				7F361B1A216B21620052186F /* LearningToolBar.xib */,
 			);
-			path = DrawView;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		7F4FBAD521658FEB00F509DE /* Helper */ = {
@@ -290,6 +296,7 @@
 				7F4FBAEC21658FEB00F509DE /* correct.wav in Resources */,
 				7F4FBAC921658F2C00F509DE /* Assets.xcassets in Resources */,
 				7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */,
+				7F361B1B216B21620052186F /* LearningToolBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +351,7 @@
 				7F4FBAEA21658FEB00F509DE /* Extension.swift in Sources */,
 				7F3C8E3021684E71001BE061 /* LearningViewController.swift in Sources */,
 				7F3C8E3221684E84001BE061 /* PredictingViewController.swift in Sources */,
+				7F361B19216B20F80052186F /* LearningToolBar.swift in Sources */,
 				7F3C8E2E21684E4C001BE061 /* RootViewController.swift in Sources */,
 				7F4FBAF221658FEB00F509DE /* ActivationFunction.swift in Sources */,
 				7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */,

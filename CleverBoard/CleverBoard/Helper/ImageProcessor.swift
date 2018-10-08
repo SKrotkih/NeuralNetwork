@@ -17,9 +17,9 @@ public class ImageProcessor {
             for x in 0..<cgImage.width {
                 let pixelIndex = ((width * y) + x) * bytesPerPixel
                 let r = CGFloat(data[pixelIndex]) / CGFloat(255.0)
-                _ = CGFloat(data[pixelIndex+1]) / CGFloat(255.0)
-                _ = CGFloat(data[pixelIndex+2]) / CGFloat(255.0)
-                _ = CGFloat(data[pixelIndex+3]) / CGFloat(255.0)
+                _ = CGFloat(data[pixelIndex + 1]) / CGFloat(255.0)
+                _ = CGFloat(data[pixelIndex + 2]) / CGFloat(255.0)
+                _ = CGFloat(data[pixelIndex + 3]) / CGFloat(255.0)
                 if r == 1 {
                     inputData.append(1)
                 } else {
@@ -35,7 +35,7 @@ public class ImageProcessor {
         
         let mass = centerOf(image: image)
         
-        let target = CGSize(width: 8, height: 8)
+        let target = CGSize(width: Settings.imageResolution, height: Settings.imageResolution)
         
         let scale = max(target.width / mass.width, target.height / mass.height)
         let scaledSize = CGSize(width: image.size.width * scale, height: image.size.height * scale)

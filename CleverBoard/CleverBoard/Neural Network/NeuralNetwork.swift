@@ -13,11 +13,17 @@ public class NeuralNetwork {
         return storage.layers
     }()
     
+    func clean() {
+        storage.clean()
+    }
+    
     /// Learn Neural Network
     func learn(input: [[Float]], target: [[Float]], completed: @escaping () -> Void) {
         guard input.count == target.count else {
             fatal()
         }
+        // TODO: Need to continue learning
+        clean()
         DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass).async {
             for iterations in 0..<Settings.iterations {
                 for i in 0..<input.count {

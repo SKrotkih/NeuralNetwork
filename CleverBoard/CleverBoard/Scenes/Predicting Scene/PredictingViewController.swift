@@ -78,7 +78,7 @@ class PredictingViewController: UIViewController {
             case .readyToRun:
                 runButtonBackgroundView.isHidden = false
             case .showResult(let number):
-                resultLabel.text = "\(number + 1)"
+                resultLabel.text = "\(number)"
                 explainLabel.isHidden = true
                 runButtonBackgroundView.isHidden = true
                 resultBackgroundView.isHidden = false
