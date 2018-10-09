@@ -77,6 +77,34 @@
                                             <constraint firstAttribute="trailing" secondItem="JIz-bR-Ocr" secondAttribute="trailing" constant="15" id="uX2-yM-jnr"/>
                                         </constraints>
                                     </view>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xnw-2U-g36">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ypR-0A-E5H">
+                                                <rect key="frame" x="37.5" y="261.5" width="300" height="80"/>
+                                                <subviews>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FPh-Wp-liE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="2"/>
+                                                    </progressView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEARNING..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ZE-Cr-5R7">
+                                                        <rect key="frame" x="0.0" y="2" width="300" height="78"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                        <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="300" id="BCz-5E-Fep"/>
+                                                    <constraint firstAttribute="height" constant="80" id="c3q-sO-CGG"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="ypR-0A-E5H" firstAttribute="centerX" secondItem="Xnw-2U-g36" secondAttribute="centerX" id="QYs-in-5i2"/>
+                                            <constraint firstItem="ypR-0A-E5H" firstAttribute="centerY" secondItem="Xnw-2U-g36" secondAttribute="centerY" id="WYm-G3-LYn"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -86,12 +114,16 @@
                                     <constraint firstItem="yqL-Qd-G6V" firstAttribute="leading" secondItem="07S-gs-1Bz" secondAttribute="leading" id="NWo-gm-1M3"/>
                                     <constraint firstAttribute="trailing" secondItem="Zvy-zK-7Ox" secondAttribute="trailing" constant="5" id="QDa-4t-FaS"/>
                                     <constraint firstItem="Zvy-zK-7Ox" firstAttribute="leading" secondItem="07S-gs-1Bz" secondAttribute="leading" constant="5" id="QUS-KM-N3M"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xnw-2U-g36" secondAttribute="trailing" id="Qqo-FO-UMb"/>
                                     <constraint firstAttribute="trailing" secondItem="CXf-fx-4gy" secondAttribute="trailing" constant="8" id="RBO-7i-nEU"/>
                                     <constraint firstAttribute="bottom" secondItem="q7p-CG-VBJ" secondAttribute="bottom" id="V9V-Dq-62m"/>
                                     <constraint firstItem="Zvy-zK-7Ox" firstAttribute="top" secondItem="07S-gs-1Bz" secondAttribute="top" id="WWv-3l-iWq"/>
                                     <constraint firstItem="CXf-fx-4gy" firstAttribute="centerY" secondItem="07S-gs-1Bz" secondAttribute="centerY" id="bye-tY-Irx"/>
                                     <constraint firstAttribute="trailing" secondItem="yqL-Qd-G6V" secondAttribute="trailing" id="i3M-VR-hQd"/>
                                     <constraint firstAttribute="trailing" secondItem="q7p-CG-VBJ" secondAttribute="trailing" id="iWV-kz-SEG"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xnw-2U-g36" secondAttribute="bottom" id="krw-ce-cq6"/>
+                                    <constraint firstItem="Xnw-2U-g36" firstAttribute="top" secondItem="07S-gs-1Bz" secondAttribute="top" id="sEZ-AY-KBC"/>
+                                    <constraint firstItem="Xnw-2U-g36" firstAttribute="leading" secondItem="07S-gs-1Bz" secondAttribute="leading" id="str-Vc-P4p"/>
                                     <constraint firstAttribute="bottom" secondItem="yqL-Qd-G6V" secondAttribute="bottom" constant="50" id="z8z-qv-r2j"/>
                                 </constraints>
                             </view>
@@ -116,6 +148,9 @@
                         <outlet property="backButton" destination="vrj-AA-exc" id="NW9-sh-AO8"/>
                         <outlet property="drawView" destination="yqL-Qd-G6V" id="cc4-zY-YWr"/>
                         <outlet property="explainLabel" destination="CXf-fx-4gy" id="XkX-R6-36g"/>
+                        <outlet property="learningInProgressView" destination="Xnw-2U-g36" id="Qqd-dH-VCU"/>
+                        <outlet property="learningLabel" destination="8ZE-Cr-5R7" id="7nt-Xv-o2d"/>
+                        <outlet property="progressView" destination="FPh-Wp-liE" id="Bb9-Ou-8HT"/>
                         <outlet property="teachButton" destination="JIz-bR-Ocr" id="Wb8-gh-u6D"/>
                         <outlet property="teachButtonBackgroundView" destination="q7p-CG-VBJ" id="GVn-qT-jub"/>
                         <outlet property="toolBar" destination="Zvy-zK-7Ox" id="KkX-ef-lpQ"/>

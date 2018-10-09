@@ -32,7 +32,9 @@ public class NeuralNetwork {
                 input.forEach({ inputItem in
                     let _ = self.run(input: inputItem)
                 })
-                print("Iterations: \(iterations)")
+                let progress: Float = Float(iterations) / Float(Settings.iterations)
+                // TODO: Bind progress to the View
+                print("Iterations: \(iterations)[\(progress)]")
             }
             self.storage.save(self.layers)
             completed()

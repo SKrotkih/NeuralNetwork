@@ -10,12 +10,9 @@ struct Settings {
     static let minWeight: Float = -2.0
     static let maxWeight: Float = 2.0
     
-    static let learningRate: Float = 0.3
+    static let learningRate: Float = 0.6
     static let momentum: Float = 0.6
     static let iterations: Int = 10000 // 70000
-    
-    static let maxTrainingImages = Settings.outputSize * 1 // 3
-    static let middleTrainingImages = Settings.outputSize * 2
     
     static let traningResults: [[Float]] = [
         [1,0,0,0,0,0,0,0,0,0], // 0

@@ -18,6 +18,10 @@ class LearningViewController: UIViewController {
     @IBOutlet weak var teachButton: UIButton!
     @IBOutlet weak var backButton: UIBarButtonItem!
     
+    @IBOutlet weak var learningInProgressView: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var learningLabel: UILabel!
+
     private var learningToolBar: LearningToolBar!
     
     private lazy var viewModel = {
@@ -31,16 +35,12 @@ class LearningViewController: UIViewController {
     private var isLearningInProcess = false {
         didSet {
             if isLearningInProcess {
-                drawView.clear()
-                drawView.isUserInteractionEnabled = false
-                teachButtonBackgroundView.isHidden = true
-                learningToolBar.isHidden = true
-                explainLabel.isHidden = false
-                explainLabel.text = "LEARNING..."
-                explainLabel.startBlink()
+                learningInProgressView.isHidden = false
+                learningLabel.text = "LEARNING..."
+                learningLabel.startBlink()
             } else {
-                teachButtonBackgroundView.isHidden = false
-                explainLabel.stopBlink()
+                learningInProgressView.isHidden = true
+                learningLabel.stopBlink()
             }
         }
     }
@@ -56,6 +56,7 @@ class LearningViewController: UIViewController {
         configure(view: drawView)
         configure(view: explainLabel)
         configure(view: toolBar)
+        configure(view: learningInProgressView)
         bindTeachButton()
         bindBackButton()
         subscribeOnDrawingProcessState()
@@ -73,6 +74,8 @@ class LearningViewController: UIViewController {
             drawView.isUserInteractionEnabled = true
         case toolBar:
             createToolBar()
+        case learningInProgressView:
+            learningInProgressView.isHidden = true
         default:
             break
         }
@@ -153,5 +156,9 @@ extension LearningViewController {
                 }
             }
         }).disposed(by: disposeBag)
+    }
+    
+    private func incrementProgress(_ percent: Float) {
+        progressView.progress = percent
     }
 }
