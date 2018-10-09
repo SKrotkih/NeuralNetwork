@@ -11,10 +11,14 @@ enum LearningState {
     case finish
 }
 
+protocol TrainingImagesProviding: class {
+    var trainingImages: [[UIImage]] {get}
+}
+
 class LearningViewModel {
   
     var processState = PublishSubject<LearningState>()
-    weak var learningToolBar: LearningToolBar!
+    weak var trainingImagesProvider: TrainingImagesProviding!
     
     /// The Neural Network 🚀
     fileprivate lazy var neuralNetwork: NeuralNetwork = {
@@ -26,7 +30,7 @@ class LearningViewModel {
     }()
     
     func learnNetwork() {
-        let trainingImages = self.learningToolBar.images
+        let trainingImages = self.trainingImagesProvider.trainingImages
         guard trainingImages.count == Settings.outputSize else {
             return
         }

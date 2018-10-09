@@ -7,7 +7,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LearningToolBar: UIView {
+class LearningToolBar: UIView, TrainingImagesProviding {
 
     weak var drawView: DrawView!
     weak var explainLabel: UILabel! {
@@ -40,7 +40,7 @@ class LearningToolBar: UIView {
     private var paints: [[UIImage?]]!
     private let disposeBag = DisposeBag()
     
-    var images: [[UIImage]] {
+    var trainingImages: [[UIImage]] {
         var _images: [[UIImage]] = [[]]
         for trainingImages in paints {
             let images = trainingImages.filter { (image) -> Bool in

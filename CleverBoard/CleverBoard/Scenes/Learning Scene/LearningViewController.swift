@@ -84,7 +84,7 @@ class LearningViewController: UIViewController {
         DispatchQueue.main.async {
             self.learningToolBar.drawView = self.drawView
             self.learningToolBar.explainLabel = self.explainLabel
-            self.viewModel.learningToolBar = self.learningToolBar
+            self.viewModel.trainingImagesProvider = self.learningToolBar
         }
     }
     
