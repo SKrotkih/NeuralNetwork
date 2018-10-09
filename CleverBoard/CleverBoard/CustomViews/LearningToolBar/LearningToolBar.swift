@@ -37,8 +37,21 @@ class LearningToolBar: UIView {
     
     private var bgs: [UIView] = []
     private var imgs: [UIImageView] = []
-    var paints: [[UIImage?]]!
+    private var paints: [[UIImage?]]!
     private let disposeBag = DisposeBag()
+    
+    var images: [[UIImage]] {
+        var _images: [[UIImage]] = [[]]
+        for trainingImages in paints {
+            let images = trainingImages.filter { (image) -> Bool in
+                return image != nil
+                } as! [UIImage]
+            if images.count > 0 {
+                _images.append(images)
+            }
+        }
+        return _images
+    }
     
     static func getInstance(for superView: UIView) -> LearningToolBar {
         if let view = UIView.loadFrom(nibNamed: "LearningToolBar") as? LearningToolBar {

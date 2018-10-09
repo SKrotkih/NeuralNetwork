@@ -4,19 +4,17 @@
 //
 
 import UIKit
+import RxSwift
 
-protocol ViewModeOutput: class {
-    func willStartLearning()
-    func didFinishLearning()
+enum LearningState {
+    case start
+    case finish
 }
 
 class LearningViewModel {
   
-    weak var output: ViewModeOutput!
-    
-    required init(_ output: ViewModeOutput) {
-        self.output = output
-    }
+    var processState = PublishSubject<LearningState>()
+    weak var learningToolBar: LearningToolBar!
     
     /// The Neural Network 🚀
     fileprivate lazy var neuralNetwork: NeuralNetwork = {
@@ -27,21 +25,24 @@ class LearningViewModel {
         return ModelWorker()
     }()
     
-    func learnNetwork(trainingImages: [[UIImage?]]) {
+    func learnNetwork() {
+        let trainingImages = self.learningToolBar.images
+        guard trainingImages.count == Settings.outputSize else {
+            return
+        }
         var traningResults: [[Float]] = []
         var traningData: [[Float]] = []
         for index in 0..<Settings.outputSize {
             for dataIndex in 0..<trainingImages[index].count {
-                if let image = trainingImages[index][dataIndex] {
-                    let input: [Float] = modelWorker.returnImageBlock(image)
-                    traningResults.append(Settings.traningResults[index])
-                    traningData = traningData + [input]
-                }
+                let image = trainingImages[index][dataIndex]
+                let input: [Float] = modelWorker.returnImageBlock(image)
+                traningResults.append(Settings.traningResults[index])
+                traningData = traningData + [input]
             }
         }
-        output.willStartLearning()
+        processState.onNext(.start)
         neuralNetwork.learn(input: traningData, target: traningResults) { [weak self] in
-            self?.output.didFinishLearning()
+            self?.processState.onNext(.finish)
         }
     }
 }

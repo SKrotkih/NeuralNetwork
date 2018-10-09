@@ -21,7 +21,7 @@ class LearningViewController: UIViewController {
     private var learningToolBar: LearningToolBar!
     
     private lazy var viewModel = {
-        return LearningViewModel(self)
+        return LearningViewModel()
     }()
 
     private var drawedImage: UIImage? {
@@ -58,6 +58,8 @@ class LearningViewController: UIViewController {
         configure(view: toolBar)
         bindTeachButton()
         bindBackButton()
+        subscribeOnLearningStateChanging()
+        subscribeOnDrawingProcessState()
     }
     
     private func configure(view: UIView) {
@@ -69,19 +71,23 @@ class LearningViewController: UIViewController {
             explainLabel.textColor = UIColor.lightGray
             explainLabel.textAlignment = .center
         case drawView:
-            drawView.delegate = self
             drawView.isUserInteractionEnabled = true
         case toolBar:
-            learningToolBar = LearningToolBar.getInstance(for: toolBar)
-            DispatchQueue.main.async {
-                self.learningToolBar.drawView = self.drawView
-                self.learningToolBar.explainLabel = self.explainLabel
-            }
+            createToolBar()
         default:
             break
         }
     }
 
+    private func createToolBar() {
+        learningToolBar = LearningToolBar.getInstance(for: toolBar)
+        DispatchQueue.main.async {
+            self.learningToolBar.drawView = self.drawView
+            self.learningToolBar.explainLabel = self.explainLabel
+            self.viewModel.learningToolBar = self.learningToolBar
+        }
+    }
+    
     private func bindBackButton() {
         backButton.rx.tap.bind(onNext: { [weak self] in
             guard let `self` = self else {
@@ -96,43 +102,39 @@ class LearningViewController: UIViewController {
             guard let `self` = self else {
                 return
             }
-            self.viewModel.learnNetwork(trainingImages: self.learningToolBar.paints)
+            self.viewModel.learnNetwork()
         }).disposed(by: disposeBag)
     }
-}
 
-// MARK: - ViewModeOutput
-
-extension LearningViewController: ViewModeOutput {
-    
-    func willStartLearning() {
-        isLearningInProcess = true
-    }
-    
-    func didFinishLearning() {
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else {
-                return
+    private func subscribeOnLearningStateChanging() {
+        viewModel.processState.subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
+            switch state {
+            case .start:
+                self.isLearningInProcess = true
+            case .finish:
+                DispatchQueue.main.async { [weak self] in
+                    guard let `self` = self else { return }
+                    // Learning is finished
+                    self.isLearningInProcess = false
+                    self.performSegue(withIdentifier: "predict", sender: self)
+                }
             }
-            // Learning is finished
-            self.isLearningInProcess = false
-            self.performSegue(withIdentifier: "predict", sender: self)
-        }
-    }
-}
-
-// MARK: - DrawViewDelegate
-
-extension LearningViewController: DrawViewDelegate {
-    
-    public func drawViewWillStart() {
-        drawView.clear()
-        self.explainLabel.isHidden = true
+        }).disposed(by: disposeBag)
     }
     
-    public func drawViewMoved(view: DrawView) {
-    }
-    
-    public func drawViewDidFinishDrawing(view: DrawView) {
+    private func subscribeOnDrawingProcessState() {
+        drawView.drawingState.subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
+            switch state {
+            case .started:
+                self.drawView.clear()
+                self.explainLabel.isHidden = true
+            case .inProcess:
+                break
+            case .finished:
+                break
+            }
+        }).disposed(by: disposeBag)
     }
 }

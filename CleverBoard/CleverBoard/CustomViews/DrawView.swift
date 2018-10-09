@@ -1,14 +1,16 @@
 import UIKit
+import RxSwift
 
-public protocol DrawViewDelegate: class {
-    func drawViewDidFinishDrawing(view: DrawView)
-    func drawViewMoved(view: DrawView)
-    func drawViewWillStart()
+enum DrawingState {
+    case started
+    case inProcess
+    case finished
 }
 
 public class DrawView: UIView {
     
-    weak var delegate: DrawViewDelegate?
+    var drawingState = PublishSubject<DrawingState>()
+    
     private var bufferImage: UIImage?
     private var strokeImage = UIImage(named: "stroke")
     private var lastPoint: CGPoint?
@@ -32,25 +34,20 @@ public class DrawView: UIView {
     }
 
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        delegate?.drawViewWillStart()
+        drawingState.onNext(.started)
     }
 
     override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
-        
         paint(touches: touches)
-        
-        delegate?.drawViewMoved(view: self)
+        drawingState.onNext(.inProcess)
     }
     
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        
         paint(touches: touches)
-        
         lastPoint = nil
-        
-        delegate?.drawViewDidFinishDrawing(view: self)
+        drawingState.onNext(.finished)
     }
     
     override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

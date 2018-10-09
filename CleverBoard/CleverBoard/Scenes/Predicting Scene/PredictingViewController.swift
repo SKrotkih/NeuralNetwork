@@ -45,6 +45,7 @@ class PredictingViewController: UIViewController {
         configure(view: resultBackgroundView)
         bindRunButton()
         bindBackButton()
+        subscribeOnDrawingProcessState()
     }
     
     private func configure(view: UIView) {
@@ -56,7 +57,6 @@ class PredictingViewController: UIViewController {
             resultBackgroundView.layer.borderWidth = 1.0
             resultBackgroundView.layer.cornerRadius = resultBackgroundView.bounds.height / 2.0
         case drawView:
-            drawView.delegate = self
             drawView.isUserInteractionEnabled = true
         default:
             break
@@ -129,26 +129,24 @@ extension PredictingViewController {
     }
     
     private func showNotReady() {
-        let alertController = UIAlertController(title: "Too hurry!", message: "You should teach to recoognize symbols before. Please go to LEARN screen", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Too hurry!", message: "You should teach to recoognize symbols before. Please go to LEARNING screen", preferredStyle: .alert)
         let action = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
-}
-
-// MARK: - DrawViewDelegate
-
-extension PredictingViewController: DrawViewDelegate {
     
-    public func drawViewWillStart() {
-        stateView = .prepareToDraw
-    }
-    
-    public func drawViewMoved(view: DrawView) {
-    }
-    
-    public func drawViewDidFinishDrawing(view: DrawView) {
-        stateView = .readyToRun
+    private func subscribeOnDrawingProcessState() {
+        drawView.drawingState.subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
+            switch state {
+            case .started:
+                self.stateView = .prepareToDraw
+            case .inProcess:
+                break
+            case .finished:
+                self.stateView = .readyToRun
+            }
+        }).disposed(by: disposeBag)
     }
 }
