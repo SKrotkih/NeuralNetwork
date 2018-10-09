@@ -18,6 +18,7 @@
 		7F3F32AF216A323B00983B59 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F32AE216A323B00983B59 /* Storage.swift */; };
 		7F3F32B1216A6B0900983B59 /* layers.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7F3F32B0216A6B0900983B59 /* layers.xml */; };
 		7F42817C216CCCF900BD5BA3 /* UIImage+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42817B216CCCF900BD5BA3 /* UIImage+Save.swift */; };
+		7F42817E216D096900BD5BA3 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42817D216D096900BD5BA3 /* Log.swift */; };
 		7F4CEEF02166633800A3DDD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CEEEF2166633800A3DDD8 /* Constants.swift */; };
 		7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC121658F2A00F509DE /* AppDelegate.swift */; };
 		7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FBAC521658F2A00F509DE /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		7F3F32AE216A323B00983B59 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		7F3F32B0216A6B0900983B59 /* layers.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = layers.xml; sourceTree = "<group>"; };
 		7F42817B216CCCF900BD5BA3 /* UIImage+Save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Save.swift"; sourceTree = "<group>"; };
+		7F42817D216D096900BD5BA3 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7F4CEEEF2166633800A3DDD8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F4FBABE21658F2900F509DE /* CleverBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4FBAC121658F2A00F509DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				7F4FBAD721658FEB00F509DE /* Extension.swift */,
+				7F42817D216D096900BD5BA3 /* Log.swift */,
 				7F42817B216CCCF900BD5BA3 /* UIImage+Save.swift */,
 				7F4FBAD821658FEB00F509DE /* ImageProcessor.swift */,
 			);
@@ -361,6 +364,7 @@
 			files = (
 				7F42817C216CCCF900BD5BA3 /* UIImage+Save.swift in Sources */,
 				7F4FBAEA21658FEB00F509DE /* Extension.swift in Sources */,
+				7F42817E216D096900BD5BA3 /* Log.swift in Sources */,
 				7F3C8E3021684E71001BE061 /* LearningViewController.swift in Sources */,
 				7F3C8E3221684E84001BE061 /* PredictingViewController.swift in Sources */,
 				7F361B19216B20F80052186F /* LearningToolBar.swift in Sources */,

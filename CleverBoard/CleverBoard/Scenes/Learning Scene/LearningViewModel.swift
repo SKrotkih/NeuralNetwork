@@ -7,8 +7,9 @@ import UIKit
 import RxSwift
 
 enum LearningState {
-    case start
-    case finish
+    case started
+    case finished
+    case cancelled
 }
 
 enum LearningErrors: Error {
@@ -21,8 +22,16 @@ protocol TrainingImagesProviding: class {
 
 class LearningViewModel {
   
+    deinit {
+        Log()
+    }
+    
     var processState = PublishSubject<LearningState>()
     weak var trainingImagesProvider: TrainingImagesProviding!
+    
+    func cancelProcess() {
+        neuralNetwork.cancelProcess()
+    }
     
     /// The Neural Network 🚀
     fileprivate lazy var neuralNetwork: NeuralNetwork = {
@@ -47,9 +56,13 @@ class LearningViewModel {
                 traningData = traningData + [input]
             }
         }
-        processState.onNext(.start)
-        neuralNetwork.learn(input: traningData, target: traningResults) { [weak self] in
-            self?.processState.onNext(.finish)
+        processState.onNext(.started)
+        neuralNetwork.learn(input: traningData, target: traningResults) { [weak self] state in
+            if state == .finished {
+                self?.processState.onNext(.finished)
+            } else if state == .cancelled {
+                self?.processState.onNext(.cancelled)
+            }
         }
     }
 }

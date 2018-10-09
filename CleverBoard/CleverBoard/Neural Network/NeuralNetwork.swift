@@ -5,20 +5,35 @@
 
 import Foundation
 
+enum NeuralNetworkState {
+    case cancelled
+    case finished
+}
+
 public class NeuralNetwork {
+    
+    private var cancel = false
     
     private var storage = Storage()
     
     private lazy var layers: [Layer] = {
         return storage.layers
     }()
+
+    deinit {
+        Log()
+    }
     
     func clean() {
         storage.clean()
     }
     
+    func cancelProcess() {
+        self.cancel = true
+    }
+    
     /// Learn Neural Network
-    func learn(input: [[Float]], target: [[Float]], completed: @escaping () -> Void) {
+    func learn(input: [[Float]], target: [[Float]], completed: @escaping (NeuralNetworkState) -> Void) {
         guard input.count == target.count else {
             fatal()
         }
@@ -32,12 +47,17 @@ public class NeuralNetwork {
                 input.forEach({ inputItem in
                     let _ = self.run(input: inputItem)
                 })
+                
                 let progress: Float = Float(iterations) / Float(Settings.iterations)
                 // TODO: Bind progress to the View
-                print("Iterations: \(iterations)[\(progress)]")
+                print("Iterations: \(iterations)[\(progress * 100.0)%]")
+                if self.cancel {
+                    completed(NeuralNetworkState.cancelled)
+                    return
+                }
             }
             self.storage.save(self.layers)
-            completed()
+            completed(NeuralNetworkState.finished)
         }
     }
     

@@ -24,6 +24,10 @@ class LearningViewController: UIViewController {
 
     private var learningToolBar: LearningToolBar!
     
+    deinit {
+        Log()
+    }
+
     private lazy var viewModel = {
         return LearningViewModel()
     }()
@@ -35,6 +39,7 @@ class LearningViewController: UIViewController {
     private var isLearningInProcess = false {
         didSet {
             if isLearningInProcess {
+                explainLabel.isHidden = true
                 learningInProgressView.isHidden = false
                 learningLabel.text = "LEARNING..."
                 learningLabel.startBlink()
@@ -95,6 +100,7 @@ class LearningViewController: UIViewController {
             guard let `self` = self else {
                 return
             }
+            self.viewModel.cancelProcess()
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
     }
@@ -145,15 +151,17 @@ extension LearningViewController {
          viewModel.processState.subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             switch state {
-            case .start:
+            case .started:
                 self.isLearningInProcess = true
-            case .finish:
+            case .finished:
                 DispatchQueue.main.async { [weak self] in
                     guard let `self` = self else { return }
                     // Learning is finished
                     self.isLearningInProcess = false
                     self.performSegue(withIdentifier: "predict", sender: self)
                 }
+            case .cancelled:
+                self.isLearningInProcess = false
             }
         }).disposed(by: disposeBag)
     }
