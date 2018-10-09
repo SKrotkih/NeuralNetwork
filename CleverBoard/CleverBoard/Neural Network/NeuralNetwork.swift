@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import RxSwift
 
 enum NeuralNetworkState {
     case cancelled
@@ -11,9 +12,10 @@ enum NeuralNetworkState {
 }
 
 public class NeuralNetwork {
+
+    var percentageProgress = PublishSubject<Float>()
     
     private var cancel = false
-    
     private var storage = Storage()
     
     private lazy var layers: [Layer] = {
@@ -49,10 +51,13 @@ public class NeuralNetwork {
                 })
                 
                 let progress: Float = Float(iterations) / Float(Settings.iterations)
+                self.percentageProgress.onNext(progress)
                 // TODO: Bind progress to the View
                 print("Iterations: \(iterations)[\(progress * 100.0)%]")
                 if self.cancel {
-                    completed(NeuralNetworkState.cancelled)
+                    DispatchQueue.main.async {
+                        completed(NeuralNetworkState.cancelled)
+                    }
                     return
                 }
             }

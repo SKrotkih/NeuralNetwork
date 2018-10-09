@@ -135,6 +135,7 @@ extension LearningViewController {
     private func learn() {
         do {
             subscribeOnLearningStateChanging()
+            subscribeOnPercentageProcess()
             try self.viewModel.learnNetwork()
         } catch(let error) {
             if error as! LearningErrors == .dataAbsent {
@@ -166,7 +167,12 @@ extension LearningViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func incrementProgress(_ percent: Float) {
-        progressView.progress = percent
+    private func subscribeOnPercentageProcess() {
+        viewModel.percentageProgress.subscribe(onNext: { [weak self] percent in
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                self.progressView.progress = percent
+            }
+        }).disposed(by: disposeBag)
     }
 }

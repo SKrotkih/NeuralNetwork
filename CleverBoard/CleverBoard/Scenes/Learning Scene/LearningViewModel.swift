@@ -28,6 +28,7 @@ class LearningViewModel {
     
     var processState = PublishSubject<LearningState>()
     weak var trainingImagesProvider: TrainingImagesProviding!
+    private let disposeBag = DisposeBag()
     
     func cancelProcess() {
         neuralNetwork.cancelProcess()
@@ -41,6 +42,10 @@ class LearningViewModel {
     fileprivate lazy var modelWorker: ModelWorker = {
         return ModelWorker()
     }()
+
+    var percentageProgress: PublishSubject<Float> {
+        return neuralNetwork.percentageProgress
+    }
     
     func learnNetwork() throws {
         guard let trainingImages = self.trainingImagesProvider.trainingImages, trainingImages.count == Settings.outputSize else {
