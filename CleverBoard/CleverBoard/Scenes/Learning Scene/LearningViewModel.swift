@@ -11,8 +11,12 @@ enum LearningState {
     case finish
 }
 
+enum LearningErrors: Error {
+    case dataAbsent
+}
+
 protocol TrainingImagesProviding: class {
-    var trainingImages: [[UIImage]] {get}
+    var trainingImages: [[UIImage]]? {get}
 }
 
 class LearningViewModel {
@@ -29,10 +33,9 @@ class LearningViewModel {
         return ModelWorker()
     }()
     
-    func learnNetwork() {
-        let trainingImages = self.trainingImagesProvider.trainingImages
-        guard trainingImages.count == Settings.outputSize else {
-            return
+    func learnNetwork() throws {
+        guard let trainingImages = self.trainingImagesProvider.trainingImages, trainingImages.count == Settings.outputSize else {
+            throw LearningErrors.dataAbsent
         }
         var traningResults: [[Float]] = []
         var traningData: [[Float]] = []

@@ -35,14 +35,15 @@ class PredictingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureViews()
         stateView = .prepareToDraw
+        configureViews()
     }
     
     private func configureViews() {
         configure(view: self.view)
         configure(view: drawView)
         configure(view: resultBackgroundView)
+        configure(view: explainLabel)
         bindRunButton()
         bindBackButton()
         subscribeOnDrawingProcessState()
@@ -58,6 +59,9 @@ class PredictingViewController: UIViewController {
             resultBackgroundView.layer.cornerRadius = resultBackgroundView.bounds.height / 2.0
         case drawView:
             drawView.isUserInteractionEnabled = true
+        case explainLabel:
+            explainLabel.isHidden = false
+            explainLabel.text = "DRAW A DECIMAL NUMBER"
         default:
             break
         }
@@ -68,10 +72,9 @@ class PredictingViewController: UIViewController {
             switch stateView {
             case .prepareToDraw:
                 drawView.clear()
-                explainLabel.isHidden = true
                 resultBackgroundView.isHidden = true
                 runButtonBackgroundView.isHidden = true
-                explainLabel.text = "DRAW A DECIMAL NUMBER"
+                explainLabel.isHidden = true
             case .readyToRun:
                 runButtonBackgroundView.isHidden = false
             case .showResult(let number):

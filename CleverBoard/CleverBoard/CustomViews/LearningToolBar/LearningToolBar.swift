@@ -40,14 +40,18 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     private var paints: [[UIImage?]]!
     private let disposeBag = DisposeBag()
     
-    var trainingImages: [[UIImage]] {
-        var _images: [[UIImage]] = [[]]
+    var trainingImages: [[UIImage]]? {
+        var _images: [[UIImage]]?
         for trainingImages in paints {
             let images = trainingImages.filter { (image) -> Bool in
                 return image != nil
                 } as! [UIImage]
             if images.count > 0 {
-                _images.append(images)
+                if _images == nil {
+                    _images = [images]
+                } else {
+                    _images!.append(images)
+                }
             }
         }
         return _images
@@ -67,21 +71,13 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
         bgs = [n0bg, n1bg, n2bg, n3bg, n4bg, n5bg, n6bg, n7bg, n8bg, n9bg]
         imgs = [im1, im2, im3, im4, im5]
-        paints = [[nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil],
-        [nil, nil, nil, nil, nil]]
-        
+        paints = Array(repeating: Array(repeating: nil, count: 5), count: Settings.outputSize)
         bindButtons()
         bindImages()
+        restoreImages()
     }
     
     private var index: Int = -1 {
@@ -107,12 +103,28 @@ class LearningToolBar: UIView, TrainingImagesProviding {
         }
     }
     
+    private func restoreImages() {
+        for index in 0..<paints.count {
+            for itemIndex in 0..<5 {
+                let fileName = "\(index)_\(itemIndex).png"
+                if let image = UIImage.retrieve(fileName: fileName) {
+                    paints[index][itemIndex] = image
+                }
+            }
+        }
+    }
+    
     private func selectImg(_ index: Int) {
         guard let image = self.drawView.getImage() else {
             return
         }
         imgs[index].image = image
         paints[self.index][index] = image
+        do {
+            try image.save(to: "\(self.index)_\(index)")
+        } catch(let error) {
+            print("\(error)")
+        }
         drawView.clear()
         explainLabel.isHidden = false
         explainLabel.text = "DRAW NUMBER \(self.index)"

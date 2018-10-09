@@ -80,6 +80,14 @@ extension ClosedRange where Bound: FloatingPoint {
     }
 }
 
+extension String {
+
+    static var documentDirectoryURL: URL {
+        let documentDirectoryURL =  try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        return documentDirectoryURL
+    }
+}
+
 func fatal() -> Never {
     fatalError("Something very, very bad happened! Crash the app!")
 }

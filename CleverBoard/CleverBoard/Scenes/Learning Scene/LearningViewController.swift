@@ -58,7 +58,6 @@ class LearningViewController: UIViewController {
         configure(view: toolBar)
         bindTeachButton()
         bindBackButton()
-        subscribeOnLearningStateChanging()
         subscribeOnDrawingProcessState()
     }
     
@@ -102,24 +101,7 @@ class LearningViewController: UIViewController {
             guard let `self` = self else {
                 return
             }
-            self.viewModel.learnNetwork()
-        }).disposed(by: disposeBag)
-    }
-
-    private func subscribeOnLearningStateChanging() {
-        viewModel.processState.subscribe(onNext: { [weak self] state in
-            guard let `self` = self else { return }
-            switch state {
-            case .start:
-                self.isLearningInProcess = true
-            case .finish:
-                DispatchQueue.main.async { [weak self] in
-                    guard let `self` = self else { return }
-                    // Learning is finished
-                    self.isLearningInProcess = false
-                    self.performSegue(withIdentifier: "predict", sender: self)
-                }
-            }
+            self.learn()
         }).disposed(by: disposeBag)
     }
     
@@ -134,6 +116,41 @@ class LearningViewController: UIViewController {
                 break
             case .finished:
                 break
+            }
+        }).disposed(by: disposeBag)
+    }
+}
+
+extension LearningViewController {
+    
+    private func learn() {
+        do {
+            subscribeOnLearningStateChanging()
+            try self.viewModel.learnNetwork()
+        } catch(let error) {
+            if error as! LearningErrors == .dataAbsent {
+                let alertController = UIAlertController(title: "", message: "Every tab has to have at least one image! Please check it", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
+                }
+                alertController.addAction(action)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+
+    private func subscribeOnLearningStateChanging() {
+         viewModel.processState.subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
+            switch state {
+            case .start:
+                self.isLearningInProcess = true
+            case .finish:
+                DispatchQueue.main.async { [weak self] in
+                    guard let `self` = self else { return }
+                    // Learning is finished
+                    self.isLearningInProcess = false
+                    self.performSegue(withIdentifier: "predict", sender: self)
+                }
             }
         }).disposed(by: disposeBag)
     }
