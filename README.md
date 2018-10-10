@@ -2,8 +2,8 @@
 
 ![newanigif](https://user-images.githubusercontent.com/2775621/46689355-586ad080-cc08-11e8-8574-8f167c90d0e8.gif)
 
-CleverBoard is an iOS App developed with Neural Network algorithms for recognizing decimal numbers (as an example) on images. You can train the network to recognize 10 symbols yourself. Draw upper to five pictures for every symbol. Then train the neural network. It is very easy.
-A trained model is already included so right after launch the app, you can try to recognize decimal numbers or learn to recognize your own. 
+CleverBoard is an iOS App developed with Neural Network algorithms for recognizing digits (as an example) on images. You can train the network to recognize 10 symbols yourself. Draw upper to five pictures for every symbol. Then train the neural network.
+A trained model is already included so right after launch the app, you can try to recognize digits or train to recognize your own. 
 
 I consider the CleverBoard as a code example with using Swift 4 and MVVM.
 

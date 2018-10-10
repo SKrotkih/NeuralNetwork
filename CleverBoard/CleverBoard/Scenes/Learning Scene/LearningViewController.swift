@@ -41,7 +41,7 @@ class LearningViewController: UIViewController {
             if isLearningInProcess {
                 explainLabel.isHidden = true
                 learningInProgressView.isHidden = false
-                learningLabel.text = "LEARNING..."
+                learningLabel.text = "TRAINING NEURAL NETWORK..."
                 learningLabel.startBlink()
             } else {
                 learningInProgressView.isHidden = true
@@ -70,7 +70,7 @@ class LearningViewController: UIViewController {
     private func configure(view: UIView) {
         switch view {
         case self.view:
-            title = "LEARNING"
+            title = "TRAINING"
         case explainLabel:
             explainLabel.font = UIFont(name: "AvenirNext-Medium", size: 17.0)
             explainLabel.textColor = UIColor.lightGray

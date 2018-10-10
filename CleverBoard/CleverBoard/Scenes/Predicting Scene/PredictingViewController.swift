@@ -132,7 +132,7 @@ extension PredictingViewController {
     }
     
     private func showNotReady() {
-        let alertController = UIAlertController(title: "Too hurry!", message: "You should teach to recoognize symbols before. Please go to LEARNING screen", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Too hurry!", message: "You should teach to recoognize symbols before. Please go to TRAINING screen", preferredStyle: .alert)
         let action = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
         alertController.addAction(action)
