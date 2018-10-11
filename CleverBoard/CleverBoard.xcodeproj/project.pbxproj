@@ -32,6 +32,9 @@
 		7F4FBAF221658FEB00F509DE /* ActivationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */; };
 		7F4FBAF421658FEB00F509DE /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE621658FEB00F509DE /* Layer.swift */; };
 		7F4FBAF521658FEB00F509DE /* NeuralNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */; };
+		7F708847216DC2470067ABED /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F708844216DC2470067ABED /* Matrix.swift */; };
+		7F708848216DC2470067ABED /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F708845216DC2470067ABED /* Network.swift */; };
+		7F708849216DC2470067ABED /* Double+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F708846216DC2470067ABED /* Double+Additions.swift */; };
 		7F83F00F2169C09000C03329 /* ModelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F83F00E2169C09000C03329 /* ModelWorker.swift */; };
 		E0D4E47E56C38218EE8878DB /* Pods_CleverBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0032BDE4C3C87D923067B83F /* Pods_CleverBoard.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +74,9 @@
 		7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivationFunction.swift; sourceTree = "<group>"; };
 		7F4FBAE621658FEB00F509DE /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeuralNetwork.swift; sourceTree = "<group>"; };
+		7F708844216DC2470067ABED /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		7F708845216DC2470067ABED /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		7F708846216DC2470067ABED /* Double+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Additions.swift"; sourceTree = "<group>"; };
 		7F83F00E2169C09000C03329 /* ModelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWorker.swift; sourceTree = "<group>"; };
 		976399412020967229651B29 /* Pods-CleverBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverBoard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CleverBoard/Pods-CleverBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		F0FE1BD72FFB5E3CBF22A59C /* Pods_EmojiRecognizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmojiRecognizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,8 +201,10 @@
 			children = (
 				7F4FBAD721658FEB00F509DE /* Extension.swift */,
 				7F42817D216D096900BD5BA3 /* Log.swift */,
+				7F708846216DC2470067ABED /* Double+Additions.swift */,
 				7F42817B216CCCF900BD5BA3 /* UIImage+Save.swift */,
 				7F4FBAD821658FEB00F509DE /* ImageProcessor.swift */,
+				7F708844216DC2470067ABED /* Matrix.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -226,6 +234,7 @@
 		7F4FBAE521658FEB00F509DE /* Neural Network */ = {
 			isa = PBXGroup;
 			children = (
+				7F708845216DC2470067ABED /* Network.swift */,
 				7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */,
 				7F4FBAE621658FEB00F509DE /* Layer.swift */,
 				7F3F32AE216A323B00983B59 /* Storage.swift */,
@@ -372,14 +381,17 @@
 				7F4FBAF221658FEB00F509DE /* ActivationFunction.swift in Sources */,
 				7F4FBAC221658F2A00F509DE /* AppDelegate.swift in Sources */,
 				7F4FBAF421658FEB00F509DE /* Layer.swift in Sources */,
+				7F708848216DC2470067ABED /* Network.swift in Sources */,
 				7F4FBAF521658FEB00F509DE /* NeuralNetwork.swift in Sources */,
 				7F4FBAEB21658FEB00F509DE /* ImageProcessor.swift in Sources */,
 				7F83F00F2169C09000C03329 /* ModelWorker.swift in Sources */,
 				7F4FBAE821658FEB00F509DE /* DrawView.swift in Sources */,
+				7F708847216DC2470067ABED /* Matrix.swift in Sources */,
 				7F3C8E3621687545001BE061 /* PredictingViewModel.swift in Sources */,
 				7F3C8E3421687533001BE061 /* LearningViewModel.swift in Sources */,
 				7F4CEEF02166633800A3DDD8 /* Constants.swift in Sources */,
 				7F3F32AF216A323B00983B59 /* Storage.swift in Sources */,
+				7F708849216DC2470067ABED /* Double+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

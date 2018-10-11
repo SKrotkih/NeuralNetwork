@@ -13,7 +13,9 @@ I consider the CleverBoard as a code example with using Swift 4 and MVVM.
 - Swift 4.2
 - RxSwift 4.3.1
 
-Useful background [Make Your Own Neural Network](https://www.amazon.com/Make-Your-Own-Neural-Network/dp/1530826608).
+Background: [A Neural Network Playground](https://playground.tensorflow.org),
+[Make Your Own Neural Network](https://www.amazon.com/Make-Your-Own-Neural-Network/dp/1530826608),
+[Encog Machine Learning Framework](https://www.heatonresearch.com/encog)
 
 # CleverArithmetic
 

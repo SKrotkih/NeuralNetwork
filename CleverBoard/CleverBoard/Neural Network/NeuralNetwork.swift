@@ -34,7 +34,7 @@ public class NeuralNetwork {
         self.cancel = true
     }
     
-    /// Learn Neural Network
+    /// Train Neural Network
     func learn(input: [[Float]], target: [[Float]], completed: @escaping (NeuralNetworkState) -> Void) {
         guard input.count == target.count else {
             fatal()
@@ -43,8 +43,8 @@ public class NeuralNetwork {
         clean()
         DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass).async {
             for iterations in 0..<Settings.iterations {
-                for i in 0..<input.count {
-                    self.train(input: input[i], target: target[i])
+                for (index, inputItem) in input.enumerated() {
+                    self.train(input: inputItem, target: target[index])
                 }
                 input.forEach({ inputItem in
                     let _ = self.run(input: inputItem)

@@ -3,15 +3,21 @@ import UIKit
 struct Settings {
     static let imageResolution = 8
     static let inputSize = Settings.imageResolution * Settings.imageResolution
-    static let hiddenSize = 21
+    static let hiddenSize = 15
     static let outputSize = 10
     static let predictionThreshold: Float = 0.8
     
     static let minWeight: Float = -2.0
     static let maxWeight: Float = 2.0
     
-    static let learningRate: Float = 0.6
+    // learning rate and moment are used for the backpropagation
+    // algorithm for improving performance (trial and error).
+    // Momentum determines the percent of the previous iteration's
+    // weight change that should be applied to this iteration.
+    // Momentum is optional.
+    static let learningRate: Float = 0.3
     static let momentum: Float = 0.6
+    
     static let iterations: Int = 10000 // 70000
     
     static let traningResults: [[Float]] = [
