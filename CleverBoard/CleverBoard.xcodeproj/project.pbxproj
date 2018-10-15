@@ -32,12 +32,24 @@
 		7F4FBAF221658FEB00F509DE /* ActivationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */; };
 		7F4FBAF421658FEB00F509DE /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE621658FEB00F509DE /* Layer.swift */; };
 		7F4FBAF521658FEB00F509DE /* NeuralNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */; };
+		7F51C2C52174A5C100DC51EA /* CleverBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51C2C42174A5C100DC51EA /* CleverBoardTests.swift */; };
+		7F51C2CD2174A94D00DC51EA /* TestPredicting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51C2CC2174A94D00DC51EA /* TestPredicting.swift */; };
 		7F708847216DC2470067ABED /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F708844216DC2470067ABED /* Matrix.swift */; };
 		7F708848216DC2470067ABED /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F708845216DC2470067ABED /* Network.swift */; };
 		7F708849216DC2470067ABED /* Double+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F708846216DC2470067ABED /* Double+Additions.swift */; };
 		7F83F00F2169C09000C03329 /* ModelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F83F00E2169C09000C03329 /* ModelWorker.swift */; };
 		E0D4E47E56C38218EE8878DB /* Pods_CleverBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0032BDE4C3C87D923067B83F /* Pods_CleverBoard.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7F51C2C72174A5C100DC51EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F4FBAB621658F2900F509DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F4FBABD21658F2900F509DE;
+			remoteInfo = CleverBoard;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0032BDE4C3C87D923067B83F /* Pods_CleverBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CleverBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +86,10 @@
 		7F4FBAE221658FEB00F509DE /* ActivationFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivationFunction.swift; sourceTree = "<group>"; };
 		7F4FBAE621658FEB00F509DE /* Layer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		7F4FBAE721658FEB00F509DE /* NeuralNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeuralNetwork.swift; sourceTree = "<group>"; };
+		7F51C2C22174A5C100DC51EA /* CleverBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleverBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F51C2C42174A5C100DC51EA /* CleverBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleverBoardTests.swift; sourceTree = "<group>"; };
+		7F51C2C62174A5C100DC51EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F51C2CC2174A94D00DC51EA /* TestPredicting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPredicting.swift; sourceTree = "<group>"; };
 		7F708844216DC2470067ABED /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		7F708845216DC2470067ABED /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		7F708846216DC2470067ABED /* Double+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Additions.swift"; sourceTree = "<group>"; };
@@ -88,6 +104,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0D4E47E56C38218EE8878DB /* Pods_CleverBoard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F51C2BF2174A5C100DC51EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				7F4FBAC021658F2900F509DE /* CleverBoard */,
+				7F51C2C32174A5C100DC51EA /* CleverBoardTests */,
 				7F4FBABF21658F2900F509DE /* Products */,
 				7292E83B4ABCCC6F69BB8AB2 /* Pods */,
 				62B7FFCE3DC2477DD07C86BB /* Frameworks */,
@@ -166,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				7F4FBABE21658F2900F509DE /* CleverBoard.app */,
+				7F51C2C22174A5C100DC51EA /* CleverBoardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,6 +269,16 @@
 			path = "Neural Network";
 			sourceTree = "<group>";
 		};
+		7F51C2C32174A5C100DC51EA /* CleverBoardTests */ = {
+			isa = PBXGroup;
+			children = (
+				7F51C2CC2174A94D00DC51EA /* TestPredicting.swift */,
+				7F51C2C42174A5C100DC51EA /* CleverBoardTests.swift */,
+				7F51C2C62174A5C100DC51EA /* Info.plist */,
+			);
+			path = CleverBoardTests;
+			sourceTree = "<group>";
+		};
 		7F83F00D2169C07300C03329 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +309,24 @@
 			productReference = 7F4FBABE21658F2900F509DE /* CleverBoard.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7F51C2C12174A5C100DC51EA /* CleverBoardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F51C2CB2174A5C100DC51EA /* Build configuration list for PBXNativeTarget "CleverBoardTests" */;
+			buildPhases = (
+				7F51C2BE2174A5C100DC51EA /* Sources */,
+				7F51C2BF2174A5C100DC51EA /* Frameworks */,
+				7F51C2C02174A5C100DC51EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F51C2C82174A5C100DC51EA /* PBXTargetDependency */,
+			);
+			name = CleverBoardTests;
+			productName = CleverBoardTests;
+			productReference = 7F51C2C22174A5C100DC51EA /* CleverBoardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -286,6 +339,10 @@
 				TargetAttributes = {
 					7F4FBABD21658F2900F509DE = {
 						CreatedOnToolsVersion = 10.0;
+					};
+					7F51C2C12174A5C100DC51EA = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 7F4FBABD21658F2900F509DE;
 					};
 				};
 			};
@@ -303,6 +360,7 @@
 			projectRoot = "";
 			targets = (
 				7F4FBABD21658F2900F509DE /* CleverBoard */,
+				7F51C2C12174A5C100DC51EA /* CleverBoardTests */,
 			);
 		};
 /* End PBXProject section */
@@ -320,6 +378,13 @@
 				7F4FBAC921658F2C00F509DE /* Assets.xcassets in Resources */,
 				7F4FBAC721658F2A00F509DE /* Main.storyboard in Resources */,
 				7F361B1B216B21620052186F /* LearningToolBar.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F51C2C02174A5C100DC51EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +460,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7F51C2BE2174A5C100DC51EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F51C2CD2174A94D00DC51EA /* TestPredicting.swift in Sources */,
+				7F51C2C52174A5C100DC51EA /* CleverBoardTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7F51C2C82174A5C100DC51EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F4FBABD21658F2900F509DE /* CleverBoard */;
+			targetProxy = 7F51C2C72174A5C100DC51EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7F4FBAC521658F2A00F509DE /* Main.storyboard */ = {
@@ -573,6 +655,48 @@
 			};
 			name = Release;
 		};
+		7F51C2C92174A5C100DC51EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N5B5T39W8Y;
+				INFOPLIST_FILE = CleverBoardTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.skdevappleid.CleverBoardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleverBoard.app/CleverBoard";
+			};
+			name = Debug;
+		};
+		7F51C2CA2174A5C100DC51EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N5B5T39W8Y;
+				INFOPLIST_FILE = CleverBoardTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.skdevappleid.CleverBoardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleverBoard.app/CleverBoard";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -590,6 +714,15 @@
 			buildConfigurations = (
 				7F4FBAD121658F2C00F509DE /* Debug */,
 				7F4FBAD221658F2C00F509DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F51C2CB2174A5C100DC51EA /* Build configuration list for PBXNativeTarget "CleverBoardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F51C2C92174A5C100DC51EA /* Debug */,
+				7F51C2CA2174A5C100DC51EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
