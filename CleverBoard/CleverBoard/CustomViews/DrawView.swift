@@ -26,9 +26,9 @@ public class DrawView: UIView {
         defer {
             UIGraphicsEndImageContext()
         }
-        
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
         layer.render(in: context)
         return UIGraphicsGetImageFromCurrentImageContext()
     }

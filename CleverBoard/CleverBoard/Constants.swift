@@ -3,7 +3,7 @@ import UIKit
 struct Settings {
     static let imageResolution = 8
     static let inputSize = Settings.imageResolution * Settings.imageResolution
-    static let hiddenSize = 15
+    static let hiddenSize = 20
     static let outputSize = 10
     static let predictionThreshold: Float = 0.8
     
@@ -18,9 +18,9 @@ struct Settings {
     static let learningRate: Float = 0.3
     static let momentum: Float = 0.6
     
-    static let iterations: Int = 10000 // 70000
+    static let iterations: Int = 1000 // 70000
     
-    static let traningResults: [[Float]] = [
+    static let traningTargets: [[Float]] = [
         [1,0,0,0,0,0,0,0,0,0], // 0
         [0,1,0,0,0,0,0,0,0,0], // 1
         [0,0,1,0,0,0,0,0,0,0], // 2

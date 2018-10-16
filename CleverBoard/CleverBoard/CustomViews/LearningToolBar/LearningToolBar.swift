@@ -40,6 +40,8 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     private var paints: [[UIImage?]]!
     private let disposeBag = DisposeBag()
     
+    var selectItemImage = PublishSubject<UIImage>()
+    
     var trainingImages: [[UIImage]]? {
         var _images: [[UIImage]]?
         for trainingImages in paints {
@@ -55,6 +57,16 @@ class LearningToolBar: UIView, TrainingImagesProviding {
             }
         }
         return _images
+    }
+    
+    var predictedIndex: Int = 0 {
+        didSet {
+            if predictedIndex == self.index {
+                print("OK!")
+            } else {
+                print("FAILED!")
+            }
+        }
     }
     
     static func getInstance(for superView: UIView) -> LearningToolBar {
@@ -106,15 +118,25 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     private func restoreImages() {
         for index in 0..<paints.count {
             for itemIndex in 0..<5 {
-                let fileName = "\(index)_\(itemIndex).png"
-                if let image = UIImage.retrieve(fileName: fileName) {
+                let fName = fileName(index: index, itemIndex: itemIndex)
+                if let image = UIImage.retrieve(fileName: fName) {
                     paints[index][itemIndex] = image
+                } else {
+                    paints[index][itemIndex] = nil
                 }
             }
         }
     }
     
+    private func fileName(index: Int, itemIndex: Int) -> String {
+        return "\(index)_\(itemIndex).png"
+    }
+    
     private func selectImg(_ index: Int) {
+        if let _image = imgs[index].image {
+            selectItemImage.onNext(_image)
+            return
+        }
         guard let image = self.drawView.getImage() else {
             return
         }
@@ -131,6 +153,8 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     }
     
     private func removeImg(_ index: Int) {
+        let fName = fileName(index: self.index, itemIndex: index)
+        UIImage.remove(fileName: fName)
         imgs[index].image = nil
     }
     

@@ -65,6 +65,7 @@ class LearningViewController: UIViewController {
         bindTeachButton()
         bindBackButton()
         subscribeOnDrawingProcessState()
+        subscribeOnPredictedIndex()
     }
     
     private func configure(view: UIView) {
@@ -127,6 +128,12 @@ class LearningViewController: UIViewController {
                 break
             }
         }).disposed(by: disposeBag)
+    }
+    
+    private func subscribeOnPredictedIndex() {
+        viewModel.predictedIndex.subscribe(onNext: { [weak self] index in
+            self?.learningToolBar.predictedIndex = index
+        })
     }
 }
 

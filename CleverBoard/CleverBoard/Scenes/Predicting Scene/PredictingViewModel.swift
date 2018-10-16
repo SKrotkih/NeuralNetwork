@@ -12,7 +12,7 @@ enum PredictionResult {
     case success(Int)
 }
 
-class PredictingViewModel {
+final class PredictingViewModel {
     
     /// The Neural Network 🚀
     fileprivate lazy var neuralNetwork: NeuralNetwork = {

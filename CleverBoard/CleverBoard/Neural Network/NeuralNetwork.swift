@@ -14,6 +14,15 @@ enum NeuralNetworkState {
 public class NeuralNetwork {
 
     var percentageProgress = PublishSubject<Float>()
+
+    private var epoch: Int = 0 {
+        didSet {
+            let progress: Float = Float(epoch) / Float(Settings.iterations)
+            self.percentageProgress.onNext(progress)
+            // TODO: Bind progress to the View
+            NSLog("Iterations: %@ [%.1f]", epoch, progress * 100.0)
+        }
+    }
     
     private var cancel = false
     private var storage = Storage()
@@ -41,25 +50,19 @@ public class NeuralNetwork {
         }
         // TODO: Need to continue learning
         clean()
+        self.epoch = 0
         DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass).async {
-            for iterations in 0..<Settings.iterations {
+            for iteration in 0..<Settings.iterations {
                 for (index, inputItem) in input.enumerated() {
                     self.train(input: inputItem, target: target[index])
                 }
-                input.forEach({ inputItem in
-                    let _ = self.run(input: inputItem)
-                })
-                
-                let progress: Float = Float(iterations) / Float(Settings.iterations)
-                self.percentageProgress.onNext(progress)
-                // TODO: Bind progress to the View
-                print("Iterations: \(iterations)[\(progress * 100.0)%]")
                 if self.cancel {
                     DispatchQueue.main.async {
                         completed(NeuralNetworkState.cancelled)
                     }
                     return
                 }
+                self.epoch = iteration
             }
             self.storage.save(self.layers)
             completed(NeuralNetworkState.finished)

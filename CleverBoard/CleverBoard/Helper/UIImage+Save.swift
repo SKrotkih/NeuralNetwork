@@ -63,11 +63,22 @@ extension UIImage {
         do {
             let url = String.documentDirectoryURL.appendingPathComponent(fileName)
             let data = try Data(contentsOf: url)
-            if let image = UIImage(data: data) {
-                return image
-            }
+            return UIImage(data: data)
         } catch {
         }
         return nil
     }
+
+    /// Remove image from disk
+    ///
+    /// - Parameters:
+    ///   - fileName: fileName which will be removed
+    static func remove(fileName: String) {
+        do {
+            let url = String.documentDirectoryURL.appendingPathComponent(fileName)
+            try FileManager.default.removeItem(at: url)
+        } catch {
+        }
+    }
+    
 }

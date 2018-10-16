@@ -18,16 +18,27 @@ enum LearningErrors: Error {
 
 protocol TrainingImagesProviding: class {
     var trainingImages: [[UIImage]]? {get}
+    var selectItemImage: PublishSubject<UIImage> {get}
 }
 
-class LearningViewModel {
+final class LearningViewModel {
   
     deinit {
         Log()
     }
     
     var processState = PublishSubject<LearningState>()
-    weak var trainingImagesProvider: TrainingImagesProviding!
+    var predictedIndex = PublishSubject<Int>()
+    
+    weak var trainingImagesProvider: TrainingImagesProviding! {
+        didSet {
+            trainingImagesProvider.selectItemImage.subscribe(onNext: { [weak self] image in
+                guard let `self` = self else { return }
+                self.check(image: image)
+            })
+        }
+    }
+    
     private let disposeBag = DisposeBag()
     
     func cancelProcess() {
@@ -35,11 +46,11 @@ class LearningViewModel {
     }
     
     /// The Neural Network 🚀
-    fileprivate lazy var neuralNetwork: NeuralNetwork = {
+    private lazy var neuralNetwork: NeuralNetwork = {
         return NeuralNetwork()
     }()
     
-    fileprivate lazy var modelWorker: ModelWorker = {
+    private lazy var modelWorker: ModelWorker = {
         return ModelWorker()
     }()
 
@@ -47,26 +58,49 @@ class LearningViewModel {
         return neuralNetwork.percentageProgress
     }
     
-    func learnNetwork() throws {
-        guard let trainingImages = self.trainingImagesProvider.trainingImages, trainingImages.count == Settings.outputSize else {
-            throw LearningErrors.dataAbsent
+    private func data() throws -> (input: [[Float]], target: [[Float]]) {
+        guard let inputImages = self.trainingImagesProvider.trainingImages,
+            inputImages.count == Settings.outputSize,
+            Settings.traningTargets.count == Settings.outputSize else {
+                throw LearningErrors.dataAbsent
         }
-        var traningResults: [[Float]] = []
-        var traningData: [[Float]] = []
+        var target: [[Float]] = []
+        var input: [[Float]] = []
         for index in 0..<Settings.outputSize {
-            for dataIndex in 0..<trainingImages[index].count {
-                let image = trainingImages[index][dataIndex]
-                let input: [Float] = modelWorker.returnImageBlock(image)
-                traningResults.append(Settings.traningResults[index])
-                traningData = traningData + [input]
+            for image in inputImages[index] {
+                target.append(Settings.traningTargets[index])
+                input.append(modelWorker.returnImageBlock(image))
             }
         }
+        return (input: input, target: target)
+    }
+    
+    func learnNetwork() throws {
+        let (input: input, target: target) = try data()
         processState.onNext(.started)
-        neuralNetwork.learn(input: traningData, target: traningResults) { [weak self] state in
+        neuralNetwork.learn(input: input, target: target) { [weak self] state in
             if state == .finished {
                 self?.processState.onNext(.finished)
             } else if state == .cancelled {
                 self?.processState.onNext(.cancelled)
+            }
+        }
+    }
+    
+    private func check(image: UIImage) {
+        let input = modelWorker.returnImageBlock(image)
+        neuralNetwork.predict(input: input) { [weak self] result in
+            guard let `self` = self else {
+                return
+            }
+            switch result {
+            case .noimage, .isnottrained:
+                break
+            case .wrong:
+                break
+            case .success(let index):
+                self.predictedIndex.onNext(index)
+                break
             }
         }
     }
