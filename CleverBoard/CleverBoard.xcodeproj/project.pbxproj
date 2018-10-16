@@ -153,6 +153,7 @@
 			children = (
 				7F3C8E2F21684E71001BE061 /* LearningViewController.swift */,
 				7F3C8E3321687533001BE061 /* LearningViewModel.swift */,
+				7F3EE4CB216B9C9F00D7E0CA /* LearningToolBar */,
 			);
 			path = "Learning Scene";
 			sourceTree = "<group>";
@@ -216,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				7F4FBAD421658FEB00F509DE /* DrawView.swift */,
-				7F3EE4CB216B9C9F00D7E0CA /* LearningToolBar */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";

@@ -18,7 +18,7 @@ enum LearningErrors: Error {
 
 protocol TrainingImagesProviding: class {
     var trainingImages: [[UIImage]]? {get}
-    var selectItemImage: PublishSubject<UIImage> {get}
+    var selectItemImage: PublishSubject<SelectedToolbarIndex> {get}
 }
 
 final class LearningViewModel {
@@ -28,13 +28,13 @@ final class LearningViewModel {
     }
     
     var processState = PublishSubject<LearningState>()
-    var predictedIndex = PublishSubject<Int>()
+    var predictedIndex = PublishSubject<PredictedItem>()
     
     weak var trainingImagesProvider: TrainingImagesProviding! {
         didSet {
-            trainingImagesProvider.selectItemImage.subscribe(onNext: { [weak self] image in
+            trainingImagesProvider.selectItemImage.subscribe(onNext: { [weak self] selectedItem in
                 guard let `self` = self else { return }
-                self.check(image: image)
+                self.check(selectedItem: selectedItem)
             })
         }
     }
@@ -87,8 +87,8 @@ final class LearningViewModel {
         }
     }
     
-    private func check(image: UIImage) {
-        let input = modelWorker.returnImageBlock(image)
+    private func check(selectedItem: SelectedToolbarIndex) {
+        let input = modelWorker.returnImageBlock(selectedItem.0)
         neuralNetwork.predict(input: input) { [weak self] result in
             guard let `self` = self else {
                 return
@@ -99,7 +99,7 @@ final class LearningViewModel {
             case .wrong:
                 break
             case .success(let index):
-                self.predictedIndex.onNext(index)
+                self.predictedIndex.onNext((index, selectedItem.1, selectedItem.2))
                 break
             }
         }

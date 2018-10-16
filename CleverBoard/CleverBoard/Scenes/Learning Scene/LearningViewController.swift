@@ -131,8 +131,8 @@ class LearningViewController: UIViewController {
     }
     
     private func subscribeOnPredictedIndex() {
-        viewModel.predictedIndex.subscribe(onNext: { [weak self] index in
-            self?.learningToolBar.predictedIndex = index
+        viewModel.predictedIndex.subscribe(onNext: { [weak self] predictedItem in
+            self?.learningToolBar.predictedItem = predictedItem
         })
     }
 }

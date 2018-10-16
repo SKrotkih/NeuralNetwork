@@ -7,6 +7,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+typealias ToolbarIndex = (number: Int, index: Int)
+typealias SelectedToolbarIndex = (image: UIImage, number: Int, index: Int)
+typealias PredictedItem = (predicted: Int, number: Int, index: Int)
+
 class LearningToolBar: UIView, TrainingImagesProviding {
 
     weak var drawView: DrawView!
@@ -35,12 +39,19 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     @IBOutlet weak var im4: UIImageView!
     @IBOutlet weak var im5: UIImageView!
     
+    @IBOutlet weak var chkIm1: UIImageView!
+    @IBOutlet weak var chkIm2: UIImageView!
+    @IBOutlet weak var chkIm3: UIImageView!
+    @IBOutlet weak var chkIm4: UIImageView!
+    @IBOutlet weak var chkIm5: UIImageView!
+    
     private var bgs: [UIView] = []
     private var imgs: [UIImageView] = []
+    private var chkImgs: [UIImageView] = []
     private var paints: [[UIImage?]]!
     private let disposeBag = DisposeBag()
     
-    var selectItemImage = PublishSubject<UIImage>()
+    var selectItemImage = PublishSubject<SelectedToolbarIndex>()
     
     var trainingImages: [[UIImage]]? {
         var _images: [[UIImage]]?
@@ -57,16 +68,6 @@ class LearningToolBar: UIView, TrainingImagesProviding {
             }
         }
         return _images
-    }
-    
-    var predictedIndex: Int = 0 {
-        didSet {
-            if predictedIndex == self.index {
-                print("OK!")
-            } else {
-                print("FAILED!")
-            }
-        }
     }
     
     static func getInstance(for superView: UIView) -> LearningToolBar {
@@ -86,6 +87,7 @@ class LearningToolBar: UIView, TrainingImagesProviding {
 
         bgs = [n0bg, n1bg, n2bg, n3bg, n4bg, n5bg, n6bg, n7bg, n8bg, n9bg]
         imgs = [im1, im2, im3, im4, im5]
+        chkImgs = [chkIm1, chkIm2, chkIm3, chkIm4, chkIm5]
         paints = Array(repeating: Array(repeating: nil, count: 5), count: Settings.outputSize)
         bindButtons()
         bindImages()
@@ -101,6 +103,9 @@ class LearningToolBar: UIView, TrainingImagesProviding {
                 view.layer.borderColor = UIColor.white.cgColor
                 view.backgroundColor = UIColor.lightGray
                 view.layer.borderWidth = 1.0
+            }
+            chkImgs.forEach { (imageView) in
+                imageView.isHidden = true
             }
             UIView.animate(withDuration: 0.3, animations: {
                 self.bgs[self.index].backgroundColor = UIColor.red
@@ -131,10 +136,20 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     private func fileName(index: Int, itemIndex: Int) -> String {
         return "\(index)_\(itemIndex).png"
     }
+
+    var predictedItem: PredictedItem = (0, 0, 0) {
+        didSet {
+            if predictedItem.0 == self.index {
+                chkImgs[predictedItem.index].isHidden = false
+            } else {
+                chkImgs[predictedItem.index].isHidden = true
+            }
+        }
+    }
     
     private func selectImg(_ index: Int) {
         if let _image = imgs[index].image {
-            selectItemImage.onNext(_image)
+            selectItemImage.onNext((image: _image, number: self.index, index: index))
             return
         }
         guard let image = self.drawView.getImage() else {
