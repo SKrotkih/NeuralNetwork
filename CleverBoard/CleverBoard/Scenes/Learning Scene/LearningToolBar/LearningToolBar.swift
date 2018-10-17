@@ -7,9 +7,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-typealias ToolbarIndex = (number: Int, index: Int)
-typealias SelectedToolbarIndex = (image: UIImage, number: Int, index: Int)
-typealias PredictedItem = (predicted: Int, number: Int, index: Int)
+typealias LearningToolbarIndex = (number: Int, index: Int)
+typealias LearningToolbarItem = (image: UIImage, number: Int, index: Int)
+typealias LearningToolbarPredictedIndex = (predicted: Int, number: Int, index: Int)
 
 class LearningToolBar: UIView, TrainingImagesProviding {
 
@@ -49,9 +49,10 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     private var imgs: [UIImageView] = []
     private var chkImgs: [UIImageView] = []
     private var paints: [[UIImage?]]!
+    
     private let disposeBag = DisposeBag()
     
-    var selectItemImage = PublishSubject<SelectedToolbarIndex>()
+    var selectedToolbarItem = PublishSubject<LearningToolbarItem>()
     
     var trainingImages: [[UIImage]]? {
         var _images: [[UIImage]]?
@@ -77,7 +78,7 @@ class LearningToolBar: UIView, TrainingImagesProviding {
             superView.addSubview(view)
             return view
         } else {
-            assert(false, "LearningToolBar is not defined!")
+            assert(false, "Failed to generate LearningToolBar!")
             return LearningToolBar()
         }
     }
@@ -89,37 +90,44 @@ class LearningToolBar: UIView, TrainingImagesProviding {
         imgs = [im1, im2, im3, im4, im5]
         chkImgs = [chkIm1, chkIm2, chkIm3, chkIm4, chkIm5]
         paints = Array(repeating: Array(repeating: nil, count: 5), count: Settings.outputSize)
-        bindButtons()
-        bindImages()
+        bindTabBarButtonItems()
+        bindTabBarItemTemplates()
         restoreImages()
     }
     
+    // Index of the tab item
     private var index: Int = -1 {
         didSet {
             if oldValue == index {
                 return
             }
+            // clean borders
             bgs.forEach { (view) in
                 view.layer.borderColor = UIColor.white.cgColor
                 view.backgroundColor = UIColor.lightGray
                 view.layer.borderWidth = 1.0
             }
+            // clean all predicted signs
             chkImgs.forEach { (imageView) in
                 imageView.isHidden = true
             }
+            // highlight border of the selected item
             UIView.animate(withDuration: 0.3, animations: {
                 self.bgs[self.index].backgroundColor = UIColor.red
             })
+            // fill all images for current tab item
             imgs.enumerated().forEach { (arg) in
                 let (i, imageView) = arg
                 imageView.image = paints[index][i]
             }
+            // start drawing a new training template
             drawView.clear()
             self.explainLabel.isHidden = false
             explainLabel.text = "DRAW NUMBER \(index)"
         }
     }
     
+    // restore all training templates from the documents directory
     private func restoreImages() {
         for index in 0..<paints.count {
             for itemIndex in 0..<5 {
@@ -137,9 +145,9 @@ class LearningToolBar: UIView, TrainingImagesProviding {
         return "\(index)_\(itemIndex).png"
     }
 
-    var predictedItem: PredictedItem = (0, 0, 0) {
+    var predictedItem: LearningToolbarPredictedIndex = (0, 0, 0) {
         didSet {
-            if predictedItem.0 == self.index {
+            if predictedItem.predicted == self.index {
                 chkImgs[predictedItem.index].isHidden = false
             } else {
                 chkImgs[predictedItem.index].isHidden = true
@@ -147,14 +155,17 @@ class LearningToolBar: UIView, TrainingImagesProviding {
         }
     }
     
-    private func selectImg(_ index: Int) {
+    // did touch on the template image
+    private func didSelectTemplate(_ index: Int) {
         if let _image = imgs[index].image {
-            selectItemImage.onNext((image: _image, number: self.index, index: index))
+            // there is an image already
+            selectedToolbarItem.onNext((image: _image, number: self.index, index: index))
             return
         }
         guard let image = self.drawView.getImage() else {
             return
         }
+        // copy current image to the toolbar
         imgs[index].image = image
         paints[self.index][index] = image
         do {
@@ -162,6 +173,7 @@ class LearningToolBar: UIView, TrainingImagesProviding {
         } catch(let error) {
             print("\(error)")
         }
+        // start drawing next template
         drawView.clear()
         explainLabel.isHidden = false
         explainLabel.text = "DRAW NUMBER \(self.index)"
@@ -173,7 +185,7 @@ class LearningToolBar: UIView, TrainingImagesProviding {
         imgs[index].image = nil
     }
     
-    private func bindButtons() {
+    private func bindTabBarButtonItems() {
         bgs.forEach { (view) in
             /// Select button with a number for starting to paint next training image
             let tapGesture = UITapGestureRecognizer()
@@ -181,16 +193,15 @@ class LearningToolBar: UIView, TrainingImagesProviding {
                 self?.index = view.tag
             }).disposed(by: disposeBag)
             view.addGestureRecognizer(tapGesture)
-
         }
     }
     
-    private func bindImages() {
+    private func bindTabBarItemTemplates() {
         imgs.forEach { (imageView) in
             /// Add image to the current number pane
             let tapGesture = UITapGestureRecognizer()
             tapGesture.rx.event.bind(onNext: { [weak self] recognizer in
-                self?.selectImg(imageView.tag)
+                self?.didSelectTemplate(imageView.tag)
             }).disposed(by: disposeBag)
             imageView.addGestureRecognizer(tapGesture)
             

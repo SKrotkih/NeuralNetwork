@@ -62,10 +62,10 @@ class LearningViewController: UIViewController {
         configure(view: explainLabel)
         configure(view: toolBar)
         configure(view: learningInProgressView)
-        bindTeachButton()
-        bindBackButton()
-        subscribeOnDrawingProcessState()
-        subscribeOnPredictedIndex()
+        bindToLearningButton()
+        bindToBackButton()
+        subscribeToDrawingState()
+        subscribeToPredictionResult()
     }
     
     private func configure(view: UIView) {
@@ -79,7 +79,7 @@ class LearningViewController: UIViewController {
         case drawView:
             drawView.isUserInteractionEnabled = true
         case toolBar:
-            createToolBar()
+            createLearningToolBar()
         case learningInProgressView:
             learningInProgressView.isHidden = true
         default:
@@ -87,7 +87,7 @@ class LearningViewController: UIViewController {
         }
     }
 
-    private func createToolBar() {
+    private func createLearningToolBar() {
         learningToolBar = LearningToolBar.getInstance(for: toolBar)
         DispatchQueue.main.async {
             self.learningToolBar.drawView = self.drawView
@@ -96,7 +96,7 @@ class LearningViewController: UIViewController {
         }
     }
     
-    private func bindBackButton() {
+    private func bindToBackButton() {
         backButton.rx.tap.bind(onNext: { [weak self] in
             guard let `self` = self else {
                 return
@@ -106,7 +106,7 @@ class LearningViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func bindTeachButton() {
+    private func bindToLearningButton() {
         teachButton.rx.tap.bind(onNext: { [weak self] in
             guard let `self` = self else {
                 return
@@ -115,7 +115,7 @@ class LearningViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func subscribeOnDrawingProcessState() {
+    private func subscribeToDrawingState() {
         drawView.drawingState.subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             switch state {
@@ -130,19 +130,21 @@ class LearningViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func subscribeOnPredictedIndex() {
-        viewModel.predictedIndex.subscribe(onNext: { [weak self] predictedItem in
+    private func subscribeToPredictionResult() {
+        viewModel.predictionResult.subscribe(onNext: { [weak self] predictedItem in
             self?.learningToolBar.predictedItem = predictedItem
         })
     }
 }
 
+// MARK: - Training neural network on the all drawing pictures
+
 extension LearningViewController {
     
     private func learn() {
         do {
-            subscribeOnLearningStateChanging()
-            subscribeOnPercentageProcess()
+            subscribeToChangingLearningStage()
+            subscribeToPercentageProcess()
             try self.viewModel.learnNetwork()
         } catch(let error) {
             if error as! LearningErrors == .dataAbsent {
@@ -155,8 +157,8 @@ extension LearningViewController {
         }
     }
 
-    private func subscribeOnLearningStateChanging() {
-         viewModel.processState.subscribe(onNext: { [weak self] state in
+    private func subscribeToChangingLearningStage() {
+         viewModel.learningStage.subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             switch state {
             case .started:
@@ -174,7 +176,7 @@ extension LearningViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func subscribeOnPercentageProcess() {
+    private func subscribeToPercentageProcess() {
         viewModel.percentageProgress.subscribe(onNext: { [weak self] percent in
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }

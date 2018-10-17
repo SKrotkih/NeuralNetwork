@@ -6,7 +6,7 @@
 import UIKit
 import RxSwift
 
-enum LearningState {
+enum LearningStage {
     case started
     case finished
     case cancelled
@@ -18,7 +18,7 @@ enum LearningErrors: Error {
 
 protocol TrainingImagesProviding: class {
     var trainingImages: [[UIImage]]? {get}
-    var selectItemImage: PublishSubject<SelectedToolbarIndex> {get}
+    var selectedToolbarItem: PublishSubject<LearningToolbarItem> {get}
 }
 
 final class LearningViewModel {
@@ -27,12 +27,12 @@ final class LearningViewModel {
         Log()
     }
     
-    var processState = PublishSubject<LearningState>()
-    var predictedIndex = PublishSubject<PredictedItem>()
+    var learningStage = PublishSubject<LearningStage>()
+    var predictionResult = PublishSubject<LearningToolbarPredictedIndex>()
     
     weak var trainingImagesProvider: TrainingImagesProviding! {
         didSet {
-            trainingImagesProvider.selectItemImage.subscribe(onNext: { [weak self] selectedItem in
+            trainingImagesProvider.selectedToolbarItem.subscribe(onNext: { [weak self] selectedItem in
                 guard let `self` = self else { return }
                 self.check(selectedItem: selectedItem)
             })
@@ -77,17 +77,17 @@ final class LearningViewModel {
     
     func learnNetwork() throws {
         let (input: input, target: target) = try data()
-        processState.onNext(.started)
+        learningStage.onNext(.started)
         neuralNetwork.learn(input: input, target: target) { [weak self] state in
             if state == .finished {
-                self?.processState.onNext(.finished)
+                self?.learningStage.onNext(.finished)
             } else if state == .cancelled {
-                self?.processState.onNext(.cancelled)
+                self?.learningStage.onNext(.cancelled)
             }
         }
     }
     
-    private func check(selectedItem: SelectedToolbarIndex) {
+    private func check(selectedItem: LearningToolbarItem) {
         let input = modelWorker.returnImageBlock(selectedItem.0)
         neuralNetwork.predict(input: input) { [weak self] result in
             guard let `self` = self else {
@@ -99,7 +99,7 @@ final class LearningViewModel {
             case .wrong:
                 break
             case .success(let index):
-                self.predictedIndex.onNext((index, selectedItem.1, selectedItem.2))
+                self.predictionResult.onNext((index, selectedItem.1, selectedItem.2))
                 break
             }
         }

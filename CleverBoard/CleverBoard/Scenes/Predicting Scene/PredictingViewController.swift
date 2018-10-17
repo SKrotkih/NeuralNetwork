@@ -44,9 +44,9 @@ class PredictingViewController: UIViewController {
         configure(view: drawView)
         configure(view: resultBackgroundView)
         configure(view: explainLabel)
-        bindRunButton()
-        bindBackButton()
-        subscribeOnDrawingProcessState()
+        bindToRunPredictionButton()
+        bindToBackButton()
+        subscribeToDrawingState()
     }
     
     private func configure(view: UIView) {
@@ -93,14 +93,14 @@ class PredictingViewController: UIViewController {
         }
     }
 
-    private func bindRunButton() {
+    private func bindToRunPredictionButton() {
         runButton.rx.tap.bind(onNext: { [weak self] in
             guard let `self` = self else { return }
             self.run()
         }).disposed(by: disposeBag)
     }
 
-    private func bindBackButton() {
+    private func bindToBackButton() {
         backButton.rx.tap.bind(onNext: { [weak self] in
             guard let `self` = self else { return }
             self.navigationController?.popToRootViewController(animated: true)
@@ -132,14 +132,14 @@ extension PredictingViewController {
     }
     
     private func showNotReady() {
-        let alertController = UIAlertController(title: "Too hurry!", message: "You should teach to recoognize symbols before. Please go to TRAINING screen", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Too hurry!", message: "Neural Network has not trained yet! Please go to TRAINING screen", preferredStyle: .alert)
         let action = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
         alertController.addAction(action)
         self.present(alertController, animated: true, completion: nil)
     }
     
-    private func subscribeOnDrawingProcessState() {
+    private func subscribeToDrawingState() {
         drawView.drawingState.subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             switch state {
