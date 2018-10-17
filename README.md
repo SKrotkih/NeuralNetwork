@@ -1,17 +1,27 @@
-# CleverBoard
+# Swift CleverBoard
 
 ![cleverboard](https://user-images.githubusercontent.com/2775621/47079763-e3525900-d20e-11e8-8108-579cad52e6f7.gif)
 
 CleverBoard is an iOS App developed with Neural Network algorithms for recognizing digits (as an example) on images. You can train the network to recognize 10 symbols yourself. Draw upper to five pictures for every symbol. Then train the neural network.
 A trained model is already included so right after launch the app, you can try to recognize digits or train to recognize your own. 
 
-I consider the CleverBoard as a code example with using Swift 4 and MVVM.
+I consider this project as a code example with using Swift  and MVVM Technique
 
 ## Requirements
 
 - Xcode 10.0
 - Swift 4.2
 - RxSwift 4.3.1
+
+## Installation
+
+- Make sure CocoaPods is installed and up to date. Run pod install in the project directory.
+- Build and run
+
+## Dependencies
+
+- RxSwift
+- RxCocoa
 
 Useful links: 
 - [A Neural Network Playground](https://playground.tensorflow.org),
