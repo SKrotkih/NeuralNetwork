@@ -16,9 +16,14 @@ enum LearningErrors: Error {
     case dataAbsent
 }
 
+protocol TrainingNumberable: class {
+    var selectedNumberItem: PublishSubject<LearningToolbarItem> {get}
+    var selectedNumber: PublishSubject<Int> {get}
+    var index: Int {get}
+}
+
 protocol TrainingImagesProviding: class {
     var trainingImages: [[UIImage]]? {get}
-    var selectedToolbarItem: PublishSubject<LearningToolbarItem> {get}
 }
 
 final class LearningViewModel {
@@ -29,13 +34,14 @@ final class LearningViewModel {
     
     var learningStage = PublishSubject<LearningStage>()
     var predictionResult = PublishSubject<LearningToolbarPredictedIndex>()
+    var currentTrainedNumber = PublishSubject<Int>()
     
-    weak var trainingImagesProvider: TrainingImagesProviding! {
+    weak var trainingImagesProvider: TrainingImagesProviding!
+    
+    weak var trainingNumberItem: TrainingNumberable! {
         didSet {
-            trainingImagesProvider.selectedToolbarItem.subscribe(onNext: { [weak self] selectedItem in
-                guard let `self` = self else { return }
-                self.check(selectedItem: selectedItem)
-            })
+            subscribeToSelectedNumberItem()
+            subscribeToSelectedNumber()
         }
     }
     
@@ -58,27 +64,23 @@ final class LearningViewModel {
         return neuralNetwork.percentageProgress
     }
     
-    private func data() throws -> (input: [[Float]], target: [[Float]]) {
+    private func data(for number: Int) throws -> [[Float]] {
         guard let inputImages = self.trainingImagesProvider.trainingImages,
-            inputImages.count == Settings.outputSize,
-            Settings.traningTargets.count == Settings.outputSize else {
+            inputImages[number].count > 0 else {
                 throw LearningErrors.dataAbsent
         }
-        var target: [[Float]] = []
         var input: [[Float]] = []
-        for index in 0..<Settings.outputSize {
-            for image in inputImages[index] {
-                target.append(Settings.traningTargets[index])
-                input.append(modelWorker.returnImageBlock(image))
-            }
-        }
-        return (input: input, target: target)
+        inputImages[number].forEach({ image in
+            input.append(modelWorker.returnImageBlock(image))
+        })
+        return input
     }
     
     func learnNetwork() throws {
-        let (input: input, target: target) = try data()
+        let number = trainingNumberItem.index
+        let input = try data(for: number)
         learningStage.onNext(.started)
-        neuralNetwork.learn(input: input, target: target) { [weak self] state in
+        neuralNetwork.learn(number: number, input: input) { [weak self] state in
             if state == .finished {
                 self?.learningStage.onNext(.finished)
             } else if state == .cancelled {
@@ -87,8 +89,8 @@ final class LearningViewModel {
         }
     }
     
-    private func check(selectedItem: LearningToolbarItem) {
-        let input = modelWorker.returnImageBlock(selectedItem.0)
+    private func predictNumber(for selectedItem: LearningToolbarItem) {
+        let input = modelWorker.returnImageBlock(selectedItem.image)
         neuralNetwork.predict(input: input) { [weak self] result in
             guard let `self` = self else {
                 return
@@ -99,9 +101,28 @@ final class LearningViewModel {
             case .wrong:
                 break
             case .success(let index):
-                self.predictionResult.onNext((index, selectedItem.1, selectedItem.2))
+                self.predictionResult.onNext((index, selectedItem.number, selectedItem.index))
                 break
             }
         }
+    }
+}
+
+// Listening to Learning toolbar
+
+extension LearningViewModel {
+    
+    private func subscribeToSelectedNumberItem() {
+        trainingNumberItem.selectedNumberItem.subscribe(onNext: { [weak self] selectedItem in
+            guard let `self` = self else { return }
+            self.predictNumber(for: selectedItem)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func subscribeToSelectedNumber() {
+        trainingNumberItem.selectedNumber.subscribe(onNext: { [weak self] selectedNumber in
+            guard let `self` = self else { return }
+            self.currentTrainedNumber.onNext(selectedNumber)
+        }).disposed(by: disposeBag)
     }
 }

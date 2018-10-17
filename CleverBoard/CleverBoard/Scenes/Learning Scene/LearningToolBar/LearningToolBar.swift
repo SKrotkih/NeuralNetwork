@@ -7,11 +7,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-typealias LearningToolbarIndex = (number: Int, index: Int)
 typealias LearningToolbarItem = (image: UIImage, number: Int, index: Int)
 typealias LearningToolbarPredictedIndex = (predicted: Int, number: Int, index: Int)
 
-class LearningToolBar: UIView, TrainingImagesProviding {
+class LearningToolBar: UIView, TrainingImagesProviding, TrainingNumberable {
 
     weak var drawView: DrawView!
     weak var explainLabel: UILabel! {
@@ -52,7 +51,8 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     
     private let disposeBag = DisposeBag()
     
-    var selectedToolbarItem = PublishSubject<LearningToolbarItem>()
+    var selectedNumberItem = PublishSubject<LearningToolbarItem>()
+    var selectedNumber = PublishSubject<Int>()
     
     var trainingImages: [[UIImage]]? {
         var _images: [[UIImage]]?
@@ -96,7 +96,7 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     }
     
     // Index of the tab item
-    private var index: Int = -1 {
+    var index: Int = -1 {
         didSet {
             if oldValue == index {
                 return
@@ -124,6 +124,7 @@ class LearningToolBar: UIView, TrainingImagesProviding {
             drawView.clear()
             self.explainLabel.isHidden = false
             explainLabel.text = "DRAW NUMBER \(index)"
+            selectedNumber.onNext(index)
         }
     }
     
@@ -159,7 +160,7 @@ class LearningToolBar: UIView, TrainingImagesProviding {
     private func didSelectTemplate(_ index: Int) {
         if let _image = imgs[index].image {
             // there is an image already
-            selectedToolbarItem.onNext((image: _image, number: self.index, index: index))
+            selectedNumberItem.onNext((image: _image, number: self.index, index: index))
             return
         }
         guard let image = self.drawView.getImage() else {
@@ -183,6 +184,7 @@ class LearningToolBar: UIView, TrainingImagesProviding {
         let fName = fileName(index: self.index, itemIndex: index)
         UIImage.remove(fileName: fName)
         imgs[index].image = nil
+        chkImgs[index].isHidden = true
     }
     
     private func bindTabBarButtonItems() {

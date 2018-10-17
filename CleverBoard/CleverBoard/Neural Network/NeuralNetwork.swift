@@ -20,7 +20,7 @@ public class NeuralNetwork {
             let progress: Float = Float(epoch) / Float(Settings.iterations)
             self.percentageProgress.onNext(progress)
             // TODO: Bind progress to the View
-            NSLog("Iterations: %@ [%.1f]", epoch, progress * 100.0)
+            NSLog("Iterations: %d [%.1f]", epoch, progress * 100.0)
         }
     }
     
@@ -44,17 +44,13 @@ public class NeuralNetwork {
     }
     
     /// Train Neural Network
-    func learn(input: [[Float]], target: [[Float]], completed: @escaping (NeuralNetworkState) -> Void) {
-        guard input.count == target.count else {
-            fatal()
-        }
-        // TODO: Need to continue learning
-        clean()
+    func learn(number: Int, input: [[Float]], completed: @escaping (NeuralNetworkState) -> Void) {
+        let target: [Float] = Settings.traningTargets[number]
         self.epoch = 0
         DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass).async {
             for iteration in 0..<Settings.iterations {
-                for (index, inputItem) in input.enumerated() {
-                    self.train(input: inputItem, target: target[index])
+                for (_, inputItem) in input.enumerated() {
+                    self.train(input: inputItem, target: target)
                 }
                 if self.cancel {
                     DispatchQueue.main.async {

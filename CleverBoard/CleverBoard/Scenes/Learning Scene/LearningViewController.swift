@@ -66,6 +66,7 @@ class LearningViewController: UIViewController {
         bindToBackButton()
         subscribeToDrawingState()
         subscribeToPredictionResult()
+        subscribeToCurrentNumber()
     }
     
     private func configure(view: UIView) {
@@ -90,6 +91,7 @@ class LearningViewController: UIViewController {
     private func createLearningToolBar() {
         learningToolBar = LearningToolBar.getInstance(for: toolBar)
         DispatchQueue.main.async {
+            self.viewModel.trainingNumberItem = self.learningToolBar
             self.learningToolBar.drawView = self.drawView
             self.learningToolBar.explainLabel = self.explainLabel
             self.viewModel.trainingImagesProvider = self.learningToolBar
@@ -130,10 +132,17 @@ class LearningViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
+    private func subscribeToCurrentNumber() {
+        viewModel.currentTrainedNumber.subscribe(onNext: { [weak self] number in
+            guard let `self` = self else { return }
+            self.teachButton.setTitle("TRAINING OF \"\(number)\"", for: .normal)
+        }).disposed(by: disposeBag)
+    }
+    
     private func subscribeToPredictionResult() {
         viewModel.predictionResult.subscribe(onNext: { [weak self] predictedItem in
             self?.learningToolBar.predictedItem = predictedItem
-        })
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -148,7 +157,7 @@ extension LearningViewController {
             try self.viewModel.learnNetwork()
         } catch(let error) {
             if error as! LearningErrors == .dataAbsent {
-                let alertController = UIAlertController(title: "", message: "Every tab has to have at least one image! Please check it", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "", message: "Please draw at least one template and add to train", preferredStyle: .alert)
                 let action = UIAlertAction(title: "Ok", style: .cancel) { _ in
                 }
                 alertController.addAction(action)
@@ -165,10 +174,7 @@ extension LearningViewController {
                 self.isLearningInProcess = true
             case .finished:
                 DispatchQueue.main.async { [weak self] in
-                    guard let `self` = self else { return }
-                    // Learning is finished
-                    self.isLearningInProcess = false
-                    self.performSegue(withIdentifier: "predict", sender: self)
+                    self?.isLearningInProcess = false
                 }
             case .cancelled:
                 self.isLearningInProcess = false
